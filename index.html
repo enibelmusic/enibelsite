@@ -154,16 +154,6 @@
   nav.links a.cta::after{ display:none; }
   nav.links a.cta:hover{ background:var(--obsidian); color:var(--white); }
 
-  .download-btn{
-    display:flex; align-items:center; justify-content:center;
-    width:38px; height:38px; border-radius:50%;
-    border:1px solid var(--obsidian);
-    margin-left:18px; flex:none;
-    transition:all .25s ease;
-  }
-  .download-btn svg{ width:16px; height:16px; }
-  .download-btn:hover{ background:var(--obsidian); color:var(--white); }
-
   .menu-toggle{ display:none; flex-direction:column; gap:5px; }
   .menu-toggle span{ width:22px; height:1.5px; background:var(--obsidian); }
 
@@ -862,9 +852,6 @@
       <a href="#conecte">Conteúdos</a>
       <a href="#qg">QG da Fada</a>
     </nav>
-    <a href="#" class="download-btn" id="downloadSiteBtn" aria-label="Baixar site" title="Baixar site">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-    </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -1399,22 +1386,6 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
   })();
-
-  // Download do site
-  document.getElementById('downloadSiteBtn').addEventListener('click', function(e){
-    e.preventDefault();
-    const doctype = '<!DOCTYPE html>\n';
-    const html = doctype + document.documentElement.outerHTML;
-    const blob = new Blob([html], {type:'text/html'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'enibel-site.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
 
   // Discografia: alternar lista completa de faixas (mobile)
   document.querySelectorAll('.track-toggle').forEach(function(btn){
