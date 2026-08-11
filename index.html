@@ -1467,19 +1467,21 @@
       <h3>Quero fazer parte.</h3>
       <p class="fintro">Conte um pouco sobre você para entrar na seleção do QG.</p>
 
-      <form id="qgForm">
+      <form id="qgForm" action="https://formspree.io/enibelmusic@gmail.com" method="POST">
         <div class="field">
           <label for="qname">Nome</label>
-          <input id="qname" type="text" placeholder="Seu nome" required>
+          <input id="qname" name="Nome" type="text" placeholder="Seu nome" required>
         </div>
         <div class="field field-row">
-          <div><label for="qwhats">WhatsApp</label><input id="qwhats" type="tel" placeholder="(00) 00000-0000" required></div>
-          <div><label for="qinsta">Instagram</label><input id="qinsta" type="text" placeholder="@seuusuario" required></div>
+          <div><label for="qwhats">WhatsApp</label><input id="qwhats" name="WhatsApp" type="tel" placeholder="(00) 00000-0000" required></div>
+          <div><label for="qinsta">Instagram</label><input id="qinsta" name="Instagram" type="text" placeholder="@seuusuario" required></div>
         </div>
         <div class="field">
           <label for="qmsg">Por que você deseja fazer parte do QG?</label>
-          <textarea id="qmsg" rows="3" placeholder="Conte por que você se conecta com a Fada e com seu trabalho."></textarea>
+          <textarea id="qmsg" name="Mensagem" rows="3" placeholder="Conte por que você se conecta com a Fada e com seu trabalho."></textarea>
         </div>
+        <input type="hidden" name="_subject" value="Nova inscrição · QG da Fada (ENIBEL)">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <button type="submit" class="qg-submit">Enviar inscrição
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
         </button>
@@ -1671,11 +1673,30 @@
   }, {threshold:.15});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // QG form (sem backend — apenas confirmação visual)
+  // QG form -> envia via Formspree para enibelmusic@gmail.com
   document.getElementById('qgForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('qgStatus').textContent = 'Inscrição recebida! A equipe da ENIBEL vai analisar seu pedido em breve. ✦';
-    this.reset();
+    const form = this;
+    const statusEl = document.getElementById('qgStatus');
+    const submitBtn = form.querySelector('.qg-submit');
+    statusEl.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if (response.ok) {
+        statusEl.textContent = 'Inscrição recebida! A equipe da ENIBEL vai analisar seu pedido em breve. ✦';
+        form.reset();
+      } else {
+        statusEl.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+      }
+    }).catch(function(){
+      statusEl.textContent = 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
+    }).finally(function(){
+      submitBtn.disabled = false;
+    });
   });
 
   // Top 10 track data + real Spotify links
