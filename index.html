@@ -831,6 +831,20 @@
   .qg-fineprint{ margin-top:12px; font-size:11px; color:var(--gray); }
   .qg-status{ margin-top:14px; font-size:13px; color:var(--cherry); font-weight:500; min-height:18px; }
 
+  .qg-success{ text-align:center; padding:26px 0 10px; animation:qgSuccessIn .5s ease both; }
+  .qg-success-icon{
+    width:60px; height:60px; margin:0 auto 20px; border-radius:50%;
+    border:1.5px solid var(--cherry); color:var(--cherry);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .qg-success-icon svg{ width:28px; height:28px; }
+  .qg-success .flabel{ display:block; }
+  .qg-success h3{ font-size:clamp(24px,2.4vw,30px); margin-top:10px; line-height:1.1; }
+  .qg-success .fintro{ margin-top:12px; max-width:420px; margin-left:auto; margin-right:auto; }
+  .qg-success .qg-fineprint{ margin-top:20px; }
+  @keyframes qgSuccessIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce){ .qg-success{ animation:none; } }
+
   @media(max-width:900px){ .qg{ padding:72px 24px; } .qg-grid{ flex-direction:column; align-items:stretch; gap:48px; } .qg-form{ max-width:100%; flex-basis:auto; } .field-row{ grid-template-columns:1fr; } }
 
   /* ---------- CLOSING ---------- */
@@ -1463,11 +1477,12 @@
     </div>
 
     <div class="qg-form reveal">
+      <div class="qg-form-body" id="qgFormBody">
       <span class="flabel">Lista de fãs</span>
       <h3>Quero fazer parte.</h3>
       <p class="fintro">Conte um pouco sobre você para entrar na seleção do QG.</p>
 
-      <form id="qgForm" action="https://formspree.io/enibelmusic@gmail.com" method="POST">
+      <form id="qgForm" action="https://formspree.io/f/mljrbzvz" method="POST">
         <div class="field">
           <label for="qname">Nome</label>
           <input id="qname" name="Nome" type="text" placeholder="Seu nome" required>
@@ -1488,6 +1503,16 @@
         <p class="qg-status" id="qgStatus"></p>
       </form>
       <p class="qg-fineprint">As inscrições são analisadas individualmente pela equipe da ENIBEL.</p>
+      </div>
+      <div class="qg-success" id="qgSuccess" hidden>
+        <div class="qg-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12.4l2.6 2.6L16.5 9"/></svg>
+        </div>
+        <span class="flabel">Lista de fãs</span>
+        <h3>Inscrição recebida!</h3>
+        <p class="fintro">A equipe da ENIBEL vai analisar seu pedido e pode entrar em contato pelo WhatsApp ou Instagram informados. ✦</p>
+        <p class="qg-fineprint">Para enviar uma nova inscrição, atualize a página.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1687,14 +1712,17 @@
       headers: { 'Accept': 'application/json' }
     }).then(function(response){
       if (response.ok) {
-        statusEl.textContent = 'Inscrição recebida! A equipe da ENIBEL vai analisar seu pedido em breve. ✦';
+        const formBody = document.getElementById('qgFormBody');
+        const successBox = document.getElementById('qgSuccess');
+        formBody.style.display = 'none';
+        successBox.hidden = false;
         form.reset();
       } else {
         statusEl.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+        submitBtn.disabled = false;
       }
     }).catch(function(){
       statusEl.textContent = 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
-    }).finally(function(){
       submitBtn.disabled = false;
     });
   });
