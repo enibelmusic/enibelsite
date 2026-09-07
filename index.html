@@ -144,7 +144,7 @@
     color:var(--obsidian); position:relative; padding-bottom:4px;
   }
   nav.links a::after{
-    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--cherry);
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:#AED9A0;
     transition:width .25s ease;
   }
   nav.links a:hover::after{ width:100%; }
@@ -154,19 +154,11 @@
   nav.links a.cta::after{ display:none; }
   nav.links a.cta:hover{ background:var(--obsidian); color:var(--white); }
 
-  .menu-toggle{ display:none; flex-direction:column; gap:5px; }
-  .menu-toggle span{ width:22px; height:1.5px; background:var(--obsidian); }
+  .menu-toggle{ display:none; }
 
   @media(max-width:900px){
-    .nav-inner{ padding:16px 24px; }
-    nav.links{
-      position:fixed; top:64px; left:0; right:0; height:calc(100vh - 64px); height:calc(100dvh - 64px);
-      background:var(--mist); flex-direction:column; justify-content:flex-start;
-      padding:40px 32px; gap:28px; overflow-y:auto; z-index:99;
-      transform:translateX(100%); transition:transform .35s ease;
-    }
-    nav.links.open{ transform:translateX(0); }
-    .menu-toggle{ display:flex; }
+    .nav-inner{ padding:14px 20px; gap:16px; }
+    nav.links{ display:none; }
   }
 
   /* ---------- HERO ---------- */
@@ -267,10 +259,74 @@
   .quote-block p{ font-family:var(--serif); font-style:italic; font-size:19px; color:var(--obsidian); }
 
   @media(max-width:900px){
-    .sobre-grid{ grid-template-columns:1fr; }
-    .sobre-photo{ min-height:60vh; }
-    .sobre-text{ padding:24px 24px; }
-    .sobre-cols{ grid-template-columns:1fr; }
+    .sobre-grid{ display:none; }
+  }
+
+  /* ---------- SOBRE: carrossel de 3 cards (mobile) ---------- */
+  .sobre-carousel-wrap{ display:none; }
+  @media(max-width:900px){
+    .sobre-carousel-wrap{ position:relative; display:block; }
+    .sobre-carousel{
+      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; margin:0 -20px; padding:4px 20px 12px;
+      scroll-padding:0 20px; scrollbar-width:none;
+    }
+    .sobre-carousel::-webkit-scrollbar{ display:none; }
+    .sobre-card{
+      flex:0 0 86%; scroll-snap-align:center; border-radius:22px;
+      position:relative; overflow:hidden; min-height:480px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:28px 22px; color:var(--obsidian);
+      background:
+        radial-gradient(circle at 16% 0%, rgba(255,255,255,.6), transparent 45%),
+        linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
+      box-shadow:
+        0 24px 40px -20px rgba(44,44,42,.35),
+        inset 0 1px 1px rgba(255,255,255,.8),
+        inset 0 0 0 1px rgba(174,217,160,.5);
+    }
+    .sobre-card p{ font-size:14.5px; line-height:1.65; color:#4a4944; font-weight:300; }
+    .sobre-card p + p{ margin-top:16px; }
+    .sobre-card p.lead{ font-family:var(--serif); font-style:italic; font-size:19px; color:var(--cherry); line-height:1.4; }
+    .sobre-card .quote-block{ margin-top:18px; padding-top:16px; border-top:1px solid rgba(44,44,42,.15); display:flex; gap:10px; align-items:flex-start; }
+    .sobre-card .quote-block img{ width:20px; height:20px; flex:none; margin-top:2px; }
+    .sobre-card .quote-block p{ font-family:var(--serif); font-style:italic; font-size:14.5px; color:var(--cherry); }
+
+    .sobre-card-photo{ padding:0; min-height:520px; justify-content:flex-end; }
+    .sobre-card-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+    .sc-overlay{
+      position:relative; z-index:1; padding:26px 22px 24px;
+      background:linear-gradient(0deg, rgba(20,15,15,.88) 10%, rgba(20,15,15,.55) 55%, rgba(20,15,15,0) 100%);
+      padding-top:90px;
+    }
+    .sc-overlay .eyebrow{ color:var(--gold-light); }
+    .sc-overlay h2{
+      font-family:var(--serif); font-size:clamp(26px,7.5vw,36px); color:var(--white);
+      margin-top:6px; line-height:1.15;
+    }
+    .sc-overlay h2 em{ color:var(--mint); }
+    .sc-hint{
+      display:flex; align-items:center; gap:7px; margin-top:16px;
+      background:none; border:none; padding:0; cursor:pointer;
+      font-family:var(--sans); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+      color:rgba(255,255,255,.85); font-weight:600;
+    }
+    .sc-hint svg{ width:13px; height:13px; flex:none; }
+
+    .sobre-swipe-hint{
+      position:absolute; top:50%; right:6px; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
+      display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+      color:#993556;
+      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      box-shadow:
+        0 10px 22px -10px rgba(44,44,42,.4),
+        inset 0 1px 1px rgba(255,255,255,.9);
+      animation:discoSwipeNudge 2.6s ease-in-out infinite;
+    }
+    .sobre-swipe-hint svg{ width:20px; height:20px; }
+    .sobre-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
   }
 
   /* ---------- STATS BAR ---------- */
@@ -362,13 +418,60 @@
   .platform-link:hover svg.arrow{ transform:translate(2px,-2px); opacity:1; }
 
   @media(max-width:900px){
-    .intent-grid{ grid-template-columns:1fr; }
+    .intent-grid{
+      grid-template-columns:none; display:flex; flex-direction:row;
+      gap:14px; border:none; max-width:100%;
+      overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      margin:0 -20px; padding:6px 20px 10px; scroll-padding:0 20px; scrollbar-width:none;
+    }
+    .intent-grid::-webkit-scrollbar{ display:none; }
+    .intent-card{
+      flex:0 0 195px; scroll-snap-align:start;
+      border:none; border-radius:20px; min-height:225px; padding:48px 20px 22px;
+      display:flex; flex-direction:column;
+      background:
+        radial-gradient(circle at 14% 0%, rgba(255,255,255,.6), transparent 45%),
+        linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
+      box-shadow:
+        0 18px 32px -18px rgba(44,44,42,.35),
+        0 2px 6px rgba(44,44,42,.05),
+        inset 0 1px 1px rgba(255,255,255,.75),
+        inset 0 0 0 1px rgba(174,217,160,.4);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .intent-card:active{
+      transform:scale(.98);
+      box-shadow:
+        0 6px 14px -10px rgba(44,44,42,.3),
+        inset 0 2px 5px rgba(44,44,42,.12);
+    }
+    .intent-card .ic{ width:26px; height:26px; top:16px; right:14px; }
+    .intent-card .ic svg{ width:26px; height:26px; }
+    .intent-card h3{ font-size:23px; line-height:1.15; }
+    .intent-card p{ margin-top:10px; font-size:14.5px; line-height:1.5; white-space:normal; }
+
+    .intent-grid-wrap{ position:relative; }
+    .intent-swipe-hint{
+      position:absolute; top:50%; right:6px; transform:translateY(-50%);
+      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+      color:#993556;
+      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      box-shadow:
+        0 8px 18px -8px rgba(44,44,42,.35),
+        inset 0 1px 1px rgba(255,255,255,.9);
+      animation:discoSwipeNudge 2.6s ease-in-out infinite;
+    }
+    .intent-swipe-hint svg{ width:16px; height:16px; }
+    .intent-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+
     .platforms-row{ grid-template-columns:1fr 1fr; }
     .watermark{ display:none; }
   }
 
   /* ---------- TOP 10 ---------- */
-  .top10{ background:var(--mist); padding:80px 0; }
+  .top10{ background:var(--mist); padding:24px 0 80px; }
   .top10-title{ font-size:13.2px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--cherry); padding-bottom:22px; border-bottom:1px solid rgba(44,44,42,.14); margin-bottom:36px; }
   .video-feature{ max-width:80%; margin:56px auto 0; text-align:center; }
   .video-feature-label{ font-size:13.2px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--cherry); margin-bottom:22px; display:inline-flex; align-items:center; gap:8px; }
@@ -409,7 +512,6 @@
     display:flex; align-items:center; gap:16px;
     padding:16px 0; border-bottom:1px solid rgba(44,44,42,.12);
     transition:background .25s ease, padding .25s ease, margin .25s ease;
-    cursor:pointer;
   }
   .track-row:hover{
     background:var(--blush);
@@ -432,12 +534,16 @@
     background:var(--mint); color:#1f3d16; padding:4px 10px; border-radius:999px; vertical-align:middle;
   }
   .track-info .tcap{ display:inline-block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); margin-top:0; }
+  .track-actions{ display:flex; align-items:flex-start; gap:18px; flex:none; }
+  .track-action{ display:flex; flex-direction:column; align-items:center; gap:6px; }
   .play-btn{
-    width:34px; height:34px; border-radius:50%; border:1px solid rgba(44,44,42,.3); flex:none;
+    width:44px; height:44px; border-radius:50%; border:1px solid rgba(44,44,42,.3); flex:none;
     display:flex; align-items:center; justify-content:center; transition:all .2s ease;
   }
   .play-btn:hover{ background:var(--cherry); border-color:var(--cherry); color:var(--white); }
-  .play-btn svg{ width:11px; height:11px; margin-left:1px; }
+  .play-btn svg{ width:15px; height:15px; margin-left:1px; }
+  .lyrics-btn svg{ width:16px; height:16px; margin-left:0; }
+  .ta-label{ font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); font-weight:600; }
 
   @media(max-width:800px){ .top10-cols{ grid-template-columns:1fr; column-gap:0; } }
 
@@ -457,6 +563,14 @@
   .quiz-manif .wrap{ position:relative; z-index:2; }
   .quiz-teaser{ text-align:center; margin-top:64px; margin-bottom:10px; }
   .quiz-head{ text-align:center; margin-bottom:40px; max-width:640px; margin-left:auto; margin-right:auto; }
+  .quiz-tag{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:7px 18px; border-radius:999px; margin-bottom:16px;
+    background:rgba(255,255,255,.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(153,53,86,.28);
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:700;
+    color:var(--cherry);
+  }
   .quiz-head h2{ font-family:var(--serif); font-size:clamp(28px,4vw,42px); font-weight:600; color:var(--cherry); }
   .quiz-head p{ margin-top:14px; font-size:16px; color:#5c5b56; font-weight:300; line-height:1.5; }
   .quiz-box{
@@ -659,13 +773,13 @@
 
     .album-meta{ order:1; color:#AED9A0; }
     .album-title{ order:2; margin-top:3.57px; }
-    .album-art{ order:3; margin-top:22px; }
-    .album-desc{ order:4; margin-top:22px; }
-    .track-toggle{ order:5; }
+    .album-art{ order:3; margin-top:12px; }
+    .album-desc{ order:4; margin-top:10px; }
+    .track-toggle{ order:5; margin-top:14px; padding:13px 18px; }
     .track-grid{ order:6; }
-    .ouvir-link{ order:7; margin-top:14px; width:100%; }
+    .ouvir-link{ order:7; margin-top:10px; width:100%; padding:13px 18px; }
 
-    .track-grid{ margin-top:24px; }
+    .track-grid{ margin-top:14px; }
   }
 
 
@@ -696,6 +810,21 @@
   }
 
   @media(max-width:900px){ .mm-grid{ grid-template-columns:1fr; } .mm-photo{ min-height:50vh; } .mm-panel{ padding:64px 24px; } }
+  .mm-intro-mobile{ display:none; }
+  @media(max-width:900px){
+    .mm-intro-mobile{
+      display:flex; flex-direction:column; gap:6px;
+      padding:32px 24px 0;
+    }
+    .mm-intro-mobile .eyebrow{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--gold-light); }
+    .mm-intro-mobile .sub{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(250,250,248,.6); }
+    .mm-intro-desktop{ display:none; }
+    .mm-tags{ flex-wrap:nowrap; gap:6px; }
+    .mm-tags .pill{
+      padding:6px 10px; font-size:8.5px; letter-spacing:.02em; white-space:nowrap; flex:1 1 auto;
+      justify-content:center; text-align:center;
+    }
+  }
 
   /* ---------- VLOG ---------- */
   .vlog{ background:linear-gradient(180deg,var(--blush),var(--mist)); padding:83px 0 110px; }
@@ -805,6 +934,7 @@
   .qg-text p:nth-of-type(2){ text-wrap:pretty; }
   .qg-text p + p{ margin-top:16px; }
   .qg-tags{ display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+  .qg-open-btn{ display:none; }
   .qg-tags .pill{ animation:qgPillGlow 2.6s ease-in-out infinite; }
   .qg-tags .pill:nth-child(2){ animation-delay:.4s; }
   @keyframes qgPillGlow{
@@ -853,7 +983,43 @@
   @keyframes qgSuccessIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
   @media (prefers-reduced-motion: reduce){ .qg-success{ animation:none; } }
 
-  @media(max-width:900px){ .qg{ padding:72px 24px; } .qg-grid{ flex-direction:column; align-items:stretch; gap:48px; } .qg-form{ max-width:100%; flex-basis:auto; } .field-row{ grid-template-columns:1fr; } }
+  @media(max-width:900px){
+    .qg{ padding:72px 24px; }
+    .qg-grid{ flex-direction:column; align-items:stretch; gap:48px; }
+    .qg-form{ max-width:100%; flex-basis:auto; }
+    .field-row{ grid-template-columns:1fr; }
+
+    .qg-text .eyebrow{ order:1; }
+    .qg-text .sub{ order:2; }
+    .qg-text h2{ order:3; }
+    .qg-text .qg-tags{ order:4; margin-top:22px; flex-wrap:nowrap; gap:8px; }
+    .qg-text .qg-tags .pill{
+      padding:9px 10px; font-size:9px; letter-spacing:.04em; white-space:nowrap; flex:1 1 auto;
+      justify-content:center; text-align:center;
+    }
+    .qg-text p{ order:5; }
+
+    .qg-open-btn{
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      order:6; margin-top:32px; padding:18px 24px; width:100%; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700;
+      color:#1c2f10;
+      background:linear-gradient(160deg,#eaf7de,#AED9A0 85%);
+      box-shadow:
+        0 14px 26px -10px rgba(0,0,0,.5),
+        inset 0 1px 1px rgba(255,255,255,.85),
+        inset 0 -3px 6px rgba(44,61,22,.22);
+      transition:transform .15s ease, box-shadow .2s ease;
+    }
+    .qg-open-btn:active{ transform:scale(.97); box-shadow:inset 0 2px 5px rgba(44,61,22,.35); }
+    .qg-open-btn svg{ width:15px; height:15px; flex:none; }
+    .qg-open-btn.is-hidden{ display:none; }
+    .qg-text h2{ font-size:clamp(28px,8.5vw,40px); white-space:nowrap; }
+
+    .qg-form{ display:none; }
+    .qg-form.is-open{ display:block; animation:qgFormReveal .4s ease; }
+    @keyframes qgFormReveal{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  }
 
   /* ---------- CLOSING ---------- */
   .closing{
@@ -881,6 +1047,16 @@
   .closing-actions{ margin-top:33px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
   .closing-actions .btn{ padding:14px 23px; font-size:11px; }
   .closing-actions .btn svg{ width:13px; height:13px; }
+  @media(max-width:900px){
+    .closing-actions{ gap:14px; width:100%; }
+    .closing-actions .btn{
+      flex:1 1 auto; justify-content:center; border-radius:14px; border-color:rgba(44,44,42,.2);
+      background:linear-gradient(165deg,rgba(255,255,255,.7),rgba(255,255,255,.25));
+      box-shadow:0 10px 20px -12px rgba(44,44,42,.3), inset 0 1px 1px rgba(255,255,255,.7);
+      transition:transform .15s ease, box-shadow .2s ease;
+    }
+    .closing-actions .btn:active{ transform:scale(.97); box-shadow:inset 0 2px 5px rgba(44,44,42,.15); }
+  }
 
   .closing-socials{ margin-top:26px; display:flex; align-items:center; justify-content:center; gap:20px; }
   .closing-socials a{ display:flex; color:var(--obsidian); transition:opacity .2s ease; }
@@ -982,137 +1158,373 @@
   }
 
 
-  /* ---------- APP MODE (mobile): quick-nav em pilulas + carrosseis horizontais ---------- */
+  /* ---------- APP MODE (mobile): quick-nav integrado ao header + carrosseis horizontais ---------- */
   .quick-nav{ display:none; }
   @media(max-width:900px){
     .quick-nav{
-      display:flex; gap:26px; align-items:center;
-      position:sticky; top:64px; z-index:90;
-      padding:16px 20px; overflow-x:auto; scroll-behavior:smooth;
-      background:rgba(242,248,239,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(44,44,42,.08);
-      -webkit-overflow-scrolling:touch; scrollbar-width:none;
+      display:flex; flex:1 1 auto; min-width:0; gap:26px; align-items:center;
+      overflow-x:auto; scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none; cursor:grab; user-select:none;
     }
+    .quick-nav.dragging{ cursor:grabbing; scroll-behavior:auto; }
     .quick-nav::-webkit-scrollbar{ display:none; }
     .quick-nav a{
       flex:none; white-space:nowrap; padding-bottom:4px;
-      border-bottom:1px solid transparent; color:var(--obsidian);
-      font-size:11px; letter-spacing:.09em; text-transform:uppercase; font-weight:500;
+      border-bottom:1.5px solid transparent; color:var(--obsidian);
+      font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:600;
       transition:border-color .2s ease, color .2s ease;
     }
     .quick-nav a.active{
-      border-color:var(--cherry); color:var(--cherry); font-weight:600;
+      border-color:#AED9A0; color:#AED9A0; font-weight:700;
     }
 
     /* Vlog: cards em carrossel horizontal com drag/swipe */
     .vlog-grid{
       display:flex; grid-template-columns:none; gap:16px;
       overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-      margin-left:-20px; margin-right:-20px; padding:4px 20px 10px; scrollbar-width:none;
+      margin-left:-20px; margin-right:-20px; padding:4px 20px 10px;
+      scroll-padding:0 20px; scrollbar-width:none;
     }
     .vlog-grid::-webkit-scrollbar{ display:none; }
     .vlog-grid .vlog-card{ flex:0 0 80%; scroll-snap-align:start; }
+
+    .vlog-grid-wrap, .reels-grid-wrap{ position:relative; }
+    .vlog-swipe-hint, .reels-swipe-hint{
+      position:absolute; top:50%; right:6px; transform:translateY(-50%);
+      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+      color:#993556;
+      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      box-shadow:
+        0 8px 18px -8px rgba(44,44,42,.35),
+        inset 0 1px 1px rgba(255,255,255,.9);
+      animation:discoSwipeNudge 2.6s ease-in-out infinite;
+    }
+    .vlog-swipe-hint svg, .reels-swipe-hint svg{ width:16px; height:16px; }
+    .vlog-swipe-hint.is-hidden, .reels-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
 
     /* Reels: cards em carrossel horizontal com drag/swipe */
     .reels-grid{
       display:flex; grid-template-columns:none; max-width:100%; gap:14px;
       overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-      margin-left:-20px; margin-right:-20px; padding:4px 20px 10px; scrollbar-width:none;
+      margin-left:-20px; margin-right:-20px; padding:4px 20px 10px;
+      scroll-padding:0 20px; scrollbar-width:none;
     }
     .reels-grid::-webkit-scrollbar{ display:none; }
     .reels-grid .reel{ flex:0 0 46%; margin-top:0 !important; scroll-snap-align:start; }
   }
 
-  /* ---------- HERO: icones sociais (mobile) + header/quick-nav so aparecem apos o hero ---------- */
+  /* ---------- HERO: icones sociais (mobile) + header (com menu embutido) so aparece apos o hero ---------- */
   .hero-socials{ display:none; }
+  .hero-mundo-btn{ display:none; }
+  .hero-stats{ display:none; }
   @media(max-width:900px){
-    header, .quick-nav{ transition:opacity .35s ease, transform .35s ease, max-height .35s ease, padding .35s ease; }
-    header{ opacity:0; transform:translateY(-12px); pointer-events:none; }
+    .hero-mark{ margin:0 auto -26px; }
+    .hero h1{ margin-top:-18px; }
+
+    header{ transition:opacity .35s ease, transform .35s ease; opacity:0; transform:translateY(-12px); pointer-events:none; }
     header.show-nav{ opacity:1; transform:none; pointer-events:auto; }
-    .quick-nav{ opacity:0; pointer-events:none; max-height:0; padding-top:0; padding-bottom:0; border-bottom:none; overflow:hidden; }
-    .quick-nav.show-nav{ opacity:1; pointer-events:auto; max-height:80px; padding-top:16px; padding-bottom:16px; border-bottom:1px solid rgba(44,44,42,.08); }
 
     .hero-socials{
-      display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
-      margin-top:24px; max-width:330px;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:9px;
+      margin-top:18px; max-width:420px; width:100%;
     }
     .hero-socials a{
-      display:flex; align-items:center; gap:5px;
-      padding:8px 11px; border-radius:999px;
-      border:1px solid rgba(44,44,42,.22); color:var(--obsidian);
-      font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:600;
-      background:rgba(255,255,255,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      display:flex; align-items:center; gap:9px;
+      padding:13px 20px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.65); color:var(--obsidian);
+      font-size:12.5px; letter-spacing:.01em; text-transform:uppercase; font-weight:700;
+      background:linear-gradient(165deg, rgba(255,255,255,.7), rgba(255,255,255,.28));
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      box-shadow:
+        0 10px 22px -12px rgba(44,44,42,.4),
+        0 2px 4px rgba(44,44,42,.08),
+        inset 0 1px 1px rgba(255,255,255,.95),
+        inset 0 -2px 5px rgba(44,44,42,.07);
+      transition:transform .15s ease, box-shadow .2s ease;
     }
-    .hero-socials svg{ width:12px; height:12px; flex:none; }
+    .hero-socials a:active{
+      transform:scale(.96);
+      box-shadow:
+        0 3px 8px -4px rgba(44,44,42,.3),
+        inset 0 2px 5px rgba(44,44,42,.15);
+    }
+    .hero-socials svg{ width:17px; height:17px; flex:none; }
+
+    .hero-mundo-btn{
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      width:100%; max-width:420px; margin:10px auto 0; padding:14px 22px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.65); color:var(--obsidian);
+      font-size:12px; letter-spacing:.04em; text-transform:uppercase; font-weight:700;
+      background:linear-gradient(165deg, rgba(255,255,255,.7), rgba(255,255,255,.28));
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      box-shadow:
+        0 10px 22px -12px rgba(44,44,42,.4),
+        0 2px 4px rgba(44,44,42,.08),
+        inset 0 1px 1px rgba(255,255,255,.95),
+        inset 0 -2px 5px rgba(44,44,42,.07);
+      transition:transform .15s ease, box-shadow .2s ease;
+    }
+    .hero-mundo-btn:active{
+      transform:scale(.96);
+      box-shadow:
+        0 3px 8px -4px rgba(44,44,42,.3),
+        inset 0 2px 5px rgba(44,44,42,.15);
+    }
+    .hero-mundo-btn svg{ width:13px; height:13px; flex:none; }
+
+    .hero-stats{
+      display:flex; justify-content:center; gap:0; margin-top:14px;
+    }
+    .hs-item{
+      display:flex; flex-direction:column; align-items:center; gap:3px;
+      padding:0 18px; position:relative; max-width:100px;
+    }
+    .hs-item + .hs-item{ border-left:1px solid rgba(44,44,42,.18); }
+    .hs-num{ font-family:var(--serif); font-size:21px; color:var(--cherry); font-weight:600; line-height:1; }
+    .hs-label{ font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:#5c5b56; text-align:center; line-height:1.3; }
   }
 
-  /* ---------- CARROSSEIS HORIZONTAIS (mobile): discografia, top10 + setas ---------- */
+  /* Telas baixas (celulares menores/mais largos): compacta ainda mais o hero pra caber tudo sem sobrepor */
+  @media(max-width:900px) and (max-height:750px){
+    .hero-mark{ width:min(46vw,320px); margin:0 auto -18px; }
+    .hero h1{ font-size:clamp(26px,4.6vw,58px); margin-top:-14px; }
+    .hero-socials{ gap:7px; margin-top:14px; }
+    .hero-socials a{ padding:10px 16px; font-size:11px; }
+    .hero-socials svg{ width:15px; height:15px; }
+    .hero-mundo-btn{ margin-top:8px; padding:12px 20px; font-size:11px; }
+    .hero-stats{ margin-top:10px; }
+    .hs-num{ font-size:18px; }
+    .scroll-cue{ bottom:8px; }
+    .scroll-cue span{ display:none; }
+  }
+
+  /* ---------- CARROSSEIS HORIZONTAIS: discografia (sempre), vlog/reels/top10 (mobile) + setas ---------- */
   .carousel-arrows{ display:none; }
+  .carousel-arrows[data-target="discoCarousel"]{ display:flex; gap:16px; justify-content:flex-end; margin:-10px 0 24px; }
+  .carousel-arrows[data-target="vlogGrid"]{ justify-content:center; margin:24px 0 0; }
+  .car-arrow{
+    width:76px; height:76px; border-radius:50%; border:2px solid #993556;
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255,255,255,.85), rgba(255,255,255,0) 42%),
+      linear-gradient(155deg,#c3e8b3,#96c982 68%);
+    box-shadow:
+      0 12px 22px -8px rgba(153,53,86,.45),
+      0 2px 4px rgba(44,44,42,.15),
+      inset 0 1px 1px rgba(255,255,255,.9),
+      inset 0 -3px 6px rgba(44,61,22,.25);
+    display:flex; align-items:center; justify-content:center;
+    color:#2C2C2A; flex:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .25s ease;
+  }
+  .car-arrow:active{
+    transform:scale(.92) translateY(1px);
+    box-shadow:
+      0 4px 10px -4px rgba(153,53,86,.4),
+      inset 0 2px 5px rgba(44,61,22,.35);
+  }
+  .car-arrow svg{ width:30px; height:30px; filter:drop-shadow(0 1px 1px rgba(255,255,255,.5)); }
+  .car-next{
+    animation:carNextGlow 2.2s ease-in-out infinite;
+  }
+  @keyframes carNextGlow{
+    0%,100%{
+      box-shadow:
+        0 12px 22px -8px rgba(153,53,86,.45), 0 2px 4px rgba(44,44,42,.15),
+        inset 0 1px 1px rgba(255,255,255,.9), inset 0 -3px 6px rgba(44,61,22,.25),
+        0 0 0 0 rgba(174,217,160,.5);
+    }
+    50%{
+      box-shadow:
+        0 12px 22px -8px rgba(153,53,86,.45), 0 2px 4px rgba(44,44,42,.15),
+        inset 0 1px 1px rgba(255,255,255,.9), inset 0 -3px 6px rgba(44,61,22,.25),
+        0 0 20px 6px rgba(174,217,160,.9);
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .car-next{ animation:none; }
+  }
+
+  .disco-carousel{
+    display:flex; gap:32px; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .disco-carousel::-webkit-scrollbar{ display:none; }
+  .disco-carousel .album{
+    flex:0 0 min(1000px,88%); scroll-snap-align:start;
+    border-radius:22px; padding:44px 40px;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(255,255,255,.6), transparent 45%),
+      linear-gradient(48deg, rgba(221,240,212,.4) 0%, rgba(251,234,240,.32) 45%, rgba(247,224,144,.28) 100%);
+    box-shadow:
+      0 30px 60px -30px rgba(44,44,42,.3),
+      inset 0 1px 1px rgba(255,255,255,.7),
+      inset 0 0 0 1px rgba(174,217,160,.4);
+  }
+  .disco-carousel .album-divider{ display:none; }
+
+  .disco-carousel-wrap{ position:relative; }
+  .disco-swipe-hint{
+    position:absolute; top:50%; right:6px; transform:translateY(-50%);
+    width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
+    display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+    color:#993556;
+    background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    box-shadow:
+      0 10px 22px -10px rgba(44,44,42,.4),
+      inset 0 1px 1px rgba(255,255,255,.9);
+    animation:discoSwipeNudge 2.6s ease-in-out infinite;
+  }
+  .disco-swipe-hint svg{ width:22px; height:22px; }
+  .disco-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+  @media(min-width:901px){
+    .disco-swipe-hint{ width:78px; height:78px; right:-20px; border-width:2px; }
+    .disco-swipe-hint svg{ width:32px; height:32px; }
+  }
+  @keyframes discoSwipeNudge{
+    0%,100%{ transform:translateY(-50%) translateX(0); opacity:.8; }
+    50%{ transform:translateY(-50%) translateX(-5px); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .disco-swipe-hint{ animation:none; }
+  }
+
   @media(max-width:900px){
-    .carousel-arrows{ display:flex; gap:10px; justify-content:flex-end; margin:-10px 0 18px; }
-    .car-arrow{
-      width:38px; height:38px; border-radius:50%; border:1.5px solid #993556;
-      background:#AED9A0; display:flex; align-items:center; justify-content:center;
-      color:#2C2C2A; flex:none; transition:background .2s ease, opacity .2s ease, box-shadow .3s ease;
-    }
-    .car-arrow:active{ background:#9BC98C; }
-    .car-arrow svg{ width:16px; height:16px; }
-    .car-arrow[disabled]{ opacity:.35; pointer-events:none; box-shadow:none; }
-    .car-next:not([disabled]){
-      box-shadow:0 0 0 0 rgba(174,217,160,.7);
-      animation:carNextGlow 2.2s ease-in-out infinite;
-    }
-    @keyframes carNextGlow{
-      0%,100%{ box-shadow:0 0 0 0 rgba(174,217,160,.55); }
-      50%{ box-shadow:0 0 12px 3px rgba(174,217,160,.85); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .car-next{ animation:none; }
-    }
+    .carousel-arrows{ display:flex; gap:16px; justify-content:flex-end; margin:-6px 0 20px; }
   }
 
   @media(max-width:860px){
     .disco-carousel{
-      display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch; margin:0 -20px; padding:4px 20px 12px; scrollbar-width:none;
+      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; margin:0 -20px; padding:4px 20px 12px;
+      scroll-padding:0 20px; scrollbar-width:none;
     }
     .disco-carousel::-webkit-scrollbar{ display:none; }
-    .disco-carousel .album{ flex:0 0 87%; scroll-snap-align:start; }
+    .disco-carousel .album{
+      flex:0 0 84%; scroll-snap-align:center; border-radius:22px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.7), transparent 45%),
+        linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
+      box-shadow:
+        0 24px 40px -20px rgba(44,44,42,.35),
+        inset 0 1px 1px rgba(255,255,255,.8),
+        inset 0 0 0 1px rgba(174,217,160,.5);
+      padding:22px 20px;
+    }
     .disco-carousel .album-divider{ display:none; }
+    .disco-swipe-hint{ width:48px; height:48px; right:4px; }
+    .disco-swipe-hint svg{ width:20px; height:20px; }
   }
 
   .top10-carousel{ display:none; }
+  .top10-carousel-wrap{ position:relative; }
+  .top10-swipe-hint{ display:none; }
   @media(max-width:800px){
+    .top10-swipe-hint{
+      position:absolute; top:50%; right:6px; transform:translateY(-50%);
+      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+      color:#993556;
+      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      box-shadow:
+        0 8px 18px -8px rgba(44,44,42,.35),
+        inset 0 1px 1px rgba(255,255,255,.9);
+      animation:discoSwipeNudge 2.6s ease-in-out infinite;
+    }
+    .top10-swipe-hint svg{ width:16px; height:16px; }
+    .top10-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+    .top10-title{ margin-bottom:18px; }
     #top10List{ display:none; }
     .top10-carousel{
-      display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch; margin:0 -20px; padding:4px 20px 12px 32px; scrollbar-width:none;
+      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; margin:0 -20px; padding:8px 20px 16px;
+      scroll-padding:0 20px; scrollbar-width:none;
     }
     .top10-carousel::-webkit-scrollbar{ display:none; }
     .track-card{
-      flex:0 0 168px; scroll-snap-align:start;
-      display:flex; flex-direction:column; gap:10px;
-      padding:18px 16px; border:1.5px solid #AED9A0; background:var(--white); color:var(--obsidian);
+      flex:0 0 280px; scroll-snap-align:center; border-radius:22px;
+      display:flex; flex-direction:column; gap:16px;
+      padding:34px 24px 26px; color:var(--obsidian); position:relative;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,.95), transparent 50%),
+        linear-gradient(165deg,#ffffff,#f3f8ee 75%);
+      box-shadow:
+        0 28px 44px -22px rgba(44,44,42,.4),
+        0 3px 8px rgba(44,44,42,.06),
+        inset 0 1px 1px rgba(255,255,255,.9),
+        inset 0 0 0 1.5px rgba(174,217,160,.65);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .track-card.featured{ border-color:#AED9A0; background:var(--blush); }
-    .track-card .tc-top{ display:flex; align-items:center; justify-content:space-between; }
-    .track-card .track-num{ font-family:var(--serif); font-size:21px; color:var(--cherry); }
-    .track-card .track-icon{ width:19px; height:19px; color:var(--cherry); flex:none; }
-    .track-card .tname{ font-family:var(--serif); font-size:16.5px; font-weight:600; line-height:1.2; }
-    .track-card .tcap{ font-size:11px; color:var(--gray); line-height:1.35; }
-    .track-card .badge{
-      font-size:9px; letter-spacing:.03em; text-transform:uppercase; font-weight:700;
-      background:#AED9A0; color:#2C2C2A; padding:3px 7px; align-self:flex-start;
+    .track-card:active{ transform:scale(.98); }
+    .track-card.featured{
+      background:
+        radial-gradient(circle at 22% 0%, rgba(255,255,255,.9), transparent 50%),
+        linear-gradient(165deg,#fbeaf0,#f7e0e6 75%);
+      box-shadow:
+        0 28px 48px -20px rgba(153,53,86,.35),
+        0 3px 8px rgba(153,53,86,.12),
+        inset 0 1px 1px rgba(255,255,255,.9),
+        inset 0 0 0 1.5px rgba(174,217,160,.75);
     }
+    .track-card .badge-top{
+      position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+      font-size:12px; letter-spacing:.03em; text-transform:uppercase; font-weight:700;
+      color:#2C2C2A; padding:7px 16px; border-radius:999px; white-space:nowrap;
+      background:linear-gradient(150deg,#dcf2cd,#AED9A0);
+      box-shadow:0 6px 12px -4px rgba(44,61,22,.35), inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .track-card .tc-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .track-card .tc-left{ display:flex; align-items:center; gap:12px; min-width:0; }
+    .track-card .track-num-circle{
+      flex:none; width:38px; height:38px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); font-size:16px; color:var(--white);
+      background:linear-gradient(155deg,#c3596f,var(--cherry) 75%);
+      box-shadow:0 4px 10px -3px rgba(153,53,86,.5), inset 0 1px 1px rgba(255,255,255,.4);
+    }
+    .track-card .track-icon{ width:24px; height:24px; color:var(--cherry); flex:none; }
+    .track-card .tname{
+      font-family:var(--serif); font-size:26px; font-weight:600; line-height:1.1;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+    .track-card .tcap{ font-size:14.5px; color:var(--gray); line-height:1.4; }
     .track-card .play-row{
-      margin-top:auto; display:flex; align-items:center; gap:8px;
+      margin-top:auto; display:flex; align-items:center; justify-content:center; gap:9px;
+      width:100%; padding:15px 16px; border-radius:14px;
+      color:#1c2f10; white-space:nowrap;
+      background:linear-gradient(160deg,#eaf7de,#AED9A0 85%);
+      box-shadow:
+        0 10px 18px -8px rgba(44,61,22,.4),
+        inset 0 1px 1px rgba(255,255,255,.85),
+        inset 0 -2px 4px rgba(44,61,22,.2);
+      transition:transform .15s ease, box-shadow .2s ease;
+    }
+    .track-card .play-row:active{
+      transform:scale(.97);
+      box-shadow:inset 0 2px 5px rgba(44,61,22,.35);
     }
     .track-card .play-btn{
-      width:30px; height:30px; border-radius:50%; background:var(--mist);
+      width:27px; height:27px; border-radius:50%; background:var(--white);
       display:flex; align-items:center; justify-content:center; color:var(--cherry); flex:none;
+      box-shadow:0 2px 4px rgba(44,44,42,.25);
     }
-    .track-card .play-btn svg{ width:13px; height:13px; }
-    .track-card .play-label{ font-size:10.5px; letter-spacing:.02em; color:var(--obsidian); font-weight:600; }
+    .track-card .play-btn svg{ width:12px; height:12px; }
+    .track-card .play-label{ font-size:13px; letter-spacing:0; font-weight:700; text-transform:uppercase; white-space:nowrap; }
+    .track-card .lyrics-link{
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      width:100%; padding:14px 16px; border-radius:14px;
+      border:1.5px solid rgba(44,44,42,.18); color:var(--obsidian);
+      font-size:13px; letter-spacing:.02em; font-weight:700; text-transform:uppercase;
+      background:linear-gradient(165deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
+      box-shadow:0 6px 14px -8px rgba(44,44,42,.3), inset 0 1px 1px rgba(255,255,255,.6);
+      transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+      white-space:nowrap;
+    }
+    .track-card .lyrics-link:active{ transform:scale(.97); box-shadow:inset 0 2px 4px rgba(44,44,42,.15); }
+    .track-card .lyrics-link svg{ width:13px; height:13px; flex:none; }
   }
 
   .hero-platforms{ display:none; }
@@ -1125,6 +1537,10 @@
     .hero-platforms .platform-link .pl-left{ gap:9px; }
     .hero-platforms .platform-link svg.brand{ width:11px; height:12px; flex:none; }
     .hero-platforms .platform-link svg.arrow{ width:12px; height:12px; }
+    .hero-platforms .mundo-link{
+      grid-column:1 / -1; margin-top:2px; font-weight:600;
+    }
+    .hero-platforms .mundo-link .pl-left{ font-size:12.5px; }
   }
 </style>
 </head>
@@ -1136,6 +1552,15 @@
     <a href="#top" class="logo-mark">
       <img src="images/logo.webp" alt="Enibel" style="width:39px;height:39px;object-fit:contain;" width="394" height="400" loading="eager" decoding="async">
     </a>
+    <nav class="quick-nav" id="quickNav" aria-label="Navegacao rapida (mobile)">
+      <a href="#musicas" data-target="musicas">Músicas</a>
+      <a href="#mundo-magico" data-target="mundo-magico">Mundo Mágico</a>
+      <a href="#qg" data-target="qg">QG da Fada</a>
+      <a href="#vlog" data-target="vlog">Vlog</a>
+      <a href="#conecte" data-target="conecte">Conteúdos</a>
+      <a href="#sobre" data-target="sobre">Quem sou eu</a>
+      <a href="#contato" data-target="contato">Contato</a>
+    </nav>
     <nav class="links" id="navLinks">
       <a href="#musicas">Músicas</a>
       <a href="#mundo-magico">Mundo Mágico</a>
@@ -1145,19 +1570,8 @@
       <a href="#sobre">Quem sou eu</a>
       <a href="#contato">Contato</a>
     </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
   </div>
 </header>
-
-<nav class="quick-nav" id="quickNav" aria-label="Navegacao rapida (mobile)">
-  <a href="#musicas" data-target="musicas">Músicas</a>
-  <a href="#mundo-magico" data-target="mundo-magico">Mundo Mágico</a>
-  <a href="#qg" data-target="qg">QG da Fada</a>
-  <a href="#vlog" data-target="vlog">Vlog</a>
-  <a href="#conecte" data-target="conecte">Conteúdos</a>
-  <a href="#sobre" data-target="sobre">Quem sou eu</a>
-  <a href="#contato" data-target="contato">Contato</a>
-</nav>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -1188,6 +1602,17 @@
     </a>
   </div>
 
+  <a href="https://mundomagico369.com.br" target="_blank" rel="noopener" class="hero-mundo-btn">
+    Entrar no Mundo Mágico
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+  </a>
+
+  <div class="hero-stats">
+    <div class="hs-item"><span class="hs-num">+40M</span><span class="hs-label">Plays</span></div>
+    <div class="hs-item"><span class="hs-num">+700K</span><span class="hs-label">Seguidores</span></div>
+    <div class="hs-item"><span class="hs-num">+2.000</span><span class="hs-label">Vidas na comunidade</span></div>
+  </div>
+
   <div class="hero-platforms">
     <a class="platform-link" href="https://open.spotify.com/intl-pt/artist/7r0XN2WkKpDRqDu0wqzhrB" target="_blank" rel="noopener">
       <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Zm.1-2.9C14.5 8.2 8.6 7.9 5.2 9c-.6.2-1.2-.2-1.4-.7-.2-.6.2-1.2.7-1.4 3.9-1.2 10.4-.9 14.5 1.5.5.3.7 1 .4 1.5-.3.4-1 .6-1.5.3Z" fill="var(--white)"/></svg>Spotify</span>
@@ -1213,6 +1638,10 @@
       <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian)" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Email</span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
     </a>
+    <a class="platform-link mundo-link" href="https://mundomagico369.com.br" target="_blank" rel="noopener">
+      <span class="pl-left">Entrar no Mundo Mágico</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+    </a>
   </div>
   </div>
   <div class="scroll-cue">
@@ -1223,72 +1652,11 @@
   </div>
 </section>
 
-<!-- ============ MUSICAS MAGICAS ============ -->
-<section class="musicas-intro" id="musicas">
-  <div class="watermark"><span>ARTE</span><span class="spark">✦</span><span>EVOLUÇÃO</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
-  <div class="musicas-head reveal">
-    <span class="eyebrow">01 / Músicas Mágicas</span>
-    <h2>Músicas como<br><em>ferramentas de manifestação.</em></h2>
-    <p>Cada som carrega uma intenção e conduz você a uma experiência criada para expandir, sentir, fortalecer e transformar.</p>
-  </div>
-
-  <div class="wrap intentions reveal">
-    <div class="intent-grid">
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></div>
-        <h3>Amor</h3><p>Afeto, conexões e magnetismo amoroso.</p>
-      </div>
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <h3>Prosperidade</h3><p>Dinheiro, abundância e sucesso profissional.</p>
-      </div>
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg></div>
-        <h3>Expansão</h3><p>Espiritualidade, consciência e grandes manifestações.</p>
-      </div>
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="position:absolute;top:0;left:0;"><path d="M12 21v-7.5"/></svg></div>
-        <h3>Evolução</h3><p>Recomeços, transformação e novas versões de você.</p>
-      </div>
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
-        <h3>Bem-estar</h3><p>Autoestima, equilíbrio e acolhimento.</p>
-      </div>
-      <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
-        <h3>Poder Pessoal</h3><p>Foco, coragem, força e superação.</p>
-      </div>
-    </div>
-
-    <div class="platforms-row">
-      <a class="platform-link" href="https://open.spotify.com/intl-pt/artist/7r0XN2WkKpDRqDu0wqzhrB" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Zm.1-2.9C14.5 8.2 8.6 7.9 5.2 9c-.6.2-1.2-.2-1.4-.7-.2-.6.2-1.2.7-1.4 3.9-1.2 10.4-.9 14.5 1.5.5.3.7 1 .4 1.5-.3.4-1 .6-1.5.3Z" fill="var(--white)"/></svg>Spotify</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="var(--obsidian)"/><path d="M10 8.5 16 12l-6 3.5z" fill="var(--white)"/></svg>YouTube</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://www.deezer.com/br/artist/93721662" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><rect x="1" y="14" width="4" height="3"/><rect x="7" y="10" width="4" height="7"/><rect x="13" y="6" width="4" height="11"/><rect x="19" y="2" width="4" height="15"/></svg>Deezer</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://music.apple.com/br/artist/enibel/1511827531" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="var(--obsidian)"/><path d="M15.5 6.2c.1.9-.3 1.7-.8 2.3-.6.6-1.4 1.1-2.2 1-.1-.9.3-1.8.8-2.3.6-.6 1.5-1 2.2-1Zm2.9 11.9c-.4.9-.8 1.7-1.5 2.5-.9 1-1.7 1.9-3 1.9-1.1 0-1.5-.7-2.8-.7s-1.7.7-2.8.7c-1.2 0-2.1-1-3-2-1.8-2-2.9-5.5-1.2-8 .8-1.2 2.2-2 3.6-2 1.1 0 2 .7 2.8.7.7 0 1.9-.9 3.2-.7.5 0 2.1.2 3 1.6-3 1.9-2.4 5.6.7 6Z" fill="var(--white)"/></svg>Apple Music</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-    </div>
-
-    <div class="quiz-teaser reveal">
-      <span class="video-feature-label">Presente da fada para você<span class="vf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></svg></span></span>
-    </div>
-  </div>
-</section>
-
 <!-- ============ QUIZ MANIFESTACAO ============ -->
 <section class="quiz-manif" id="quiz">
   <div class="wrap">
     <div class="quiz-head reveal">
+      <span class="quiz-tag">✦ Quiz Gratuito</span>
       <h2>O que você deseja manifestar agora?</h2>
       <p>A fada te ajuda. Em menos de 30 segundos, descubra qual música que te guiará.</p>
     </div>
@@ -1345,15 +1713,66 @@
   </div>
 </section>
 
-<!-- ============ STATS ============ -->
-<section class="stats">
-  <div class="wrap stats-inner">
-    <div class="stats-left">
-      <span class="stats-label">Uma jornada independente</span>
-      <p class="stats-note">Uma trajetória construída com autenticidade, superação e impacto real — do negativo para milhões de pessoas alcançadas.</p>
+<!-- ============ MUSICAS MAGICAS ============ -->
+<section class="musicas-intro" id="musicas">
+  <div class="watermark"><span>ARTE</span><span class="spark">✦</span><span>EVOLUÇÃO</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
+  <div class="musicas-head reveal">
+    <span class="eyebrow">01 / Músicas Mágicas</span>
+    <h2>Músicas como<br><em>ferramentas de manifestação.</em></h2>
+    <p>Cada som carrega uma intenção e conduz você a uma experiência criada para expandir, sentir, fortalecer e transformar.</p>
+  </div>
+
+  <div class="wrap intentions reveal">
+    <div class="intent-grid-wrap">
+    <div class="intent-grid" id="intentGrid">
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></div>
+        <h3>Amor</h3><p>Afeto, conexões e magnetismo amoroso.</p>
+      </div>
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Prosperidade</h3><p>Dinheiro, abundância e sucesso profissional.</p>
+      </div>
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg></div>
+        <h3>Expansão</h3><p>Espiritualidade, consciência e grandes manifestações.</p>
+      </div>
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="position:absolute;top:0;left:0;"><path d="M12 21v-7.5"/></svg></div>
+        <h3>Evolução</h3><p>Recomeços, transformação e novas versões de você.</p>
+      </div>
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <h3>Bem-estar</h3><p>Autoestima, equilíbrio e acolhimento.</p>
+      </div>
+      <div class="intent-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <h3>Poder Pessoal</h3><p>Foco, coragem, força e superação.</p>
+      </div>
     </div>
-    <div class="stat"><div class="num">+40M</div><div class="cap">Plays orgânicos</div></div>
-    <div class="stat"><div class="num">+700K</div><div class="cap">Pessoas na base</div></div>
+    <button type="button" class="intent-swipe-hint" id="intentSwipeHint" aria-label="Deslizar para ver mais categorias">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    </div>
+
+    <div class="platforms-row">
+      <a class="platform-link" href="https://open.spotify.com/intl-pt/artist/7r0XN2WkKpDRqDu0wqzhrB" target="_blank" rel="noopener">
+        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Zm.1-2.9C14.5 8.2 8.6 7.9 5.2 9c-.6.2-1.2-.2-1.4-.7-.2-.6.2-1.2.7-1.4 3.9-1.2 10.4-.9 14.5 1.5.5.3.7 1 .4 1.5-.3.4-1 .6-1.5.3Z" fill="var(--white)"/></svg>Spotify</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+      <a class="platform-link" href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener">
+        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="var(--obsidian)"/><path d="M10 8.5 16 12l-6 3.5z" fill="var(--white)"/></svg>YouTube</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+      <a class="platform-link" href="https://www.deezer.com/br/artist/93721662" target="_blank" rel="noopener">
+        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><rect x="1" y="14" width="4" height="3"/><rect x="7" y="10" width="4" height="7"/><rect x="13" y="6" width="4" height="11"/><rect x="19" y="2" width="4" height="15"/></svg>Deezer</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+      <a class="platform-link" href="https://music.apple.com/br/artist/enibel/1511827531" target="_blank" rel="noopener">
+        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="var(--obsidian)"/><path d="M15.5 6.2c.1.9-.3 1.7-.8 2.3-.6.6-1.4 1.1-2.2 1-.1-.9.3-1.8.8-2.3.6-.6 1.5-1 2.2-1Zm2.9 11.9c-.4.9-.8 1.7-1.5 2.5-.9 1-1.7 1.9-3 1.9-1.1 0-1.5-.7-2.8-.7s-1.7.7-2.8.7c-1.2 0-2.1-1-3-2-1.8-2-2.9-5.5-1.2-8 .8-1.2 2.2-2 3.6-2 1.1 0 2 .7 2.8.7.7 0 1.9-.9 3.2-.7.5 0 2.1.2 3 1.6-3 1.9-2.4 5.6.7 6Z" fill="var(--white)"/></svg>Apple Music</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1361,12 +1780,13 @@
 <section class="top10" id="top10">
   <div class="wrap">
         <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
-    <div class="carousel-arrows" data-target="top10Carousel">
-      <button class="car-arrow car-prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="car-arrow car-next" type="button" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-    </div>
     <div class="top10-cols reveal" id="top10List"></div>
+    <div class="top10-carousel-wrap">
     <div class="top10-carousel reveal" id="top10Carousel"></div>
+    <button type="button" class="top10-swipe-hint" id="top10SwipeHint" aria-label="Deslizar para ver mais músicas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    </div>
     <div class="video-feature">
       <div class="video-feature-label">Aperte o play e sinta a magia<span class="vf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></svg></span></div>
       <div class="video-feature-frame" id="vfFrame" data-embed="https://www.youtube.com/embed/S2eFuQuGGbM?autoplay=1&amp;rel=0&amp;modestbranding=1">
@@ -1434,10 +1854,7 @@
 <section class="discografia">
   <div class="wrap">
     <div class="disco-label reveal">Conheça a discografia</div>
-    <div class="carousel-arrows" data-target="discoCarousel">
-      <button class="car-arrow car-prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="car-arrow car-next" type="button" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-    </div>
+    <div class="disco-carousel-wrap">
     <div class="disco-carousel" id="discoCarousel">
 
     <div class="album reveal">
@@ -1542,18 +1959,26 @@
     </div>
     </div>
     </div>
+    <button type="button" class="disco-swipe-hint" id="discoSwipeHint" aria-label="Deslizar para ver mais álbuns">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    </div>
   </div>
 </section>
 
 <!-- ============ MUNDO MAGICO ============ -->
 <section class="mundo-magico" id="mundo-magico">
   <div class="mm-grid">
+    <div class="mm-intro-mobile">
+      <span class="eyebrow on-dark">02 / Mundo Mágico 369</span>
+      <span class="sub">Da música para uma comunidade viva</span>
+    </div>
     <div class="mm-photo reveal">
       <img class="cover-img" src="images/making-of.webp" alt="Mundo Mágico" width="1200" height="675" loading="lazy" decoding="async" srcset="images/making-of-600.webp 600w, images/making-of.webp 1200w" sizes="(max-width:900px) 100vw, 50vw">
     </div>
     <div class="mm-panel reveal">
-      <span class="eyebrow on-dark">02 / Mundo Mágico 369</span>
-      <span class="sub">Da música para uma comunidade viva</span>
+      <span class="eyebrow on-dark mm-intro-desktop">02 / Mundo Mágico 369</span>
+      <span class="sub mm-intro-desktop">Da música para uma comunidade viva</span>
       <h2>Um espaço para<br><em>manifestar seus sonhos.</em></h2>
       <p class="desc">Um portal para te guiar a manifestar seus sonhos.  Passo a passo de evolução e manifestação com podcasts, meditações, exercícios e uma comunidade para te apoiar em cada fase.</p>
       <a class="btn btn-gold" style="margin-top:36px; align-self:flex-start;" href="https://mundomagico369.com.br" target="_blank" rel="noopener">Conhecer o Mundo Mágico
@@ -1574,13 +1999,16 @@
     <div class="qg-text reveal">
       <span class="eyebrow on-dark" style="color:#AED9A0;">03 / QG da Fada</span>
       <span class="sub">Acesso VIP · Fã-clube oficial</span>
-      <h2>Mais perto<br>da <em>Fada.</em></h2>
+      <h2>Mais perto da <em>Fada</em></h2>
       <p>ENIBEL gosta de estar verdadeiramente conectada com quem acompanha sua jornada. O QG da Fada é o espaço reservado para quem deseja viver essa troca de uma forma ainda mais próxima.</p>
       <p>Pessoas selecionadas recebem acesso ao grupo privado no WhatsApp e à lista de Close Friends no Instagram, com stories, bastidores e conteúdos exclusivos. Cada inscrição é analisada para confirmar que a pessoa acompanha a Fada nas redes e está realmente conectada com seu universo.</p>
       <div class="qg-tags">
         <span class="pill on-dark">Grupo VIP no WhatsApp</span>
         <span class="pill on-dark">Close Friends no Instagram</span>
       </div>
+      <button type="button" class="qg-open-btn" id="qgOpenBtn">Quero entrar no QG
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
     </div>
 
     <div class="qg-form reveal">
@@ -1644,10 +2072,7 @@
       </div>
     </div>
 
-    <div class="carousel-arrows" data-target="vlogGrid">
-      <button class="car-arrow car-prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="car-arrow car-next" type="button" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-    </div>
+    <div class="vlog-grid-wrap">
     <div class="vlog-grid reveal" id="vlogGrid">
       <a class="vlog-card" href="https://www.youtube.com/watch?v=TIkhz8PgLMI&t=1s" target="_blank" rel="noopener">
         <div class="vlog-thumb vt1">
@@ -1673,6 +2098,11 @@
         </div>
         <div class="vlog-meta"><span class="vtag">Vlog 03</span><span class="vsep"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><h4>Fim de semana em Puglia, Itália</h4></div>
       </a>
+    </div>
+
+    <button type="button" class="vlog-swipe-hint" id="vlogSwipeHint" aria-label="Deslizar para ver mais vlogs">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
     </div>
   </div>
 </section>
@@ -1701,10 +2131,7 @@
       </div>
     </div>
 
-    <div class="carousel-arrows" data-target="reelsGrid">
-      <button class="car-arrow car-prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="car-arrow car-next" type="button" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-    </div>
+    <div class="reels-grid-wrap">
     <div class="reels-grid reveal" id="reelsGrid">
       <a class="reel rl1" href="https://www.instagram.com/enibeloficial/" target="_blank" rel="noopener">
         <img class="cover-img" src="images/social-1.webp" alt="Fala Fada — Conexões e manifestação" width="526" height="764" loading="lazy" decoding="async">
@@ -1724,6 +2151,11 @@
         <div class="play-circle" style="z-index:2;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
         <span class="rcap" style="z-index:2;">Fala Fada · Mentalidade &amp; transformação</span>
       </a>
+    </div>
+
+    <button type="button" class="reels-swipe-hint" id="reelsSwipeHint" aria-label="Deslizar para ver mais conteúdos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
     </div>
 
     <div class="tiktok-banner reveal">
@@ -1762,6 +2194,38 @@
         <p>"Continuo criando por mim e por todas as pessoas que desejam viver seus sonhos."</p>
       </div>
     </div>
+  </div>
+
+  <!-- Mobile: Quem sou eu em carrossel de 3 cards -->
+  <div class="sobre-carousel-wrap">
+    <div class="sobre-carousel" id="sobreCarousel">
+      <div class="sobre-card sobre-card-photo">
+        <img class="cover-img" src="images/sobre.webp" alt="Enibel — Fada" width="1200" height="674" loading="lazy" decoding="async" srcset="images/sobre-600.webp 600w, images/sobre.webp 1200w" sizes="88vw">
+        <div class="sc-overlay">
+          <span class="eyebrow">06 / Quem sou eu</span>
+          <h2>Quase todo mundo me chama de <em>Fada</em></h2>
+          <button type="button" class="sc-hint" id="sobreHintInline">
+            Deslize para conhecer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="sobre-card">
+        <p class="lead">Talvez porque enxerguem em mim a magia de acreditar e viver os próprios sonhos.</p>
+        <p>Prazer, Enibel. Sou cantora, compositora, estilista por formação, empresária e criadora das Músicas Mágicas e do Mundo Mágico. Mas, acima de qualquer título, sou uma sonhadora que escolheu transformar sonhos em realidade.</p>
+        <p>Sou uma artista vibracional: uso elementos visuais e sonoros como ferramentas para despertar emoções, promover bem-estar, expandir a consciência e criar conexão espiritual. Minha arte vai além do entretenimento: cada criação nasce com uma intenção.</p>
+      </div>
+      <div class="sobre-card">
+        <p>Nasci em uma realidade simples e aprendi cedo que uma vida diferente poderia ser construída. Minha jornada me mostrou que manifestação não acontece apenas pelo que desejamos, mas principalmente por quem <b>escolhemos nos tornar.</b></p>
+        <div class="quote-block">
+          <img class="quote-icon" src="images/logo.webp" alt="Enibel" width="394" height="400" loading="lazy" decoding="async">
+          <p>"Continuo criando por mim e por todas as pessoas que desejam viver seus sonhos."</p>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="sobre-swipe-hint" id="sobreSwipeHint" aria-label="Deslizar para o próximo card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
   </div>
 
 </section>
@@ -1901,17 +2365,15 @@
     onScroll();
   })();
 
-  // Header + quick-nav (mobile): só aparecem depois que o usuário sai do hero
+  // Header (com menu embutido, mobile): só aparece depois que o usuário sai do hero
   (function(){
     const header = document.querySelector('header');
-    const quickNav = document.getElementById('quickNav');
     const hero = document.querySelector('.hero');
     if (!header || !hero) return;
     function onScrollNav(){
       const threshold = hero.offsetHeight * 0.82;
       const show = window.scrollY > threshold;
       header.classList.toggle('show-nav', show);
-      if (quickNav) quickNav.classList.toggle('show-nav', show);
     }
     window.addEventListener('scroll', onScrollNav, {passive:true});
     onScrollNav();
@@ -1948,11 +2410,17 @@
     });
   })();
 
-  // Mobile menu
-  const toggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  // QG da Fada (mobile): botao abre o formulario de inscricao
+  (function(){
+    const btn = document.getElementById('qgOpenBtn');
+    const form = document.querySelector('.qg-form');
+    if (!btn || !form) return;
+    btn.addEventListener('click', function(){
+      form.classList.add('is-open');
+      btn.classList.add('is-hidden');
+      form.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  })();
 
   // Back to top
   document.getElementById('backTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
@@ -1977,6 +2445,30 @@
       });
     }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
     targets.forEach(t => qnIo.observe(t));
+
+    // Arrastar com o mouse (desktop/trackpad) para deslizar o menu lateralmente
+    let isDown = false, dragged = false, startX = 0, startScroll = 0;
+    quickNav.addEventListener('mousedown', function(e){
+      isDown = true; dragged = false;
+      startX = e.pageX; startScroll = quickNav.scrollLeft;
+      quickNav.classList.add('dragging');
+    });
+    window.addEventListener('mousemove', function(e){
+      if (!isDown) return;
+      const delta = e.pageX - startX;
+      if (Math.abs(delta) > 4) dragged = true;
+      quickNav.scrollLeft = startScroll - delta;
+    });
+    function endDrag(){
+      isDown = false;
+      quickNav.classList.remove('dragging');
+    }
+    window.addEventListener('mouseup', endDrag);
+    quickNav.addEventListener('mouseleave', endDrag);
+    // Evita que o arraste dispare a navegacao do link sem querer
+    quickNav.addEventListener('click', function(e){
+      if (dragged) { e.preventDefault(); dragged = false; }
+    }, true);
   })();
 
   // Scroll reveal
@@ -2036,33 +2528,51 @@
     star:'<path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z" fill="currentColor"/>'
   };
   function trackRow(t){
-    return `<a class="track-row${t.featured?' featured':''}" href="${t.url}" target="_blank" rel="noopener">
+    return `<div class="track-row${t.featured?' featured':''}">
       <span class="track-num">${t.n}</span>
       <span class="track-icon"><svg viewBox="0 0 24 24">${icons[t.icon]}</svg></span>
       <span class="track-info"><span class="tname">${t.name}</span>${t.badge?`<span class="badge">${t.badge}</span>`:''}<span class="tcap">${t.cap}</span></span>
-      <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-    </a>`;
+      <span class="track-actions">
+        <a class="track-action" href="${t.url}" target="_blank" rel="noopener" aria-label="Ouvir ${t.name}">
+          <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="ta-label">Ouvir</span>
+        </a>
+        <a class="track-action" href="https://www.letras.mus.br/enibel/" target="_blank" rel="noopener" aria-label="Ver letra de ${t.name}">
+          <span class="play-btn lyrics-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
+          <span class="ta-label">Ver letra</span>
+        </a>
+      </span>
+    </div>`;
   }
   const left = tracks.slice(0,5).map(trackRow).join('');
   const right = tracks.slice(5,10).map(trackRow).join('');
   document.getElementById('top10List').innerHTML = `<div>${left}</div><div>${right}</div>`;
 
   function trackCard(t){
-    return `<a class="track-card${t.featured?' featured':''}" href="${t.url}" target="_blank" rel="noopener">
-      <span class="tc-top"><span class="track-num">${t.n}</span><span class="track-icon"><svg viewBox="0 0 24 24">${icons[t.icon]}</svg></span></span>
-      <span class="tname">${t.name}</span>
-      ${t.badge?`<span class="badge">${t.badge}</span>`:''}
+    return `<div class="track-card${t.featured?' featured':''}">
+      ${t.badge?`<span class="badge-top">${t.badge}</span>`:''}
+      <span class="tc-top">
+        <span class="tc-left">
+          <span class="track-num-circle">${t.n}</span>
+          <span class="tname">${t.name}</span>
+        </span>
+        <span class="track-icon"><svg viewBox="0 0 24 24">${icons[t.icon]}</svg></span>
+      </span>
       <span class="tcap">${t.cap}</span>
-      <span class="play-row">
+      <a class="play-row" href="${t.url}" target="_blank" rel="noopener">
         <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="play-label">Clique para ouvir</span>
-      </span>
-    </a>`;
+      </a>
+      <a class="lyrics-link" href="https://www.letras.mus.br/enibel/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+        Ver letra completa
+      </a>
+    </div>`;
   }
   const top10CarouselEl = document.getElementById('top10Carousel');
   if (top10CarouselEl) top10CarouselEl.innerHTML = tracks.map(trackCard).join('');
 
-  // Setas dos carrosseis horizontais (mobile): vlog, reels, discografia, top10
+  // Setas dos carrosseis horizontais: vlog, reels, discografia, top10 (passagem em loop)
   document.querySelectorAll('.carousel-arrows').forEach(function(nav){
     const track = document.getElementById(nav.dataset.target);
     const prev = nav.querySelector('.car-prev');
@@ -2075,16 +2585,148 @@
       const gap = parseFloat(style.columnGap || style.gap || '16');
       return card.getBoundingClientRect().width + gap;
     }
-    function updateState(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max;
+    function atStart(){
+      const style = window.getComputedStyle(track);
+      const padLeft = parseFloat(style.paddingLeft) || 0;
+      return track.scrollLeft <= padLeft + 4;
     }
-    prev.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior:'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior:'smooth' }));
-    track.addEventListener('scroll', updateState, { passive:true });
-    updateState();
+    function atEnd(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      return track.scrollLeft >= max;
+    }
+    prev.addEventListener('click', function(){
+      if (atStart()) {
+        track.scrollTo({ left: track.scrollWidth, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: -cardStep(), behavior:'smooth' });
+      }
+    });
+    next.addEventListener('click', function(){
+      if (atEnd()) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
   });
+
+  // Botao magico de "deslizar" na discografia
+  (function(){
+    const hint = document.getElementById('discoSwipeHint');
+    const track = document.getElementById('discoCarousel');
+    if (!hint || !track) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth * 0.85;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '16');
+      return card.getBoundingClientRect().width + gap;
+    }
+    hint.addEventListener('click', function(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
+    function updateHint(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
+    }
+    track.addEventListener('scroll', updateHint, { passive:true });
+    updateHint();
+  })();
+
+  // Botao magico de "deslizar" nas categorias (Amor, Prosperidade...)
+  (function(){
+    const hint = document.getElementById('intentSwipeHint');
+    const track = document.getElementById('intentGrid');
+    if (!hint || !track) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth * 0.85;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '14');
+      return card.getBoundingClientRect().width + gap;
+    }
+    hint.addEventListener('click', function(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
+    function updateHint(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
+    }
+    track.addEventListener('scroll', updateHint, { passive:true });
+    updateHint();
+  })();
+
+  // Botao magico de "deslizar" no top 10
+  (function(){
+    const hint = document.getElementById('top10SwipeHint');
+    const track = document.getElementById('top10Carousel');
+    if (!hint || !track) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth * 0.85;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '16');
+      return card.getBoundingClientRect().width + gap;
+    }
+    hint.addEventListener('click', function(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
+    function updateHint(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
+    }
+    track.addEventListener('scroll', updateHint, { passive:true });
+    updateHint();
+  })();
+
+  // Botao magico de "deslizar" generico (vlog, reels)
+  function initSwipeHint(hintIds, trackId){
+    const ids = Array.isArray(hintIds) ? hintIds : [hintIds];
+    const hints = ids.map(id => document.getElementById(id)).filter(Boolean);
+    const track = document.getElementById(trackId);
+    if (!hints.length || !track) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth * 0.85;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '16');
+      return card.getBoundingClientRect().width + gap;
+    }
+    function goNext(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    }
+    hints.forEach(hint => hint.addEventListener('click', goNext));
+    function updateHint(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      const atEnd = track.scrollLeft >= max;
+      hints.forEach(hint => hint.classList.toggle('is-hidden', atEnd));
+    }
+    track.addEventListener('scroll', updateHint, { passive:true });
+    updateHint();
+  }
+  initSwipeHint('vlogSwipeHint', 'vlogGrid');
+  initSwipeHint('reelsSwipeHint', 'reelsGrid');
+  initSwipeHint(['sobreSwipeHint', 'sobreHintInline'], 'sobreCarousel');
 
 
   // Ultimo lancamento: toggle lista de versoes
