@@ -522,6 +522,32 @@
     animation:reelSparkTravel 7s linear infinite;
   }
   .top10-cols{ display:grid; grid-template-columns:1fr 1fr; column-gap:64px; }
+  .top10-toggle{ display:none; }
+  @media(min-width:901px){
+    #top10List{ display:none; }
+    #top10List.is-open{ display:grid; }
+    .top10-toggle{
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      width:100%; margin-bottom:36px;
+      padding:18px 24px; border:1px solid rgba(44,44,42,.22);
+      background:transparent; font-family:var(--sans);
+      font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
+      color:var(--obsidian); transition:background .2s ease, border-color .2s ease;
+    }
+    .top10-toggle:hover{ border-color:var(--cherry); }
+    .top10-toggle svg{ width:15px; height:15px; flex:none; transition:transform .25s ease; }
+    .top10-toggle.is-open svg{ transform:rotate(180deg); }
+  }
+  .lib-access-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin:32px auto 0; max-width:360px; padding:16px 28px; border-radius:999px;
+    background:linear-gradient(160deg,#eaf7de,var(--mint) 85%); color:#1c2f10;
+    font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    box-shadow:0 14px 26px -12px rgba(44,61,22,.4), inset 0 1px 1px rgba(255,255,255,.85);
+    transition:transform .15s ease;
+  }
+  .lib-access-btn:active{ transform:scale(.97); }
+  .lib-access-btn svg{ width:14px; height:14px; flex:none; }
   .track-row{
     display:flex; align-items:center; gap:16px;
     padding:16px 0; border-bottom:1px solid rgba(44,44,42,.12);
@@ -1775,13 +1801,21 @@
     </button>
     </div>
 
+    <a href="biblioteca-musical.html" class="lib-access-btn">
+      Acessar biblioteca musical
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+    </a>
   </div>
 </section>
 
 <!-- ============ TOP 10 ============ -->
 <section class="top10" id="top10">
   <div class="wrap">
-        <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
+    <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
+    <button type="button" class="top10-toggle" id="top10Toggle">
+      <span class="t10tx">Ver Top 10 completo</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
     <div class="top10-cols reveal" id="top10List"></div>
     <div class="top10-carousel-wrap">
     <div class="top10-carousel reveal" id="top10Carousel"></div>
@@ -2564,6 +2598,18 @@
   const left = tracks.slice(0,5).map(trackRow).join('');
   const right = tracks.slice(5,10).map(trackRow).join('');
   document.getElementById('top10List').innerHTML = `<div>${left}</div><div>${right}</div>`;
+
+  // Top10 (desktop): botao para mostrar/ocultar a lista completa
+  (function(){
+    const btn = document.getElementById('top10Toggle');
+    const list = document.getElementById('top10List');
+    if (!btn || !list) return;
+    btn.addEventListener('click', function(){
+      const isOpen = list.classList.toggle('is-open');
+      btn.classList.toggle('is-open', isOpen);
+      btn.querySelector('.t10tx').textContent = isOpen ? 'Ocultar Top 10' : 'Ver Top 10 completo';
+    });
+  })();
 
   function trackCard(t){
     return `<div class="track-card${t.featured?' featured':''}">
