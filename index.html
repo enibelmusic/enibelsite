@@ -327,6 +327,17 @@
     }
     .sobre-swipe-hint svg{ width:20px; height:20px; }
     .sobre-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+    .sobre-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
+    .sobre-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
+
+    .sobre-fixed-quote{
+      display:flex; gap:12px; align-items:flex-start;
+      margin-top:24px; padding:0 4px;
+    }
+    .sobre-fixed-quote img{ width:22px; height:22px; flex:none; margin-top:3px; }
+    .sobre-fixed-quote p{
+      font-family:var(--serif); font-style:italic; font-size:16px; color:var(--cherry); line-height:1.5;
+    }
   }
 
   /* ---------- STATS BAR ---------- */
@@ -465,6 +476,8 @@
     }
     .intent-swipe-hint svg{ width:16px; height:16px; }
     .intent-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+    .intent-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
+    .intent-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
 
     .platforms-row{ grid-template-columns:1fr 1fr; }
     .watermark{ display:none; }
@@ -1203,6 +1216,8 @@
     }
     .vlog-swipe-hint svg, .reels-swipe-hint svg{ width:16px; height:16px; }
     .vlog-swipe-hint.is-hidden, .reels-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+    .vlog-swipe-hint-prev, .reels-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
+    .vlog-swipe-hint-prev.is-visible, .reels-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
 
     /* Reels: cards em carrossel horizontal com drag/swipe */
     .reels-grid{
@@ -1379,9 +1394,12 @@
   }
   .disco-swipe-hint svg{ width:22px; height:22px; }
   .disco-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+  .disco-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
+  .disco-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
   @media(min-width:901px){
     .disco-swipe-hint{ width:78px; height:78px; right:-20px; border-width:2px; }
     .disco-swipe-hint svg{ width:32px; height:32px; }
+    .disco-swipe-hint-prev{ left:-20px; }
   }
   @keyframes discoSwipeNudge{
     0%,100%{ transform:translateY(-50%) translateX(0); opacity:.8; }
@@ -1416,6 +1434,7 @@
     .disco-carousel .album-divider{ display:none; }
     .disco-swipe-hint{ width:48px; height:48px; right:4px; }
     .disco-swipe-hint svg{ width:20px; height:20px; }
+    .disco-swipe-hint-prev{ left:4px; }
   }
 
   .top10-carousel{ display:none; }
@@ -1436,6 +1455,8 @@
     }
     .top10-swipe-hint svg{ width:16px; height:16px; }
     .top10-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
+    .top10-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
+    .top10-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
     .top10-title{ margin-bottom:18px; }
     #top10List{ display:none; }
     .top10-carousel{
@@ -1538,7 +1559,8 @@
     .hero-platforms .platform-link svg.brand{ width:11px; height:12px; flex:none; }
     .hero-platforms .platform-link svg.arrow{ width:12px; height:12px; }
     .hero-platforms .mundo-link{
-      grid-column:1 / -1; margin-top:2px; font-weight:600;
+      grid-column:1 / -1; margin:2px auto 0; font-weight:600;
+      width:50%; justify-content:center;
     }
     .hero-platforms .mundo-link .pl-left{ font-size:12.5px; }
   }
@@ -1750,6 +1772,9 @@
         <h3>Poder Pessoal</h3><p>Foco, coragem, força e superação.</p>
       </div>
     </div>
+    <button type="button" class="intent-swipe-hint intent-swipe-hint-prev" id="intentSwipeHintPrev" aria-label="Deslizar para categoria anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="intent-swipe-hint" id="intentSwipeHint" aria-label="Deslizar para ver mais categorias">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -1783,6 +1808,9 @@
     <div class="top10-cols reveal" id="top10List"></div>
     <div class="top10-carousel-wrap">
     <div class="top10-carousel reveal" id="top10Carousel"></div>
+    <button type="button" class="top10-swipe-hint top10-swipe-hint-prev" id="top10SwipeHintPrev" aria-label="Deslizar para a música anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="top10-swipe-hint" id="top10SwipeHint" aria-label="Deslizar para ver mais músicas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -1959,6 +1987,9 @@
     </div>
     </div>
     </div>
+    <button type="button" class="disco-swipe-hint disco-swipe-hint-prev" id="discoSwipeHintPrev" aria-label="Deslizar para o álbum anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="disco-swipe-hint" id="discoSwipeHint" aria-label="Deslizar para ver mais álbuns">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -2100,6 +2131,9 @@
       </a>
     </div>
 
+    <button type="button" class="vlog-swipe-hint vlog-swipe-hint-prev" id="vlogSwipeHintPrev" aria-label="Deslizar para o vlog anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="vlog-swipe-hint" id="vlogSwipeHint" aria-label="Deslizar para ver mais vlogs">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -2153,6 +2187,9 @@
       </a>
     </div>
 
+    <button type="button" class="reels-swipe-hint reels-swipe-hint-prev" id="reelsSwipeHintPrev" aria-label="Deslizar para o conteúdo anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="reels-swipe-hint" id="reelsSwipeHint" aria-label="Deslizar para ver mais conteúdos">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -2214,18 +2251,20 @@
         <p class="lead">Talvez porque enxerguem em mim a magia de acreditar e viver os próprios sonhos.</p>
         <p>Prazer, Enibel. Sou cantora, compositora, estilista por formação, empresária e criadora das Músicas Mágicas e do Mundo Mágico. Mas, acima de qualquer título, sou uma sonhadora que escolheu transformar sonhos em realidade.</p>
         <p>Sou uma artista vibracional: uso elementos visuais e sonoros como ferramentas para despertar emoções, promover bem-estar, expandir a consciência e criar conexão espiritual. Minha arte vai além do entretenimento: cada criação nasce com uma intenção.</p>
-      </div>
-      <div class="sobre-card">
         <p>Nasci em uma realidade simples e aprendi cedo que uma vida diferente poderia ser construída. Minha jornada me mostrou que manifestação não acontece apenas pelo que desejamos, mas principalmente por quem <b>escolhemos nos tornar.</b></p>
-        <div class="quote-block">
-          <img class="quote-icon" src="images/logo.webp" alt="Enibel" width="394" height="400" loading="lazy" decoding="async">
-          <p>"Continuo criando por mim e por todas as pessoas que desejam viver seus sonhos."</p>
-        </div>
       </div>
     </div>
+    <button type="button" class="sobre-swipe-hint sobre-swipe-hint-prev" id="sobreSwipeHintPrev" aria-label="Deslizar para o card anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <button type="button" class="sobre-swipe-hint" id="sobreSwipeHint" aria-label="Deslizar para o próximo card">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
+  </div>
+
+  <div class="sobre-fixed-quote">
+    <img class="quote-icon" src="images/logo.webp" alt="Enibel" width="394" height="400" loading="lazy" decoding="async">
+    <p>"Continuo criando por mim e por todas as pessoas que desejam viver seus sonhos."</p>
   </div>
 
 </section>
@@ -2610,96 +2649,12 @@
     });
   });
 
-  // Botao magico de "deslizar" na discografia
-  (function(){
-    const hint = document.getElementById('discoSwipeHint');
-    const track = document.getElementById('discoCarousel');
-    if (!hint || !track) return;
-    function cardStep(){
-      const card = track.querySelector(':scope > *');
-      if (!card) return track.clientWidth * 0.85;
-      const style = window.getComputedStyle(track);
-      const gap = parseFloat(style.columnGap || style.gap || '16');
-      return card.getBoundingClientRect().width + gap;
-    }
-    hint.addEventListener('click', function(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      if (track.scrollLeft >= max) {
-        track.scrollTo({ left: 0, behavior:'smooth' });
-      } else {
-        track.scrollBy({ left: cardStep(), behavior:'smooth' });
-      }
-    });
-    function updateHint(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
-    }
-    track.addEventListener('scroll', updateHint, { passive:true });
-    updateHint();
-  })();
-
-  // Botao magico de "deslizar" nas categorias (Amor, Prosperidade...)
-  (function(){
-    const hint = document.getElementById('intentSwipeHint');
-    const track = document.getElementById('intentGrid');
-    if (!hint || !track) return;
-    function cardStep(){
-      const card = track.querySelector(':scope > *');
-      if (!card) return track.clientWidth * 0.85;
-      const style = window.getComputedStyle(track);
-      const gap = parseFloat(style.columnGap || style.gap || '14');
-      return card.getBoundingClientRect().width + gap;
-    }
-    hint.addEventListener('click', function(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      if (track.scrollLeft >= max) {
-        track.scrollTo({ left: 0, behavior:'smooth' });
-      } else {
-        track.scrollBy({ left: cardStep(), behavior:'smooth' });
-      }
-    });
-    function updateHint(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
-    }
-    track.addEventListener('scroll', updateHint, { passive:true });
-    updateHint();
-  })();
-
-  // Botao magico de "deslizar" no top 10
-  (function(){
-    const hint = document.getElementById('top10SwipeHint');
-    const track = document.getElementById('top10Carousel');
-    if (!hint || !track) return;
-    function cardStep(){
-      const card = track.querySelector(':scope > *');
-      if (!card) return track.clientWidth * 0.85;
-      const style = window.getComputedStyle(track);
-      const gap = parseFloat(style.columnGap || style.gap || '16');
-      return card.getBoundingClientRect().width + gap;
-    }
-    hint.addEventListener('click', function(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      if (track.scrollLeft >= max) {
-        track.scrollTo({ left: 0, behavior:'smooth' });
-      } else {
-        track.scrollBy({ left: cardStep(), behavior:'smooth' });
-      }
-    });
-    function updateHint(){
-      const max = track.scrollWidth - track.clientWidth - 2;
-      hint.classList.toggle('is-hidden', track.scrollLeft >= max);
-    }
-    track.addEventListener('scroll', updateHint, { passive:true });
-    updateHint();
-  })();
-
-  // Botao magico de "deslizar" generico (vlog, reels)
-  function initSwipeHint(hintIds, trackId){
-    const ids = Array.isArray(hintIds) ? hintIds : [hintIds];
-    const hints = ids.map(id => document.getElementById(id)).filter(Boolean);
+  // Botao magico de "deslizar": avancar + voltar, compartilhado por todos os carrosseis
+  function initCarouselNav(nextIds, trackId, prevIds){
+    const nexts = (Array.isArray(nextIds) ? nextIds : [nextIds]).map(id => document.getElementById(id)).filter(Boolean);
+    const prevs = (prevIds ? (Array.isArray(prevIds) ? prevIds : [prevIds]) : []).map(id => document.getElementById(id)).filter(Boolean);
     const track = document.getElementById(trackId);
-    if (!hints.length || !track) return;
+    if (!nexts.length || !track) return;
     function cardStep(){
       const card = track.querySelector(':scope > *');
       if (!card) return track.clientWidth * 0.85;
@@ -2715,18 +2670,27 @@
         track.scrollBy({ left: cardStep(), behavior:'smooth' });
       }
     }
-    hints.forEach(hint => hint.addEventListener('click', goNext));
-    function updateHint(){
+    function goPrev(){
+      track.scrollBy({ left: -cardStep(), behavior:'smooth' });
+    }
+    nexts.forEach(h => h.addEventListener('click', goNext));
+    prevs.forEach(h => h.addEventListener('click', goPrev));
+    function update(){
       const max = track.scrollWidth - track.clientWidth - 2;
       const atEnd = track.scrollLeft >= max;
-      hints.forEach(hint => hint.classList.toggle('is-hidden', atEnd));
+      const atStart = track.scrollLeft <= 2;
+      nexts.forEach(h => h.classList.toggle('is-hidden', atEnd));
+      prevs.forEach(h => h.classList.toggle('is-visible', !atStart));
     }
-    track.addEventListener('scroll', updateHint, { passive:true });
-    updateHint();
+    track.addEventListener('scroll', update, { passive:true });
+    update();
   }
-  initSwipeHint('vlogSwipeHint', 'vlogGrid');
-  initSwipeHint('reelsSwipeHint', 'reelsGrid');
-  initSwipeHint(['sobreSwipeHint', 'sobreHintInline'], 'sobreCarousel');
+  initCarouselNav('discoSwipeHint', 'discoCarousel', 'discoSwipeHintPrev');
+  initCarouselNav('intentSwipeHint', 'intentGrid', 'intentSwipeHintPrev');
+  initCarouselNav('top10SwipeHint', 'top10Carousel', 'top10SwipeHintPrev');
+  initCarouselNav('vlogSwipeHint', 'vlogGrid', 'vlogSwipeHintPrev');
+  initCarouselNav('reelsSwipeHint', 'reelsGrid', 'reelsSwipeHintPrev');
+  initCarouselNav(['sobreSwipeHint', 'sobreHintInline'], 'sobreCarousel', 'sobreSwipeHintPrev');
 
 
   // Ultimo lancamento: toggle lista de versoes
