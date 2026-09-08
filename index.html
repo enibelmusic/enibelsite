@@ -315,17 +315,17 @@
 
     .sobre-swipe-hint{
       position:absolute; top:50%; right:6px; transform:translateY(-50%);
-      width:48px; height:48px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
+      width:62px; height:62px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
       display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
       color:#993556;
-      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      background:linear-gradient(155deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
       backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
       box-shadow:
         0 10px 22px -10px rgba(44,44,42,.4),
         inset 0 1px 1px rgba(255,255,255,.9);
       animation:discoSwipeNudge 2.6s ease-in-out infinite;
     }
-    .sobre-swipe-hint svg{ width:20px; height:20px; }
+    .sobre-swipe-hint svg{ width:26px; height:26px; }
     .sobre-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
     .sobre-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
     .sobre-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
@@ -438,8 +438,8 @@
     .intent-grid::-webkit-scrollbar{ display:none; }
     .intent-card{
       flex:0 0 195px; scroll-snap-align:start;
-      border:none; border-radius:20px; min-height:225px; padding:48px 20px 22px;
-      display:flex; flex-direction:column;
+      border:none; border-radius:20px; min-height:58px; padding:14px 18px;
+      display:flex; flex-direction:column; justify-content:center;
       background:
         radial-gradient(circle at 14% 0%, rgba(255,255,255,.6), transparent 45%),
         linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
@@ -456,25 +456,26 @@
         0 6px 14px -10px rgba(44,44,42,.3),
         inset 0 2px 5px rgba(44,44,42,.12);
     }
-    .intent-card .ic{ width:26px; height:26px; top:16px; right:14px; }
-    .intent-card .ic svg{ width:26px; height:26px; }
-    .intent-card h3{ font-size:23px; line-height:1.15; }
-    .intent-card p{ margin-top:10px; font-size:14.5px; line-height:1.5; white-space:normal; }
+    .intent-card .ic-row{ display:flex; align-items:center; gap:8px; }
+    .intent-card .ic{ position:static; width:22px; height:22px; flex:none; }
+    .intent-card .ic svg{ width:22px; height:22px; }
+    .intent-card h3{ font-size:19px; line-height:1.15; }
+    .intent-card p{ margin-top:6px; font-size:20.9px; line-height:1.4; white-space:normal; }
 
     .intent-grid-wrap{ position:relative; }
     .intent-swipe-hint{
       position:absolute; top:50%; right:6px; transform:translateY(-50%);
-      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      width:68px; height:68px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
       display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
       color:#993556;
-      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
-      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      background:linear-gradient(155deg, rgba(255,255,255,.35), rgba(255,255,255,.1));
+      backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);
       box-shadow:
         0 8px 18px -8px rgba(44,44,42,.35),
-        inset 0 1px 1px rgba(255,255,255,.9);
+        inset 0 1px 1px rgba(255,255,255,.7);
       animation:discoSwipeNudge 2.6s ease-in-out infinite;
     }
-    .intent-swipe-hint svg{ width:16px; height:16px; }
+    .intent-swipe-hint svg{ width:27px; height:27px; }
     .intent-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
     .intent-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
     .intent-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
@@ -1204,17 +1205,17 @@
     .vlog-grid-wrap, .reels-grid-wrap{ position:relative; }
     .vlog-swipe-hint, .reels-swipe-hint{
       position:absolute; top:50%; right:6px; transform:translateY(-50%);
-      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      width:52px; height:52px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
       display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
       color:#993556;
-      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      background:linear-gradient(155deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
       backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
       box-shadow:
         0 8px 18px -8px rgba(44,44,42,.35),
         inset 0 1px 1px rgba(255,255,255,.9);
       animation:discoSwipeNudge 2.6s ease-in-out infinite;
     }
-    .vlog-swipe-hint svg, .reels-swipe-hint svg{ width:16px; height:16px; }
+    .vlog-swipe-hint svg, .reels-swipe-hint svg{ width:21px; height:21px; }
     .vlog-swipe-hint.is-hidden, .reels-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
     .vlog-swipe-hint-prev, .reels-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
     .vlog-swipe-hint-prev.is-visible, .reels-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
@@ -1382,23 +1383,23 @@
   .disco-carousel-wrap{ position:relative; }
   .disco-swipe-hint{
     position:absolute; top:50%; right:6px; transform:translateY(-50%);
-    width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
+    width:68px; height:68px; border-radius:50%; border:1.5px solid rgba(153,53,86,.35);
     display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
     color:#993556;
-    background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+    background:linear-gradient(155deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
     backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
     box-shadow:
       0 10px 22px -10px rgba(44,44,42,.4),
       inset 0 1px 1px rgba(255,255,255,.9);
     animation:discoSwipeNudge 2.6s ease-in-out infinite;
   }
-  .disco-swipe-hint svg{ width:22px; height:22px; }
+  .disco-swipe-hint svg{ width:29px; height:29px; }
   .disco-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
   .disco-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
   .disco-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
   @media(min-width:901px){
-    .disco-swipe-hint{ width:78px; height:78px; right:-20px; border-width:2px; }
-    .disco-swipe-hint svg{ width:32px; height:32px; }
+    .disco-swipe-hint{ width:101px; height:101px; right:-20px; border-width:2px; }
+    .disco-swipe-hint svg{ width:42px; height:42px; }
     .disco-swipe-hint-prev{ left:-20px; }
   }
   @keyframes discoSwipeNudge{
@@ -1432,8 +1433,8 @@
       padding:22px 20px;
     }
     .disco-carousel .album-divider{ display:none; }
-    .disco-swipe-hint{ width:48px; height:48px; right:4px; }
-    .disco-swipe-hint svg{ width:20px; height:20px; }
+    .disco-swipe-hint{ width:62px; height:62px; right:4px; }
+    .disco-swipe-hint svg{ width:26px; height:26px; }
     .disco-swipe-hint-prev{ left:4px; }
   }
 
@@ -1443,17 +1444,17 @@
   @media(max-width:800px){
     .top10-swipe-hint{
       position:absolute; top:50%; right:6px; transform:translateY(-50%);
-      width:40px; height:40px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+      width:52px; height:52px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
       display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
       color:#993556;
-      background:linear-gradient(155deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      background:linear-gradient(155deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
       backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
       box-shadow:
         0 8px 18px -8px rgba(44,44,42,.35),
         inset 0 1px 1px rgba(255,255,255,.9);
       animation:discoSwipeNudge 2.6s ease-in-out infinite;
     }
-    .top10-swipe-hint svg{ width:16px; height:16px; }
+    .top10-swipe-hint svg{ width:21px; height:21px; }
     .top10-swipe-hint.is-hidden{ opacity:0; pointer-events:none; }
     .top10-swipe-hint-prev{ left:6px; right:auto; animation:none; opacity:0; pointer-events:none; }
     .top10-swipe-hint-prev.is-visible{ opacity:1; pointer-events:auto; }
@@ -1748,28 +1749,22 @@
     <div class="intent-grid-wrap">
     <div class="intent-grid" id="intentGrid">
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></div>
-        <h3>Amor</h3><p>Afeto, conexões e magnetismo amoroso.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></div><h3>Amor</h3></div><p>Afeto, conexões e magnetismo amoroso.</p>
       </div>
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <h3>Prosperidade</h3><p>Dinheiro, abundância e sucesso profissional.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Prosperidade</h3></div><p>Dinheiro, abundância e sucesso profissional.</p>
       </div>
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg></div>
-        <h3>Expansão</h3><p>Espiritualidade, consciência e grandes manifestações.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg></div><h3>Expansão</h3></div><p>Espiritualidade, consciência e grandes manifestações.</p>
       </div>
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="position:absolute;top:0;left:0;"><path d="M12 21v-7.5"/></svg></div>
-        <h3>Evolução</h3><p>Recomeços, transformação e novas versões de você.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="position:absolute;top:0;left:0;"><path d="M12 21v-7.5"/></svg></div><h3>Evolução</h3></div><p>Recomeços, transformação e novas versões de você.</p>
       </div>
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
-        <h3>Bem-estar</h3><p>Autoestima, equilíbrio e acolhimento.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div><h3>Bem-estar</h3></div><p>Autoestima, equilíbrio e acolhimento.</p>
       </div>
       <div class="intent-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
-        <h3>Poder Pessoal</h3><p>Foco, coragem, força e superação.</p>
+        <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div><h3>Poder Pessoal</h3></div><p>Foco, coragem, força e superação.</p>
       </div>
     </div>
     <button type="button" class="intent-swipe-hint intent-swipe-hint-prev" id="intentSwipeHintPrev" aria-label="Deslizar para categoria anterior">
@@ -1780,24 +1775,6 @@
     </button>
     </div>
 
-    <div class="platforms-row">
-      <a class="platform-link" href="https://open.spotify.com/intl-pt/artist/7r0XN2WkKpDRqDu0wqzhrB" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Zm.1-2.9C14.5 8.2 8.6 7.9 5.2 9c-.6.2-1.2-.2-1.4-.7-.2-.6.2-1.2.7-1.4 3.9-1.2 10.4-.9 14.5 1.5.5.3.7 1 .4 1.5-.3.4-1 .6-1.5.3Z" fill="var(--white)"/></svg>Spotify</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="var(--obsidian)"/><path d="M10 8.5 16 12l-6 3.5z" fill="var(--white)"/></svg>YouTube</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://www.deezer.com/br/artist/93721662" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="var(--obsidian)"><rect x="1" y="14" width="4" height="3"/><rect x="7" y="10" width="4" height="7"/><rect x="13" y="6" width="4" height="11"/><rect x="19" y="2" width="4" height="15"/></svg>Deezer</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-      <a class="platform-link" href="https://music.apple.com/br/artist/enibel/1511827531" target="_blank" rel="noopener">
-        <span class="pl-left"><svg class="brand" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="var(--obsidian)"/><path d="M15.5 6.2c.1.9-.3 1.7-.8 2.3-.6.6-1.4 1.1-2.2 1-.1-.9.3-1.8.8-2.3.6-.6 1.5-1 2.2-1Zm2.9 11.9c-.4.9-.8 1.7-1.5 2.5-.9 1-1.7 1.9-3 1.9-1.1 0-1.5-.7-2.8-.7s-1.7.7-2.8.7c-1.2 0-2.1-1-3-2-1.8-2-2.9-5.5-1.2-8 .8-1.2 2.2-2 3.6-2 1.1 0 2 .7 2.8.7.7 0 1.9-.9 3.2-.7.5 0 2.1.2 3 1.6-3 1.9-2.4 5.6.7 6Z" fill="var(--white)"/></svg>Apple Music</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -1840,8 +1817,12 @@
         <h2>Rosas <em>Vermelhas.</em></h2>
         <p class="desc">Um projeto sobre amor e magnetismo pessoal, conduzindo o ouvinte por uma atmosfera onde poder e vulnerabilidade se encontram. Um convite para sentir, se escolher e receber.</p>
         <div class="release-actions">
+          <a class="btn btn-solid" href="https://open.spotify.com/intl-pt/album/4cE9SXxFWfWrYn5y295iZE" target="_blank" rel="noopener">Ouvir no Spotify
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
+          
           <button type="button" class="release-toggle" id="releaseToggle" aria-expanded="false">
-            <span class="rtx">Ver lista das músicas mágicas</span>
+            <span class="rtx">Ver lista completa</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="version-list" id="releaseVersionList">
@@ -1866,10 +1847,7 @@
             <p class="lyrics-verse">Sexta quer me ver<br>Sábado já tá comigo<br>Domingo nos seus sonhos<br>Segunda dose, repito…<br>Eu sou o feitiço</p>
             <p class="lyrics-verse lyrics-chorus">Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo</p>
           </div>
-          <a class="btn btn-solid" href="https://open.spotify.com/intl-pt/album/4cE9SXxFWfWrYn5y295iZE" target="_blank" rel="noopener">Ouvir no Spotify
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </a>
-          <a class="btn btn-outline-light" href="https://www.youtube.com/watch?v=xSsEv33xCyk" target="_blank" rel="noopener">Assistir ao vídeo oficial
+          <a class="btn btn-outline-light" href="https://www.youtube.com/watch?v=xSsEv33xCyk" target="_blank" rel="noopener">Assistir vídeo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
           </a>
         </div>
