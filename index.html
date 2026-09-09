@@ -488,6 +488,9 @@
   /* ---------- TOP 10 ---------- */
   .top10{ background:var(--mist); padding:24px 0 80px; }
   .top10-title{ font-size:13.2px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--cherry); padding-bottom:22px; border-bottom:1px solid rgba(44,44,42,.14); margin-bottom:36px; }
+  @media(min-width:801px){
+    .top10-title{ text-align:center; font-size:19px; border-bottom:none; padding-bottom:0; }
+  }
   .video-feature{ max-width:80%; margin:56px auto 0; text-align:center; }
   .video-feature-label{ font-size:13.2px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--cherry); margin-bottom:22px; display:inline-flex; align-items:center; gap:8px; }
   .video-feature-label .vf-arrow{ display:inline-flex; }
@@ -537,7 +540,6 @@
         inset 0 1px 1px rgba(255,255,255,.85),
         inset 0 -2px 5px rgba(44,61,22,.15);
       transition:transform .2s ease, box-shadow .25s ease;
-      animation:top10Glow 3s ease-in-out infinite;
     }
     .top10-toggle:hover{ transform:translateY(-2px); }
     .top10-toggle:active{ transform:scale(.97); }
@@ -567,6 +569,8 @@
       }
     }
     @media (prefers-reduced-motion: reduce){ .top10-toggle{ animation:none; } }
+    .lib-access-btn{ animation:top10Glow 3s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce){ .lib-access-btn{ animation:none; } }
   }
   .lib-access-btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
@@ -578,6 +582,13 @@
   }
   .lib-access-btn:active{ transform:scale(.97); }
   .lib-access-btn svg{ width:14px; height:14px; flex:none; }
+  .lib-access-subtext{
+    margin:14px auto 0; max-width:360px; text-align:center;
+    font-size:12px; font-weight:300; font-style:italic; color:#8a897f; line-height:1.5;
+  }
+  @media(min-width:901px){
+    .lib-access-subtext{ font-size:15px; max-width:440px; }
+  }
   .track-row{
     display:flex; align-items:center; gap:16px;
     padding:16px 0; border-bottom:1px solid rgba(44,44,42,.12);
@@ -1832,9 +1843,10 @@
     </div>
 
     <a href="biblioteca-musical.html" class="lib-access-btn">
-      Acessar biblioteca musical
+      Ver biblioteca musical
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
     </a>
+    <p class="lib-access-subtext">Clique acima para acessar letras, significado de cada música e onde ouvir gratuitamente.</p>
   </div>
 </section>
 
@@ -1844,8 +1856,7 @@
     <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
     <button type="button" class="top10-toggle" id="top10Toggle">
       <span class="t10-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
-      <span class="t10tx">Ver Top 10 completo</span>
-      <span class="t10-badge">10 músicas</span>
+      <span class="t10tx">Ver lista completa</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </button>
     <div class="top10-cols reveal" id="top10List"></div>
@@ -2626,9 +2637,7 @@
     btn.addEventListener('click', function(){
       const isOpen = list.classList.toggle('is-open');
       btn.classList.toggle('is-open', isOpen);
-      btn.querySelector('.t10tx').textContent = isOpen ? 'Ocultar Top 10' : 'Ver Top 10 completo';
-      const badge = btn.querySelector('.t10-badge');
-      if (badge) badge.style.display = isOpen ? 'none' : '';
+      btn.querySelector('.t10tx').textContent = isOpen ? 'Ocultar lista' : 'Ver lista completa';
       if (isOpen) list.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   })();

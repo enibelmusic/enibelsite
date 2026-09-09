@@ -57,7 +57,7 @@
   .m-icon-big{
     width:64px; height:64px; border-radius:50%; margin:0 auto 22px;
     display:flex; align-items:center; justify-content:center;
-    background:rgba(255,255,255,.6); color:var(--cherry); border:1px solid rgba(153,53,86,.25);
+    background:var(--ice-green); color:var(--cherry); border:1px solid rgba(153,53,86,.25);
   }
   .m-icon-big svg{ width:28px; height:28px; }
   .m-hero h1{ font-size:clamp(34px,6vw,58px); color:var(--cherry); }
@@ -65,7 +65,7 @@
   .m-meta{
     margin-top:26px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px;
   }
-  .m-meta-item{ display:flex; align-items:center; gap:7px; font-size:13px; color:#5c5b56; }
+  .m-meta-item{ display:flex; align-items:center; gap:7px; font-size:13px; color:var(--cherry); font-weight:600; }
   .m-meta-item b{ color:var(--obsidian); font-weight:600; }
   .m-meta-item svg{ width:15px; height:15px; color:var(--cherry); flex:none; }
 
@@ -111,8 +111,8 @@
   }
   .m-action-btn svg{ width:15px; height:15px; flex:none; }
   .m-action-btn.spotify{ background:linear-gradient(160deg,#eaf7de,var(--mint) 85%); color:#1c2f10; box-shadow:0 14px 26px -12px rgba(44,61,22,.4); }
-  .m-action-btn.youtube{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
-  .m-action-btn.share{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
+  .m-action-btn.youtube{ background:var(--cherry); color:var(--white); box-shadow:0 14px 26px -12px rgba(153,53,86,.4); }
+  .m-action-btn.share{ background:var(--obsidian); color:var(--white); }
   .m-action-btn.back{ background:var(--obsidian); color:var(--white); }
   .m-action-btn.copied{ background:var(--mint) !important; color:#1c2f10 !important; border-color:var(--mint) !important; }
 
@@ -448,7 +448,7 @@ Venenosa`,
     content.innerHTML = `
       <section class="m-hero">
         <div class="wrap-narrow">
-          <div class="m-icon-big"><svg viewBox="0 0 24 24">${ICONS[song.icon]}</svg></div>
+          <div class="m-icon-big"><svg viewBox="0 0 24 24" fill="currentColor">${ICONS[song.icon]}</svg></div>
           <h1>${song.name}</h1>
           <div class="m-meta">
             <span class="m-meta-item">
@@ -456,7 +456,6 @@ Venenosa`,
               Autor: <b>Enibel</b>
             </span>
             <span class="m-meta-item">
-              <svg viewBox="0 0 24 24">${ICONS[song.icon]}</svg>
               Categoria: <b>${CATEGORY_LABELS[song.icon]}</b>
             </span>
             <span class="m-meta-item">
@@ -486,7 +485,7 @@ Venenosa`,
 
           <div class="m-actions">
             <a class="m-action-btn spotify" href="${song.spotify}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Z" fill="#1c2f10"/></svg>
+              <svg viewBox="0 0 168 168" fill="currentColor"><path d="M83.996 0C37.747 0 .001 37.747.001 84s37.746 84 83.995 84c46.251 0 84.001-37.747 84.001-84S130.246 0 83.996 0zm38.503 121.052c-1.507 2.471-4.733 3.253-7.204 1.744-19.732-12.058-44.588-14.79-73.848-8.104-2.82.645-5.63-1.12-6.275-3.94-.643-2.82 1.115-5.63 3.94-6.275 32.017-7.317 59.492-4.169 81.643 9.371 2.471 1.51 3.252 4.734 1.744 7.204zm10.283-22.9c-1.9 3.093-5.943 4.07-9.036 2.17-22.591-13.888-57.028-17.912-83.766-9.798-3.49 1.056-7.174-.909-8.23-4.397-1.055-3.49.91-7.173 4.398-8.23 30.583-9.28 68.545-4.79 94.462 11.223 3.093 1.9 4.07 5.942 2.17 9.036zm.888-23.855c-27.098-16.096-71.788-17.575-97.653-9.72-4.183 1.269-8.6-1.098-9.869-5.281-1.269-4.184 1.099-8.601 5.282-9.87 29.685-9.005 79.081-7.269 110.376 11.376 3.762 2.238 4.995 7.098 2.755 10.858-2.235 3.76-7.097 4.999-10.857 2.755z"/></svg>
               Ouvir no Spotify
             </a>
             ${song.youtube ? `
