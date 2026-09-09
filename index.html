@@ -388,6 +388,7 @@
     padding:12px 12px; min-height:70px; position:relative;
     transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s cubic-bezier(.22,1,.36,1), background .3s ease;
     will-change:transform;
+    display:block; text-decoration:none; color:inherit; cursor:pointer;
   }
   .intent-card:hover{
     background:#DDF0D4;
@@ -1803,24 +1804,24 @@
   <div class="wrap intentions reveal">
     <div class="intent-grid-wrap">
     <div class="intent-grid" id="intentGrid">
-      <div class="intent-card">
+      <a class="intent-card" href="biblioteca-musical.html?categoria=heart">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></div><h3>Amor</h3></div><p>Afeto, conexões e magnetismo amoroso.</p>
-      </div>
-      <div class="intent-card">
+      </a>
+      <a class="intent-card" href="biblioteca-musical.html?categoria=dollar">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Prosperidade</h3></div><p>Dinheiro, abundância e sucesso profissional.</p>
-      </div>
-      <div class="intent-card">
+      </a>
+      <a class="intent-card" href="biblioteca-musical.html?categoria=star">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg></div><h3>Expansão</h3></div><p>Espiritualidade, consciência e grandes manifestações.</p>
-      </div>
-      <div class="intent-card">
+      </a>
+      <a class="intent-card" href="biblioteca-musical.html?categoria=sprout">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="position:absolute;top:0;left:0;"><path d="M12 21v-7.5"/></svg></div><h3>Evolução</h3></div><p>Recomeços, transformação e novas versões de você.</p>
-      </div>
-      <div class="intent-card">
+      </a>
+      <a class="intent-card" href="biblioteca-musical.html?categoria=sun">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div><h3>Bem-estar</h3></div><p>Autoestima, equilíbrio e acolhimento.</p>
-      </div>
-      <div class="intent-card">
+      </a>
+      <a class="intent-card" href="biblioteca-musical.html?categoria=bolt">
         <div class="ic-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div><h3>Poder Pessoal</h3></div><p>Foco, coragem, força e superação.</p>
-      </div>
+      </a>
     </div>
     <button type="button" class="intent-swipe-hint intent-swipe-hint-prev" id="intentSwipeHintPrev" aria-label="Deslizar para categoria anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -2579,7 +2580,7 @@
   const tracks = [
     {n:'01', name:'666', cap:'Magnetismo & atração', badge:'+6 milhões de plays', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv?autoplay_ok=1', featured:true, slug:'666'},
     {n:'02', name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR?autoplay_ok=1', slug:'5d'},
-    {n:'03', name:'20e20', cap:'Conexão através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03', slug:'20e20'},
+    {n:'03', name:'20e20', cap:'Conexão através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl', slug:'20e20'},
     {n:'04', name:'Roda da Fortuna', cap:'Abundância & prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
     {n:'05', name:'Blocos de Notas', cap:'Sucesso profissional', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU?si=ec05ba443f9348bf', slug:'blocos-de-notas'},
     {n:'06', name:'Eu Não Ligo', cap:'Autoestima & merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ?si=cdb25ed1b4684bb0', slug:'eu-nao-ligo'},

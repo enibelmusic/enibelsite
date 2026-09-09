@@ -175,23 +175,27 @@
 
   /* ---------- ALBUMS ---------- */
   .albums-section{ background:var(--mist); }
-  .albums-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .albums-grid-wrap{ position:relative; }
+  .albums-grid{
+    display:flex; gap:28px; overflow-x:auto; scroll-snap-type:x mandatory;
+    scroll-padding:0 0; scrollbar-width:none; padding:4px 2px 12px;
+  }
+  .albums-grid::-webkit-scrollbar{ display:none; }
+  .album-card{ flex:0 0 calc((100% - 56px)/3); scroll-snap-align:start; }
   @media(max-width:900px){
     .albums-grid{
-      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
-      margin:0 -20px; padding:4px 20px 12px; scroll-padding:0 20px; scrollbar-width:none;
+      gap:16px; margin:0 -20px; padding:4px 20px 12px; scroll-padding:0 20px;
     }
-    .albums-grid::-webkit-scrollbar{ display:none; }
+    .album-card{ flex:0 0 82%; scroll-snap-align:center; }
   }
   .album-card{
-    border-radius:22px; overflow:hidden; flex:0 0 82%; scroll-snap-align:center;
+    border-radius:22px; overflow:hidden;
     background:
       radial-gradient(circle at 16% 0%, rgba(255,255,255,.7), transparent 45%),
       linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
     box-shadow:0 24px 40px -20px rgba(44,44,42,.28), inset 0 1px 1px rgba(255,255,255,.8), inset 0 0 0 1px rgba(174,217,160,.5);
     display:flex; flex-direction:column;
   }
-  @media(min-width:901px){ .album-card{ flex:none; } }
   .album-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
   .album-card-body{ padding:24px 22px 26px; display:flex; flex-direction:column; flex:1; }
   .album-card .a-meta{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--cherry); }
@@ -202,6 +206,29 @@
   .a-btn.solid{ background:var(--mint); color:#1f3d16; }
   .a-btn.outline{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
   .a-btn svg{ width:13px; height:13px; flex:none; }
+
+  .albums-swipe-hint{
+    position:absolute; top:50%; right:-14px; transform:translateY(-50%);
+    width:56px; height:56px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+    display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+    color:#993556;
+    background:linear-gradient(155deg, rgba(255,255,255,.92), rgba(255,255,255,.75));
+    box-shadow:0 10px 22px -10px rgba(44,44,42,.35), inset 0 1px 1px rgba(255,255,255,.7);
+    animation:discoSwipeNudge 2.6s ease-in-out infinite;
+  }
+  .albums-swipe-hint svg{ width:22px; height:22px; }
+  @keyframes discoSwipeNudge{
+    0%,100%{ transform:translateY(-50%) translateX(0); opacity:.8; }
+    50%{ transform:translateY(-50%) translateX(-5px); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .albums-swipe-hint{ animation:none; }
+  }
+  @media(max-width:900px){
+    .albums-swipe-hint{ width:52px; height:52px; right:2px; }
+    .albums-swipe-hint svg{ width:20px; height:20px; }
+  }
+
 
   /* ---------- TODAS AS MUSICAS (toggle) ---------- */
   .all-songs-section{ background:var(--white); }
@@ -343,7 +370,12 @@
 <section class="pad albums-section">
   <div class="wrap">
     <div class="sec-label">Conheça os álbuns</div>
-    <div class="albums-grid" id="albumsGrid"></div>
+    <div class="albums-grid-wrap">
+      <div class="albums-grid" id="albumsGrid"></div>
+      <button type="button" class="albums-swipe-hint" id="albumsSwipeHint" aria-label="Deslizar para ver mais álbuns">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -420,11 +452,11 @@
       tracks:[
         {name:'Eu Não Ligo', cap:'Autoestima e merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ', slug:'eu-nao-ligo'},
         {name:'Nada Me Para', cap:'Foco e superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb', slug:'nada-me-para'},
-        {name:'Interestelar', cap:'Abertura para novas possibilidades', icon:'star', url:null, slug:'interestelar'},
+        {name:'Interestelar', cap:'Abertura para novas possibilidades', icon:'star', url:'https://open.spotify.com/intl-pt/track/0tnfhjdXb1b7F2YZIUskul', slug:'interestelar'},
         {name:'Blocos de Notas', cap:'Sucesso profissional e financeiro', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU', slug:'blocos-de-notas'},
         {name:'Elevo o Nível', cap:'Transformação mental, material e espiritual', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g', slug:'elevo-o-nivel'},
-        {name:'Lobo e Peixe', cap:'Prosperidade material', icon:'dollar', url:null, slug:'lobo-e-peixe'},
-        {name:'777', cap:'Calma, orientação e conexão superior', icon:'star', url:null, slug:'777'},
+        {name:'Lobo e Peixe', cap:'Prosperidade material', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/6kjoMIBUQxv8KFCavAB5OZ', slug:'lobo-e-peixe'},
+        {name:'777', cap:'Calma, orientação e conexão superior', icon:'star', url:'https://open.spotify.com/intl-pt/track/1R35vvUP5xKLGm0s3aNzGq', slug:'777'},
         {name:'44', cap:'Autoconfiança e coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN', slug:'44'},
         {name:'369', cap:'Expansão de consciência e grandes realizações', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY', slug:'369'},
         {name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR', slug:'5d'},
@@ -436,11 +468,11 @@
       desc:'Um fechamento delicado e intenso para o primeiro capítulo. Leveza e profundidade para abundância, vitória, conexão e novas perspectivas.',
       spotify:'https://open.spotify.com/intl-pt/album/2gu6FqPufvhMcVn8ZYsegB',
       tracks:[
-        {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:null, slug:'o-segredo'},
-        {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:null, slug:'pouca-coisa-me-interessa'},
+        {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:'https://open.spotify.com/intl-pt/track/1epj007y8j3FJ0xkeAxMDJ', slug:'o-segredo'},
+        {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/2wmg2DBAxl1bhEEUNlQWnC', slug:'pouca-coisa-me-interessa'},
         {name:'Roda da Fortuna', cap:'Dinheiro, abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
-        {name:'20e20', cap:'Conexão emocional através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03', slug:'20e20'},
-        {name:'Telepatia', cap:'Conexão mental com outra pessoa', icon:'heart', url:null, slug:'telepatia'}
+        {name:'20e20', cap:'Conexão emocional através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl', slug:'20e20'},
+        {name:'Telepatia', cap:'Conexão mental com outra pessoa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4aHUkIPbGPkBeFH7guKV6I', slug:'telepatia'}
       ]
     },
     {
@@ -511,6 +543,28 @@
       </div>
     </div>
   `).join('');
+
+  // ---- Loop infinito do carrossel de álbuns ----
+  (function initAlbumsCarousel(){
+    const track = document.getElementById('albumsGrid');
+    const nextBtn = document.getElementById('albumsSwipeHint');
+    if (!track || !nextBtn) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '28');
+      return card.getBoundingClientRect().width + gap;
+    }
+    nextBtn.addEventListener('click', function(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
+  })();
 
   // ---- Painel de filtros (accordion) ----
   function closeDropdown(panelId, btnId){
@@ -596,6 +650,23 @@
     document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
   });
   searchInput.addEventListener('input', runFilter);
+
+  // ---- Categoria vinda da home (?categoria=heart) ----
+  (function applyCategoryFromURL(){
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('categoria');
+    if (!catParam || !CATEGORY_LABELS[catParam]) return;
+    const pill = document.querySelector('#categoryFilters .filter-pill[data-category="' + catParam + '"]');
+    if (!pill) return;
+    document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selCategory = catParam;
+    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[catParam];
+    runFilter();
+    requestAnimationFrame(function(){
+      document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  })();
 
   document.getElementById('novaPesquisaBtn').addEventListener('click', function(){
     searchInput.value = '';
