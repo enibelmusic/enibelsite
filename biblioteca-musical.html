@@ -129,7 +129,17 @@
   .ver-resultado-btn:active{ transform:scale(.98); }
 
   .filters-section{ background:var(--white); }
-  .filter-results{ }
+  .filter-results{ margin-top:40px; }
+  .nova-pesquisa-btn{
+    display:none; align-items:center; justify-content:center; gap:9px;
+    margin:36px auto 0; padding:14px 26px; border-radius:999px;
+    border:1.5px solid var(--cherry); color:var(--cherry);
+    font-size:12px; letter-spacing:.07em; text-transform:uppercase; font-weight:700;
+    background:rgba(255,255,255,.4); transition:background .2s ease, color .2s ease;
+  }
+  .nova-pesquisa-btn:hover{ background:var(--cherry); color:var(--white); }
+  .nova-pesquisa-btn.visible{ display:flex; }
+  .nova-pesquisa-btn svg{ width:14px; height:14px; flex:none; }
   .filter-results-label{ font-size:13px; color:var(--gray); margin-bottom:16px; display:none; }
   .filter-results-label.visible{ display:block; }
 
@@ -209,8 +219,30 @@
   .all-songs-inner{ margin-top:36px; }
   .all-count{ text-align:center; font-size:13px; color:var(--gray); margin-bottom:20px; }
 
-  footer{ background:var(--obsidian); color:rgba(250,250,248,.7); text-align:center; padding:40px 20px; font-size:12px; letter-spacing:.05em; }
-  footer a{ color:var(--mint); }
+  footer{ background:var(--obsidian); color:var(--white); padding:65px 0 0; }
+  .footer-top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:48px; padding-bottom:36px; }
+  .footer-logo{ display:flex; align-items:center; gap:12px; }
+  .footer-tag{ font-family:var(--serif); font-size:22px; font-style:italic; color:rgba(250,250,248,.75); line-height:1.3; }
+  .footer-email{ display:inline-block; font-size:14px; letter-spacing:.02em; color:var(--ice-green); border-bottom:1px solid rgba(174,217,160,.35); padding-bottom:2px; transition:color .2s ease, border-color .2s ease; }
+  .footer-email:hover{ color:var(--gold-light); border-color:var(--gold-light); }
+  .footer-right{ display:flex; align-items:center; gap:28px; }
+  .footer-email-col{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  .footer-socials{ display:flex; align-items:center; gap:14px; }
+  .footer-socials a{ display:flex; color:#AED9A0; transition:opacity .2s ease; }
+  .footer-socials a:hover{ opacity:.7; }
+  .footer-socials svg{ width:18px; height:18px; }
+  .back-top{
+    width:52px; height:52px; border-radius:50%; border:1px solid rgba(250,250,248,.3); flex:none;
+    display:flex; align-items:center; justify-content:center; transition:all .2s ease; color:var(--white);
+  }
+  .back-top:hover{ background:var(--white); color:var(--obsidian); }
+  .back-top svg{ width:16px; height:16px; }
+  .footer-bottom{
+    border-top:1px solid rgba(250,250,248,.14);
+    padding:15px 0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.04em; color:rgba(250,250,248,.55);
+  }
+  @media(max-width:700px){ .footer-top{ flex-direction:column; gap:32px; } .footer-right{ width:100%; justify-content:space-between; } }
 </style>
 </head>
 <body>
@@ -287,22 +319,23 @@
               <button type="button" class="filter-pill" data-album="0">Prazer, Enibel</button>
               <button type="button" class="filter-pill" data-album="1">Prazer, Enibel, Pt. 2</button>
               <button type="button" class="filter-pill" data-album="2">ALQUIMIDAS</button>
+              <button type="button" class="filter-pill" data-album="3">Rosas Vermelhas</button>
             </div>
           </div>
         </div>
       </div>
 
       <button type="button" class="ver-resultado-btn" id="verResultadoBtn">Ver resultado</button>
-    </div>
-  </div>
-</section>
 
-<section class="pad filters-section">
-  <div class="wrap-narrow">
-    <div class="filter-results">
-      <div class="filter-results-label" id="filterResultsLabel"></div>
-      <div class="song-grid" id="filterResultsGrid"></div>
-      <div class="no-results" id="noResults">Nenhuma música encontrada com esse filtro.</div>
+      <div class="filter-results">
+        <div class="filter-results-label" id="filterResultsLabel"></div>
+        <div class="song-grid" id="filterResultsGrid"></div>
+        <div class="no-results" id="noResults">Nenhuma música encontrada com esse filtro.</div>
+        <button type="button" class="nova-pesquisa-btn" id="novaPesquisaBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 21v-5h5"/></svg>
+          Nova pesquisa
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -330,9 +363,42 @@
 </section>
 
 <footer>
-  Enibel · Biblioteca Musical — letras completas disponíveis em
-  <a href="https://www.letras.mus.br/enibel/" target="_blank" rel="noopener">letras.mus.br/enibel</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Arte, Evolução &amp; Manifestação.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-email-col">
+          <a href="mailto:contato@enibel.com.br" class="footer-email">contato@enibel.com.br</a>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/enibeloficial/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@enibeloficial" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.4 2.2 4 5 4.3"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ENIBEL. Todos os direitos reservados.</span>
+    </div>
+  </div>
 </footer>
+
+<script>
+  const backTopBtn = document.getElementById('backTop');
+  if (backTopBtn) backTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
 
 <script>
   const ICONS = {
@@ -352,17 +418,17 @@
       desc:'Meu primeiro manifesto: um som vibrante, intenso e nada óbvio, criado para elevar, ativar e transformar.',
       spotify:'https://open.spotify.com/intl-pt/album/0Scxpk2Xej5lnqVwy8wcWq',
       tracks:[
-        {name:'Eu Não Ligo', cap:'Autoestima e merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ'},
-        {name:'Nada Me Para', cap:'Foco e superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb'},
-        {name:'Interestelar', cap:'Abertura para novas possibilidades', icon:'star', url:null},
-        {name:'Blocos de Notas', cap:'Sucesso profissional e financeiro', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU'},
-        {name:'Elevo o Nível', cap:'Transformação mental, material e espiritual', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g'},
-        {name:'Lobo e Peixe', cap:'Prosperidade material', icon:'dollar', url:null},
-        {name:'777', cap:'Calma, orientação e conexão superior', icon:'star', url:null},
-        {name:'44', cap:'Autoconfiança e coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN'},
-        {name:'369', cap:'Expansão de consciência e grandes realizações', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY'},
-        {name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR'},
-        {name:'666', cap:'Magnetismo e atração amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv'}
+        {name:'Eu Não Ligo', cap:'Autoestima e merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ', slug:'eu-nao-ligo'},
+        {name:'Nada Me Para', cap:'Foco e superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb', slug:'nada-me-para'},
+        {name:'Interestelar', cap:'Abertura para novas possibilidades', icon:'star', url:null, slug:'interestelar'},
+        {name:'Blocos de Notas', cap:'Sucesso profissional e financeiro', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU', slug:'blocos-de-notas'},
+        {name:'Elevo o Nível', cap:'Transformação mental, material e espiritual', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g', slug:'elevo-o-nivel'},
+        {name:'Lobo e Peixe', cap:'Prosperidade material', icon:'dollar', url:null, slug:'lobo-e-peixe'},
+        {name:'777', cap:'Calma, orientação e conexão superior', icon:'star', url:null, slug:'777'},
+        {name:'44', cap:'Autoconfiança e coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN', slug:'44'},
+        {name:'369', cap:'Expansão de consciência e grandes realizações', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY', slug:'369'},
+        {name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR', slug:'5d'},
+        {name:'666', cap:'Magnetismo e atração amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv', slug:'666'}
       ]
     },
     {
@@ -370,11 +436,11 @@
       desc:'Um fechamento delicado e intenso para o primeiro capítulo. Leveza e profundidade para abundância, vitória, conexão e novas perspectivas.',
       spotify:'https://open.spotify.com/intl-pt/album/2gu6FqPufvhMcVn8ZYsegB',
       tracks:[
-        {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:null},
-        {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:null},
-        {name:'Roda da Fortuna', cap:'Dinheiro, abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2'},
-        {name:'20e20', cap:'Conexão emocional através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03'},
-        {name:'Telepatia', cap:'Conexão mental com outra pessoa', icon:'heart', url:null}
+        {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:null, slug:'o-segredo'},
+        {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:null, slug:'pouca-coisa-me-interessa'},
+        {name:'Roda da Fortuna', cap:'Dinheiro, abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
+        {name:'20e20', cap:'Conexão emocional através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03', slug:'20e20'},
+        {name:'Telepatia', cap:'Conexão mental com outra pessoa', icon:'heart', url:null, slug:'telepatia'}
       ]
     },
     {
@@ -388,6 +454,14 @@
         {name:'Love · 528Hz', cap:'Amor, magnetismo e sedução', icon:'heart', url:null},
         {name:'369 Wave · 369Hz', cap:'Expansão para grandes manifestações', icon:'star', url:null}
       ]
+    },
+    {
+      title:'Rosas Vermelhas', meta:'Single · 2025 · 1 faixa', img:'images/release-cover.webp',
+      desc:'Um projeto sobre amor e magnetismo pessoal, conduzindo o ouvinte por uma atmosfera onde poder e vulnerabilidade se encontram.',
+      spotify:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R',
+      tracks:[
+        {name:'Rosas Vermelhas', cap:'Paixão e magnetismo amoroso', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R', slug:'rosas-vermelhas'}
+      ]
     }
   ];
 
@@ -397,6 +471,8 @@
   });
 
   function songCardHTML(s){
+    const lyricsHref = s.slug ? ('musica.html?id=' + s.slug) : LYRICS_URL;
+    const lyricsTarget = s.slug ? '' : ' target="_blank" rel="noopener"';
     return `
       <div class="song-card-compact">
         <div class="scc-row">
@@ -409,7 +485,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             Ouvir
           </a>
-          <a class="song-action-sm" href="${LYRICS_URL}" target="_blank" rel="noopener">
+          <a class="song-action-sm" href="${lyricsHref}"${lyricsTarget}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
             Ver letra completa
           </a>
@@ -513,12 +589,29 @@
     document.getElementById('albumPanel').classList.remove('is-open');
     document.getElementById('categoryToggleBtn').classList.remove('is-open');
     document.getElementById('albumToggleBtn').classList.remove('is-open');
+    document.getElementById('novaPesquisaBtn').classList.add('visible');
   }
   document.getElementById('verResultadoBtn').addEventListener('click', function(){
     runFilter();
     document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
   });
   searchInput.addEventListener('input', runFilter);
+
+  document.getElementById('novaPesquisaBtn').addEventListener('click', function(){
+    searchInput.value = '';
+    selCategory = 'all'; selAlbum = 'all';
+    document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('#categoryFilters .filter-pill[data-category="all"]').classList.add('active');
+    document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('#albumFilters .filter-pill[data-album="all"]').classList.add('active');
+    categorySelLabel.textContent = '';
+    albumSelLabel.textContent = '';
+    filterResultsGrid.innerHTML = '';
+    filterResultsLabel.classList.remove('visible');
+    noResults.style.display = 'none';
+    this.classList.remove('visible');
+    document.querySelector('.lib-hero').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
 
   // ---- Mostrar todas as musicas (ordem alfabetica: letras antes de numeros) ----
   const showAllBtn = document.getElementById('showAllBtn');

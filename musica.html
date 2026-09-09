@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enibel — Biblioteca Musical</title>
+<meta name="description" content="Letra e significado das músicas de Enibel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mist:#F2F8EF;
+    --ice-green:#DDF0D4;
+    --mint:#AED9A0;
+    --gold-light:#F7E090;
+    --blush:#FBEAF0;
+    --cherry:#993556;
+    --white:#FAFAF8;
+    --gray:#888780;
+    --obsidian:#2C2C2A;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--sans); color:var(--obsidian); background:var(--mist); -webkit-font-smoothing:antialiased; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; background:none; border:none; color:inherit; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; line-height:1.05; letter-spacing:-.01em; }
+  .wrap-narrow{ max-width:760px; margin:0 auto; padding:0 48px; }
+  @media(max-width:900px){ .wrap-narrow{ padding:0 20px; } }
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(242,248,239,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(44,44,42,.08);
+  }
+  .nav-inner{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    padding:16px 48px; gap:16px;
+  }
+  @media(max-width:900px){ .nav-inner{ padding:14px 20px; } }
+  .back-link{
+    justify-self:start; display:flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--obsidian);
+  }
+  .back-link svg{ width:16px; height:16px; }
+  .logo-mark{ justify-self:center; }
+  .logo-mark img{ width:34px; height:34px; object-fit:contain; }
+
+  .m-hero{
+    padding:56px 0 40px;
+    background:linear-gradient(120deg, var(--ice-green) 0%, var(--blush) 55%, var(--gold-light) 100%);
+    text-align:center;
+  }
+  .m-icon-big{
+    width:64px; height:64px; border-radius:50%; margin:0 auto 22px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.6); color:var(--cherry); border:1px solid rgba(153,53,86,.25);
+  }
+  .m-icon-big svg{ width:28px; height:28px; }
+  .m-hero h1{ font-size:clamp(34px,6vw,58px); color:var(--cherry); }
+
+  .m-meta{
+    margin-top:26px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px;
+  }
+  .m-meta-item{ display:flex; align-items:center; gap:7px; font-size:13px; color:#5c5b56; }
+  .m-meta-item b{ color:var(--obsidian); font-weight:600; }
+  .m-meta-item svg{ width:15px; height:15px; color:var(--cherry); flex:none; }
+
+  .m-tabs-section{ padding:44px 0 64px; background:var(--white); }
+  .m-tabs{ display:flex; gap:10px; justify-content:center; margin-bottom:32px; }
+  .m-tab{
+    padding:11px 26px; border-radius:999px; border:1.5px solid rgba(44,44,42,.18);
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    color:var(--obsidian); background:var(--white); transition:all .2s ease;
+  }
+  .m-tab.active{ background:var(--mint); border-color:var(--mint); color:#1c2f10; }
+
+  .m-panel{ display:none; }
+  .m-panel.active{ display:block; }
+
+  .m-lyrics-full{
+    font-size:16px; line-height:1.85; color:#4a4944; font-weight:300;
+    white-space:pre-line;
+  }
+
+  .m-lyrics-full,
+  .m-meaning{
+    padding:40px 36px;
+    border-radius:20px;
+    background:rgba(233,245,230,.72);
+    border:1px solid rgba(44,44,42,.08);
+  }
+
+  @media(max-width:600px){
+    .m-lyrics-full,
+    .m-meaning{ padding:32px 26px; }
+  }
+
+  .m-meaning p{ font-size:16px; line-height:1.85; color:#4a4944; font-weight:300; }
+  .m-meaning p + p{ margin-top:20px; }
+  .m-meaning .lead{ font-family:var(--serif); font-style:italic; font-size:19px; color:var(--cherry); line-height:1.5; margin-bottom:22px; }
+
+  .m-actions{ margin-top:48px; display:flex; flex-direction:column; gap:12px; }
+  .m-action-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    padding:16px 24px; border-radius:999px;
+    font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+  }
+  .m-action-btn svg{ width:15px; height:15px; flex:none; }
+  .m-action-btn.spotify{ background:linear-gradient(160deg,#eaf7de,var(--mint) 85%); color:#1c2f10; box-shadow:0 14px 26px -12px rgba(44,61,22,.4); }
+  .m-action-btn.youtube{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
+  .m-action-btn.share{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
+  .m-action-btn.back{ background:var(--obsidian); color:var(--white); }
+  .m-action-btn.copied{ background:var(--mint) !important; color:#1c2f10 !important; border-color:var(--mint) !important; }
+
+  .m-share-link{
+    margin-top:6px; font-size:11.5px; color:var(--gray); text-align:center; word-break:break-all;
+  }
+
+  footer{ background:var(--obsidian); color:var(--white); padding:65px 0 0; }
+  .footer-top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:48px; padding-bottom:36px; }
+  .footer-logo{ display:flex; align-items:center; gap:12px; }
+  .footer-tag{ font-family:var(--serif); font-size:22px; font-style:italic; color:rgba(250,250,248,.75); line-height:1.3; }
+  .footer-email{ display:inline-block; font-size:14px; letter-spacing:.02em; color:var(--ice-green); border-bottom:1px solid rgba(174,217,160,.35); padding-bottom:2px; transition:color .2s ease, border-color .2s ease; }
+  .footer-email:hover{ color:var(--gold-light); border-color:var(--gold-light); }
+  .footer-right{ display:flex; align-items:center; gap:28px; }
+  .footer-email-col{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  .footer-socials{ display:flex; align-items:center; gap:14px; }
+  .footer-socials a{ display:flex; color:#AED9A0; transition:opacity .2s ease; }
+  .footer-socials a:hover{ opacity:.7; }
+  .footer-socials svg{ width:18px; height:18px; }
+  .back-top{
+    width:52px; height:52px; border-radius:50%; border:1px solid rgba(250,250,248,.3); flex:none;
+    display:flex; align-items:center; justify-content:center; transition:all .2s ease; color:var(--white);
+  }
+  .back-top:hover{ background:var(--white); color:var(--obsidian); }
+  .back-top svg{ width:16px; height:16px; }
+  .footer-bottom{
+    border-top:1px solid rgba(250,250,248,.14);
+    padding:15px 0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.04em; color:rgba(250,250,248,.55);
+  }
+  @media(max-width:700px){ .footer-top{ flex-direction:column; gap:32px; } .footer-right{ width:100%; justify-content:space-between; } }
+
+  .m-notfound{ text-align:center; padding:120px 20px; }
+  .m-notfound h2{ font-size:28px; color:var(--cherry); margin-bottom:14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="biblioteca-musical.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Voltar ao site
+    </a>
+    <a href="index.html" class="logo-mark"><img src="images/logo.webp" alt="Enibel"></a>
+    <span></span>
+  </div>
+</header>
+
+<div id="pageContent"></div>
+
+<footer>
+  <div class="wrap-narrow">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Arte, Evolução &amp; Manifestação.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-email-col">
+          <a href="mailto:contato@enibel.com.br" class="footer-email">contato@enibel.com.br</a>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/enibeloficial/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@enibeloficial" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.4 2.2 4 5 4.3"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ENIBEL. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const backTopBtn = document.getElementById('backTop');
+  if (backTopBtn) backTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+<script src="lyrics.js"></script>
+<script>
+  const ICONS = {
+    heart: '<path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/>',
+    dollar: '<path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.4-5 3.5S9.2 10 12 10s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.4-5-3.5"/>',
+    star: '<path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/>',
+    sprout: '<path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 13c-4.4 0-8-3.6-8-8 4.4 0 8 3.6 8 8Zm0 0c4.4 0 8-3.6 8-8-4.4 0-8 3.6-8 8Zm0 0v9"/>',
+    sun: '<circle fill="none" stroke="currentColor" stroke-width="1.8" cx="12" cy="12" r="4.2"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    bolt: '<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>'
+  };
+  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', star:'Expansão', sprout:'Evolução', sun:'Bem-estar', bolt:'Poder Pessoal' };
+  const SHARE_BASE = 'https://www.enibel.com.br/biblioteca/';
+
+  // Base de dados das músicas e significados da artista.
+  const songs = {
+    'o-segredo': { name:'O Segredo', icon:'star', album:'Prazer, Enibel, Pt. 2', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/1epj007y8j3FJ0xkeAxMDJ',
+      youtube:'https://www.youtube.com/watch?v=EYH-L4GmacI',
+      meaning:['"O Segredo", de Enibel, fala sobre a conexão profunda com aquilo que desejamos, mesmo quando ainda não conseguimos explicar o que sentimos. Esse desejo pode ser uma pessoa, um amor, um sonho, uma conquista ou uma realidade que queremos viver.',
+        'A Lua, o céu e as estrelas reforçam o universo mágico da música e representam liberdade, orientação e confiança no caminho. Ao mesmo tempo, a letra mostra que desejar algo também pode nos levar para dentro: ao fazer as pazes com a solidão, a personagem se encontra e compreende melhor seus próprios sentimentos.',
+        'A intenção da música é fazer o ouvinte se conectar com seus desejos, confiar mais no que sente e se permitir sonhar, reconhecendo que aquilo que buscamos também pode revelar novas partes de quem somos.'] },
+    'pouca-coisa-me-interessa': { name:'Pouca Coisa Me Interessa', icon:'bolt', album:'Prazer, Enibel, Pt. 2', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/2wmg2DBAxl1bhEEUNlQWnC',
+      youtube:'https://www.youtube.com/watch?v=tNR6XzQtyQs',
+      meaning:['"Pouca Coisa Me Interessa", de Enibel, fala sobre escolher onde colocar a própria energia e ter coragem de priorizar aquilo que realmente importa. A música retrata uma fase de autoconhecimento, foco nos próprios sonhos e afastamento de pessoas, ambientes e distrações que já não combinam com quem se deseja ser.',
+        'A letra reforça que nenhuma conquista substitui o bem-estar e a realização interior. As experiências difíceis também se transformam em aprendizado e força para continuar seguindo o próprio caminho.',
+        'A intenção da música é fazer o ouvinte olhar para si, reconhecer o que realmente importa e ter coragem de proteger seus sonhos, sua energia e sua autenticidade, sem permitir que o medo ou a necessidade de aprovação desviem seu caminho.'] },
+    'roda-da-fortuna': { name:'Roda da Fortuna', icon:'dollar', album:'Prazer, Enibel, Pt. 2', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2',
+      youtube:null,
+      meaning:['"Roda da Fortuna", de Enibel, fala sobre os ciclos da vida, a transformação e a construção da própria prosperidade. Inspirada no simbolismo da Roda da Fortuna do tarô, a música representa a vida em constante movimento e a capacidade de transformar mudanças, desafios e aprendizados em crescimento.',
+        'A letra conecta prosperidade, espiritualidade e manifestação, mostrando que conquistas externas também podem caminhar ao lado da evolução interior. O número sete reforça a ideia de crescimento espiritual e conexão, enquanto a mensagem central lembra que pensamentos, palavras e intenções também influenciam a realidade que escolhemos construir.',
+        'A intenção da música é fazer o ouvinte reconhecer seu próprio poder de transformação, confiar nos ciclos da vida e se abrir para a prosperidade, mantendo consciência sobre aquilo que pensa, acredita e deseja criar para si.'] },
+    '20e20': { name:'20e20', icon:'heart', album:'Prazer, Enibel, Pt. 2', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl',
+      youtube:null,
+      meaning:['"20e20", de Enibel, fala sobre uma conexão profunda entre duas pessoas que ultrapassa o físico, o consciente e o racional. A música explora uma sintonia emocional, energética e inconsciente, capaz de continuar existindo através dos sonhos e da conexão com o outro mesmo sem sua presença física.',
+        'O horário 20:20 representa sincronicidade e reforça a ideia de que alguns encontros e conexões parecem acontecer além da lógica. A atmosfera de sonho e mistério representa esse espaço entre o consciente e o inconsciente, onde duas pessoas podem continuar se encontrando e se conectando de formas que nem sempre conseguem explicar.',
+        'A intenção da música é fazer o ouvinte refletir sobre conexões que ultrapassam o racional e, ao mesmo tempo, conduzi-lo por uma experiência semelhante a uma meditação guiada, convidando-o a viajar por esse universo de sonhos, intuição e inconsciente.'] },
+    'telepatia': { name:'Telepatia', icon:'heart', album:'Prazer, Enibel, Pt. 2', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/4aHUkIPbGPkBeFH7guKV6I',
+      youtube:null,
+      meaning:['"Telepatia", de Enibel, fala sobre a percepção de que a realidade pode ir muito além daquilo que os olhos conseguem ver e a mente racional consegue explicar. A música explora a telepatia como uma forma de conexão mental com outro ser e com o próprio universo.',
+        'Sonhos, energia, outras dimensões e expansão da consciência ampliam essa visão, apresentando a mente como um espaço de exploração de possibilidades que ultrapassam os sentidos físicos e o mundo material.',
+        'A intenção da música é despertar o ouvinte para novas formas de perceber a realidade, convidando-o a explorar essa conexão com quem deseja e com o próprio universo.'] },
+    'eu-nao-ligo': { name:'Eu Não Ligo', icon:'sun', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ',
+      youtube:null,
+      meaning:['"Eu Não Ligo", de Enibel, fala sobre autoconfiança, autenticidade e a liberdade de não permitir que opiniões externas definam quem você é. A música representa a escolha de reconhecer o próprio valor e continuar seguindo o próprio caminho, mesmo diante de críticas, julgamentos ou expectativas de outras pessoas.',
+        'A letra reforça que nenhuma opinião externa deve ter mais força do que a percepção do próprio valor, incentivando a proteger o próprio brilho, respeitar quem se tornou e não depender da aprovação dos outros para se sentir suficiente.',
+        'A intenção da música é elevar a autoestima do ouvinte, fortalecer sua autoconfiança e ajudá-lo a reconhecer o próprio valor, libertando-se do peso da opinião alheia e se permitindo ser quem realmente é.'] },
+    'nada-me-para': { name:'Nada Me Para', icon:'bolt', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb',
+      youtube:null,
+      meaning:['"Nada Me Para", de Enibel, fala sobre transformar críticas, dificuldades e momentos de queda em força para continuar evoluindo. A música representa uma postura de resiliência, autoconfiança e determinação, mostrando que aquilo que acontece ao redor não precisa determinar o que acontece dentro de nós.',
+        'A letra reforça o poder da mente, da fé e da percepção sobre as experiências, mostrando que obstáculos podem se tornar aprendizado e características antes julgadas podem se transformar em potência.',
+        'A intenção da música é fortalecer a determinação do ouvinte e incentivá-lo a transformar adversidades em combustível para crescer, confiar no próprio potencial e continuar perseguindo seus sonhos mesmo diante dos obstáculos.'] },
+    'interestelar': { name:'Interestelar', icon:'star', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/0tnfhjdXb1b7F2YZIUskul',
+      youtube:null,
+      meaning:['"Interestelar", de Enibel, fala sobre superação, autoconfiança e a coragem de ir além dos próprios limites. A música mostra que o brilho e as conquistas que os outros enxergam muitas vezes são resultado de uma trajetória marcada por desafios, feridas e pela decisão de continuar avançando.',
+        'O universo espacial de "Interestelar" representa essa expansão para além do conhecido, enquanto a letra reforça que dificuldades podem desenvolver força, capacidade de adaptação e uma confiança construída através das próprias experiências.',
+        'A intenção da música é fortalecer a autoconfiança do ouvinte e inspirá-lo a reconhecer a própria trajetória, superar seus limites e continuar avançando em direção aos seus sonhos.'] },
+    'blocos-de-notas': { name:'Blocos de Notas', icon:'dollar', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU',
+      youtube:null,
+      meaning:['"Blocos de Notas", de Enibel, fala sobre transformar ambição, esforço e confiança em conquistas reais de prosperidade e sucesso profissional. A música representa a força de quem rompe limitações, reconhece o próprio valor e entende que construir a realidade que deseja exige mais do que acreditar: exige atitude.',
+        'A letra reforça a autossuficiência, a persistência e o poder da ação, mostrando que prosperidade e crescimento são construídos por quem encontra motivação dentro de si e continua avançando mesmo diante de julgamentos e obstáculos.',
+        'A intenção da música é despertar a ambição e a confiança do ouvinte, incentivando-o a romper suas próprias barreiras, agir em direção aos seus objetivos e acreditar na própria capacidade de transformar sonhos em conquistas.'] },
+    'elevo-o-nivel': { name:'Elevo o Nível', icon:'sprout', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g',
+      youtube:null,
+      meaning:['"Elevo o Nível", de Enibel, fala sobre autossuficiência, liderança e a decisão de elevar os próprios padrões. A música representa a confiança de quem reconhece o próprio potencial e escolhe crescer sem permitir que conquistas externas definam seu valor.',
+        'A letra apresenta uma visão de evolução em que prosperidade, autodomínio e propósito caminham juntos, mostrando que alcançar um novo nível de vida também exige estar preparado para sustentá-lo sem perder a própria essência.',
+        'A intenção da música é conduzir o ouvinte a um novo nível de vida, incentivando-o a elevar seus padrões e desenvolver a confiança necessária para sustentar a realidade que deseja.'] },
+    'lobo-e-peixe': { name:'Lobo e Peixe', icon:'dollar', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/6kjoMIBUQxv8KFCavAB5OZ',
+      youtube:null,
+      meaning:['"Lobo e Peixe", de Enibel, fala sobre prosperidade e a capacidade de transformar obstáculos em conquistas. O título cria um duplo sentido entre as figuras presentes nas notas de real e características necessárias para avançar na vida: a força do lobo e a capacidade de adaptação do peixe.',
+        'A letra reforça uma mentalidade de independência, ação e confiança no próprio potencial, mostrando que prosperidade também nasce da capacidade de romper limitações, manter o foco no próprio caminho e transformar aquilo que se deseja em realidade.',
+        'A intenção da música é despertar no ouvinte uma mentalidade de prosperidade e conquista, incentivando-o a confiar no próprio potencial, agir e construir a realidade que se deseja viver.'] },
+    '777': { name:'777', icon:'star', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/1R35vvUP5xKLGm0s3aNzGq',
+      youtube:null,
+      meaning:['"777", de Enibel, fala sobre fé, libertação e confiança em si mesmo e em uma força maior para superar limites. O número 777 representa conexão espiritual, intuição e alinhamento, enquanto a música explora a força de continuar acreditando mesmo diante de momentos de incerteza e vulnerabilidade.',
+        'A letra reforça que nem tudo precisa ser visto para ser sentido, conectando a fé à confiança em uma força maior que ultrapassa o mundo visível e à coragem de se entregar ao desconhecido.',
+        'A intenção da música é fortalecer a fé do ouvinte, ajudando-o a confiar mais em si mesmo e nessa força maior que não pode ser vista, mas pode ser sentida, incentivando-o a superar seus próprios limites.'] },
+    '44': { name:'44', icon:'bolt', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN',
+      youtube:null,
+      meaning:['"44", de Enibel, fala sobre coragem e resiliência. A música representa a confiança de quem transforma dificuldades em força e aprende a respeitar o próprio processo.',
+        'A letra reforça a importância de não depender da aprovação externa e confiar no tempo das próprias conquistas, reconhecendo a persistência e a atitude como partes do crescimento.',
+        'A intenção da música é fortalecer a coragem do ouvinte, incentivando-o a acreditar no próprio caminho, respeitar seu tempo e continuar construindo a vida que deseja.'] },
+    '369': { name:'369', icon:'star', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY',
+      youtube:null,
+      meaning:['"369", de Enibel, fala sobre expansão da consciência, evolução e protagonismo sobre a própria realidade. Inspirada nos números 3, 6 e 9, conecta o ser e a espiritualidade em uma jornada de transformação.',
+        'A música mostra que evoluir envolve autoconhecimento, aprendizado e conexão com algo maior, rompendo antigos padrões para enxergar novas possibilidades.',
+        'A intenção da música é expandir a percepção do ouvinte e incentivá-lo a assumir um papel ativo na própria criação da sua realidade.'] },
+    '5d': { name:'5D', icon:'heart', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR',
+      youtube:'https://www.youtube.com/watch?v=c3dZVBsJCs4',
+      meaning:['"5D", de Enibel, fala sobre um amor que ultrapassa o físico e se conecta em níveis emocionais, energéticos e espirituais. A quinta dimensão representa um espaço além das limitações do tempo, do corpo e da realidade convencional.',
+        'A música explora telepatia, sintonia e conexão sem posse, deixando o ego de lado para viver um amor mais livre, profundo e consciente.',
+        'A intenção da música é fazer o ouvinte expandir sua percepção sobre o amor e explorar uma conexão que vai além do físico, criando uma relação pura, saudável e recíproca.'] },
+    '666': { name:'666', icon:'heart', album:'Prazer, Enibel', year:'2024',
+      spotify:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv',
+      youtube:'https://www.youtube.com/watch?v=j2E2nfSVnZY',
+      lyrics:`Sim, você é meu fã
+
+É meu fã
+
+Enibel
+
+Sim, você é meu fã
+
+Não existe talvez
+
+Quer me ver amanhã?
+
+Ainda nem pensei
+
+Quer assumir o posto
+
+De galã que eu sei
+
+Com essa mão no pescoço
+
+Vem me pedindo replay
+
+Vem faz do jeito que eu gosto
+
+Meu cordão de ouro combina com o brilho que sai dos seus olhos
+
+Eu acho que eu te enfeiticei
+
+Tem brilho no seu rosto quando você tá perto de mim
+
+Mas gosto de papo sincero
+
+Ficar comigo não é tão fácil assim
+
+Vai assumir que gosta de mim
+
+Eu não sou cor de rosa, mas sou uma pantera
+
+Então não faz cena pra me impressionar
+
+Hoje tô com show lotado
+
+Um pouco sem tempo
+
+Não tem condição
+
+E minha agenda tá cheia
+
+E se vacilar já tem outro
+
+Venenosa
+
+Ele me chama de venenosa ai ai ai
+
+Só porque provou veneno (só porque)
+
+Só porque quer todo dia (só porque)
+
+Só porque tá viciado (só porque)
+
+Só porque eu já sabia (só porque)
+
+Venenosa
+
+Ele me chama de venenosa
+
+Acostumado com essa vida
+
+De ter todas à sua palma
+
+Mas conheceu a venenosa
+
+Que rapidin cortou suas asas
+
+Se faz de santo, mas no way
+
+Seu jogo domino na ponta do pé
+
+Ele me liga me liga pra falar que eu sou
+
+Venenosa
+
+Ele me chama de venenosa ai ai ai
+
+Só porque provou veneno (só porque)
+
+Só porque quer todo dia (só porque)
+
+Só porque tá viciado (só porque)
+
+Só porque eu já sabia
+
+Venenosa
+
+Ele
+
+Ele me chama de
+
+Aí papo reto, Enibel
+
+Fala aí
+
+Tu é venenosa mermo
+
+Ah, ainda pow
+
+Ele que quer todo dia
+
+Ele que tá viciado
+
+E disso eu já sabia
+
+Venenosa`,
+      meaning:['"666", de Enibel, fala sobre poder, sedução e autoconfiança, retratando um ser consciente do próprio magnetismo, que não se deixa dominar ou conquistar sem seus próprios parâmetros.',
+        'O simbolismo do 666 cria uma atmosfera de mistério e provocação, enquanto a figura da "venenosa" representa alguém irresistível, independente e no controle das próprias escolhas. A música também ressignifica a visão negativa popularmente associada ao número, trazendo sexualidade, desejo e magnetismo como forças naturais.',
+        'A intenção da música é despertar o poder de atração do ouvinte, incentivando-o a reconhecer o próprio valor e se conectar com seu magnetismo.'] },
+    'rosas-vermelhas': { name:'Rosas Vermelhas', icon:'heart', album:'Rosas Vermelhas', year:'2025',
+      spotify:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R',
+      youtube:'https://www.youtube.com/watch?v=xSsEv33xCyk',
+      meaning:['"Rosas Vermelhas", de Enibel, fala sobre paixão, desejo e uma conexão intensa que une atração física e emocional. As rosas vermelhas e brancas simbolizam o equilíbrio entre intensidade e pureza dentro dessa relação.',
+        'A música explora o magnetismo entre duas pessoas, uma conexão capaz de ultrapassar palavras e se comunicar através do olhar, da presença e da energia.',
+        'A intenção da música é despertar no ouvinte sua energia de amor e sedução, convidando-o a se conectar com o próprio magnetismo e vivenciar o desejo de forma intensa, livre e verdadeira.'] }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const song = songs[id];
+  const content = document.getElementById('pageContent');
+
+  if (!song){
+    content.innerHTML = `
+      <div class="m-notfound">
+        <h2>Música não encontrada</h2>
+        <p style="color:var(--gray);">O link pode estar incompleto. Volte para a biblioteca e escolha uma música.</p>
+        <a href="biblioteca-musical.html" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar à biblioteca</a>
+      </div>`;
+  } else {
+    document.title = song.name + ' — Enibel';
+    const shareUrl = SHARE_BASE + id;
+    content.innerHTML = `
+      <section class="m-hero">
+        <div class="wrap-narrow">
+          <div class="m-icon-big"><svg viewBox="0 0 24 24">${ICONS[song.icon]}</svg></div>
+          <h1>${song.name}</h1>
+          <div class="m-meta">
+            <span class="m-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              Autor: <b>Enibel</b>
+            </span>
+            <span class="m-meta-item">
+              <svg viewBox="0 0 24 24">${ICONS[song.icon]}</svg>
+              Categoria: <b>${CATEGORY_LABELS[song.icon]}</b>
+            </span>
+            <span class="m-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/></svg>
+              Álbum: <b>${song.album} (${song.year})</b>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-tabs-section">
+        <div class="wrap-narrow">
+          <div class="m-tabs">
+            <button type="button" class="m-tab active" id="tabLetra">Letra</button>
+            <button type="button" class="m-tab" id="tabSignificado">Significado</button>
+          </div>
+
+          <div class="m-panel active" id="panelLetra">
+            <div class="m-lyrics-full">${SONG_LYRICS[id]}</div>
+          </div>
+
+          <div class="m-panel" id="panelSignificado">
+            <div class="m-meaning">
+              ${song.meaning.map(p => `<p>${p}</p>`).join('')}
+            </div>
+          </div>
+
+          <div class="m-actions">
+            <a class="m-action-btn spotify" href="${song.spotify}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Z" fill="#1c2f10"/></svg>
+              Ouvir no Spotify
+            </a>
+            ${song.youtube ? `
+            <a class="m-action-btn youtube" href="${song.youtube}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg>
+              Ouvir no YouTube
+            </a>` : ''}
+            <button type="button" class="m-action-btn share" id="shareBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-3.9M8.6 13.5l6.8 3.9"/></svg>
+              Compartilhar música
+            </button>
+            <div class="m-share-link">${shareUrl}</div>
+            <a class="m-action-btn back" href="biblioteca-musical.html">Ver outras músicas</a>
+          </div>
+        </div>
+      </section>
+    `;
+
+    const tabLetra = document.getElementById('tabLetra');
+    const tabSignificado = document.getElementById('tabSignificado');
+    const panelLetra = document.getElementById('panelLetra');
+    const panelSignificado = document.getElementById('panelSignificado');
+    tabLetra.addEventListener('click', () => {
+      tabLetra.classList.add('active'); tabSignificado.classList.remove('active');
+      panelLetra.classList.add('active'); panelSignificado.classList.remove('active');
+    });
+    tabSignificado.addEventListener('click', () => {
+      tabSignificado.classList.add('active'); tabLetra.classList.remove('active');
+      panelSignificado.classList.add('active'); panelLetra.classList.remove('active');
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', function(){
+      const btn = this;
+      const label = btn.innerHTML;
+      function done(){
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Link copiado!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = label; }, 2000);
+      }
+      if (navigator.share){
+        navigator.share({ title: song.name + ' — Enibel', url: shareUrl }).catch(() => {});
+      } else if (navigator.clipboard){
+        navigator.clipboard.writeText(shareUrl).then(done).catch(() => {
+          prompt('Copie o link:', shareUrl);
+        });
+      } else {
+        prompt('Copie o link:', shareUrl);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

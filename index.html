@@ -527,16 +527,45 @@
     #top10List{ display:none; }
     #top10List.is-open{ display:grid; }
     .top10-toggle{
-      display:flex; align-items:center; justify-content:center; gap:8px;
-      width:100%; margin-bottom:36px;
-      padding:18px 24px; border:1px solid rgba(44,44,42,.22);
-      background:transparent; font-family:var(--sans);
-      font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
-      color:var(--obsidian); transition:background .2s ease, border-color .2s ease;
+      display:flex; align-items:center; justify-content:center; gap:12px;
+      margin:0 auto 44px; padding:19px 32px; border-radius:999px; border:none; cursor:pointer;
+      background:linear-gradient(160deg,#eaf7de,var(--mint) 85%); color:#1c2f10;
+      font-family:var(--sans); font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:700;
+      box-shadow:
+        0 16px 30px -14px rgba(44,61,22,.4),
+        inset 0 1px 1px rgba(255,255,255,.85),
+        inset 0 -2px 5px rgba(44,61,22,.15);
+      transition:transform .2s ease, box-shadow .25s ease;
+      animation:top10Glow 3s ease-in-out infinite;
     }
-    .top10-toggle:hover{ border-color:var(--cherry); }
-    .top10-toggle svg{ width:15px; height:15px; flex:none; transition:transform .25s ease; }
-    .top10-toggle.is-open svg{ transform:rotate(180deg); }
+    .top10-toggle:hover{ transform:translateY(-2px); }
+    .top10-toggle:active{ transform:scale(.97); }
+    .top10-toggle.is-open{ animation:none; }
+    .top10-toggle .t10-icon{ display:flex; align-items:center; justify-content:center; color:var(--cherry); flex:none; }
+    .top10-toggle .t10-icon svg{ width:17px; height:17px; }
+    .top10-toggle .t10-badge{
+      padding:4px 11px; border-radius:999px; background:rgba(255,255,255,.55);
+      font-size:10px; letter-spacing:.04em; font-weight:600; color:#1c2f10;
+    }
+    .top10-toggle svg.chev{ width:15px; height:15px; flex:none; transition:transform .3s ease; }
+    .top10-toggle.is-open svg.chev{ transform:rotate(180deg); }
+    @keyframes top10Glow{
+      0%,100%{
+        box-shadow:
+          0 16px 30px -14px rgba(44,61,22,.4),
+          inset 0 1px 1px rgba(255,255,255,.85),
+          inset 0 -2px 5px rgba(44,61,22,.15),
+          0 0 0 0 rgba(174,217,160,.5);
+      }
+      50%{
+        box-shadow:
+          0 16px 30px -14px rgba(44,61,22,.4),
+          inset 0 1px 1px rgba(255,255,255,.85),
+          inset 0 -2px 5px rgba(44,61,22,.15),
+          0 0 22px 6px rgba(174,217,160,.75);
+      }
+    }
+    @media (prefers-reduced-motion: reduce){ .top10-toggle{ animation:none; } }
   }
   .lib-access-btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
@@ -1813,8 +1842,10 @@
   <div class="wrap">
     <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
     <button type="button" class="top10-toggle" id="top10Toggle">
+      <span class="t10-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
       <span class="t10tx">Ver Top 10 completo</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      <span class="t10-badge">10 músicas</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </button>
     <div class="top10-cols reveal" id="top10List"></div>
     <div class="top10-carousel-wrap">
@@ -1864,23 +1895,10 @@
           <div class="version-row"><span class="vnum">02</span><span class="vic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></span><span><span class="vname">Versão slow</span><span class="vcap">Mais íntima e profunda</span></span></div>
           <div class="version-row"><span class="vnum">03</span><span class="vic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></span><span><span class="vname">Versão speed</span><span class="vcap">Mais movimento e energia</span></span></div>
         </div>
-          <button type="button" class="release-toggle" id="lyricsToggle" aria-expanded="false">
+          <a href="musica.html?id=rosas-vermelhas" class="release-toggle" style="text-decoration:none; display:flex;">
             <span class="rtx">Ver letra completa</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="lyrics-panel" id="lyricsPanel">
-            <p class="lyrics-verse">Já tô sabendo o quanto cê me deseja<br>Pode pular toda essa parte de "hola, qué tal?"<br>E não se perde se meu corpo incendeia<br>Mira dentro de mis ojos que encontrarás</p>
-            <p class="lyrics-verse">Não precisa idioma, comunico pelo olhar<br>Deseos sin miedo<br>Não existe desafio, eu já decidi ficar<br>Eu estarei na sua mente aonde você for</p>
-            <p class="lyrics-verse lyrics-chorus">Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo<br>Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo</p>
-            <p class="lyrics-verse">Desperta buscando-me<br>No voy a salir si tú tampoco vas<br>Tu alma llamándome<br>Não é crime amar demais</p>
-            <p class="lyrics-verse">Já nos conhecemos, só nos encontramos<br>Três dias seguidos, virados sem sono<br>Estar contigo sempre está nos planos<br>Sempre está nos planos</p>
-            <p class="lyrics-verse lyrics-chorus">Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo</p>
-            <p class="lyrics-verse lyrics-chorus">Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo</p>
-            <p class="lyrics-verse lyrics-chorus">Rosas vermelhas (x3)<br>Te hipnotizo</p>
-            <p class="lyrics-verse">Sexta quer me ver<br>Sábado já tá comigo<br>Domingo nos seus sonhos<br>Segunda a dose repito<br>Me pergunta o que eu fiz pois só quer ficar comigo<br>Eu sou o feitiço</p>
-            <p class="lyrics-verse">Sexta quer me ver<br>Sábado já tá comigo<br>Domingo nos seus sonhos<br>Segunda dose, repito…<br>Eu sou o feitiço</p>
-            <p class="lyrics-verse lyrics-chorus">Rosas vermelhas e branca, amor (x3)<br>Te hipnotizo</p>
-          </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
           <a class="btn btn-outline-light" href="https://www.youtube.com/watch?v=xSsEv33xCyk" target="_blank" rel="noopener">Assistir vídeo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
           </a>
@@ -2559,16 +2577,16 @@
 
   // Top 10 track data + real Spotify links
   const tracks = [
-    {n:'01', name:'666', cap:'Magnetismo & atração', badge:'+6 milhões de plays', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv?autoplay_ok=1', featured:true},
-    {n:'02', name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR?autoplay_ok=1'},
-    {n:'03', name:'20e20', cap:'Conexão através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03'},
-    {n:'04', name:'Roda da Fortuna', cap:'Abundância & prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2'},
-    {n:'05', name:'Blocos de Notas', cap:'Sucesso profissional', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU?si=ec05ba443f9348bf'},
-    {n:'06', name:'Eu Não Ligo', cap:'Autoestima & merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ?si=cdb25ed1b4684bb0'},
-    {n:'07', name:'Nada Me Para', cap:'Foco & superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb?si=c341dc38d92648b7'},
-    {n:'08', name:'44', cap:'Autoconfiança & coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN?si=c0010193513b4f4f'},
-    {n:'09', name:'Elevo o Nível', cap:'Transformação integral', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g?si=5abec36dca3b4458'},
-    {n:'10', name:'369', cap:'Expansão & realização', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY?si=edb96e7868cd42de'},
+    {n:'01', name:'666', cap:'Magnetismo & atração', badge:'+6 milhões de plays', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv?autoplay_ok=1', featured:true, slug:'666'},
+    {n:'02', name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR?autoplay_ok=1', slug:'5d'},
+    {n:'03', name:'20e20', cap:'Conexão através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/2fpbEJCCWHTzI8mW2gKB03', slug:'20e20'},
+    {n:'04', name:'Roda da Fortuna', cap:'Abundância & prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
+    {n:'05', name:'Blocos de Notas', cap:'Sucesso profissional', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU?si=ec05ba443f9348bf', slug:'blocos-de-notas'},
+    {n:'06', name:'Eu Não Ligo', cap:'Autoestima & merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ?si=cdb25ed1b4684bb0', slug:'eu-nao-ligo'},
+    {n:'07', name:'Nada Me Para', cap:'Foco & superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb?si=c341dc38d92648b7', slug:'nada-me-para'},
+    {n:'08', name:'44', cap:'Autoconfiança & coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN?si=c0010193513b4f4f', slug:'44'},
+    {n:'09', name:'Elevo o Nível', cap:'Transformação integral', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g?si=5abec36dca3b4458', slug:'elevo-o-nivel'},
+    {n:'10', name:'369', cap:'Expansão & realização', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY?si=edb96e7868cd42de', slug:'369'},
   ];
   const icons = {
     heart:'<path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z" fill="currentColor"/>',
@@ -2588,7 +2606,7 @@
           <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="ta-label">Ouvir</span>
         </a>
-        <a class="track-action" href="https://www.letras.mus.br/enibel/" target="_blank" rel="noopener" aria-label="Ver letra de ${t.name}">
+        <a class="track-action" href="${t.slug ? ('musica.html?id=' + t.slug) : 'https://www.letras.mus.br/enibel/'}" ${t.slug ? '' : 'target="_blank" rel="noopener"'} aria-label="Ver letra de ${t.name}">
           <span class="play-btn lyrics-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
           <span class="ta-label">Ver letra</span>
         </a>
@@ -2608,6 +2626,9 @@
       const isOpen = list.classList.toggle('is-open');
       btn.classList.toggle('is-open', isOpen);
       btn.querySelector('.t10tx').textContent = isOpen ? 'Ocultar Top 10' : 'Ver Top 10 completo';
+      const badge = btn.querySelector('.t10-badge');
+      if (badge) badge.style.display = isOpen ? 'none' : '';
+      if (isOpen) list.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   })();
 
@@ -2626,7 +2647,7 @@
         <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="play-label">Clique para ouvir</span>
       </a>
-      <a class="lyrics-link" href="https://www.letras.mus.br/enibel/" target="_blank" rel="noopener">
+      <a class="lyrics-link" href="${t.slug ? ('musica.html?id=' + t.slug) : 'https://www.letras.mus.br/enibel/'}" ${t.slug ? '' : 'target="_blank" rel="noopener"'}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
         Ver letra completa
       </a>
@@ -2727,20 +2748,6 @@
       btn.classList.toggle('is-open', isOpen);
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       btn.querySelector('.rtx').textContent = isOpen ? 'Ocultar lista' : 'Ver lista das músicas mágicas';
-    });
-  })();
-
-  // Ultimo lancamento: toggle letra completa
-  (function(){
-    const btn = document.getElementById('lyricsToggle');
-    const panel = document.getElementById('lyricsPanel');
-    if (!btn || !panel) return;
-    btn.addEventListener('click', function(){
-      const isOpen = panel.classList.toggle('is-open');
-      btn.classList.toggle('is-open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      btn.querySelector('.rtx').textContent = isOpen ? 'Ocultar letra' : 'Ver letra completa';
-      if (isOpen) panel.scrollTop = 0;
     });
   })();
 
