@@ -197,6 +197,7 @@
     display:flex; flex-direction:column;
   }
   .album-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
+  .album-card > a{ display:block; }
   .album-card-body{ padding:24px 22px 26px; display:flex; flex-direction:column; flex:1; }
   .album-card .a-meta{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--cherry); }
   .album-card h3{ font-size:26px; margin-top:8px; }
@@ -446,7 +447,7 @@
 
   const albums = [
     {
-      title:'Prazer, Enibel', meta:'Álbum · 2024 · 11 faixas', img:'images/album-1.webp',
+      title:'Prazer, Enibel', meta:'Álbum · 2024 · 11 faixas', img:'images/album-1.webp', slug:'prazer-enibel',
       desc:'Meu primeiro manifesto: um som vibrante, intenso e nada óbvio, criado para elevar, ativar e transformar.',
       spotify:'https://open.spotify.com/intl-pt/album/0Scxpk2Xej5lnqVwy8wcWq',
       tracks:[
@@ -464,7 +465,7 @@
       ]
     },
     {
-      title:'Prazer, Enibel, Pt. 2', meta:'EP · 2025 · 5 faixas', img:'images/album-2.webp',
+      title:'Prazer, Enibel, Pt. 2', meta:'EP · 2025 · 5 faixas', img:'images/album-2.webp', slug:'prazer-enibel-pt-2',
       desc:'Um fechamento delicado e intenso para o primeiro capítulo. Leveza e profundidade para abundância, vitória, conexão e novas perspectivas.',
       spotify:'https://open.spotify.com/intl-pt/album/2gu6FqPufvhMcVn8ZYsegB',
       tracks:[
@@ -476,7 +477,7 @@
       ]
     },
     {
-      title:'ALQUIMIDAS', meta:'EP Experimental · 2024 · 5 faixas', img:'images/album-3.webp',
+      title:'ALQUIMIDAS', meta:'EP Experimental · 2024 · 5 faixas', img:'images/album-3.webp', slug:'alquimidas',
       desc:'Meu primeiro projeto experimental de música eletrônica, criado para ativar frequências específicas em cada faixa.',
       spotify:'https://open.spotify.com/intl-pt/album/6IqxuOUEjMmcYx7FvM6Jhb',
       tracks:[
@@ -488,7 +489,7 @@
       ]
     },
     {
-      title:'Rosas Vermelhas', meta:'Single · 2025 · 1 faixa', img:'images/release-cover.webp',
+      title:'Rosas Vermelhas', meta:'Single · 2025 · 1 faixa', img:'images/release-cover.webp', slug:'rosas-vermelhas',
       desc:'Um projeto sobre amor e magnetismo pessoal, conduzindo o ouvinte por uma atmosfera onde poder e vulnerabilidade se encontram.',
       spotify:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R',
       tracks:[
@@ -528,17 +529,19 @@
   // ---- Albuns (secao sempre igual, nao afetada por filtro) ----
   document.getElementById('albumsGrid').innerHTML = albums.map((a, idx) => `
     <div class="album-card">
-      <img src="${a.img}" alt="${a.title}" loading="lazy">
+      <a href="album.html?id=${a.slug}" aria-label="Ver álbum ${a.title}">
+        <img src="${a.img}" alt="${a.title}" loading="lazy">
+      </a>
       <div class="album-card-body">
         <span class="a-meta">${a.meta}</span>
-        <h3>${a.title}</h3>
+        <h3><a href="album.html?id=${a.slug}">${a.title}</a></h3>
         <p>${a.desc}</p>
         <div class="a-actions">
           <a class="a-btn solid" href="${a.spotify}" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Z" fill="var(--white)"/></svg>
             Ouvir álbum
           </a>
-          <a class="a-btn outline" href="#allSongsPanel" data-album-jump="${idx}">Ver faixas</a>
+          <a class="a-btn outline" href="album.html?id=${a.slug}">Ver álbum</a>
         </div>
       </div>
     </div>
@@ -707,18 +710,6 @@
     if (isOpen){
       renderAllSongs();
       setTimeout(() => allSongsPanel.scrollIntoView({ behavior:'smooth', block:'start' }), 150);
-    }
-  });
-
-  // ---- Link "Ver faixas" de um album abre a lista completa e rola ate ela ----
-  document.getElementById('albumsGrid').addEventListener('click', function(e){
-    const link = e.target.closest('[data-album-jump]');
-    if (!link) return;
-    e.preventDefault();
-    if (!allSongsPanel.classList.contains('is-open')){
-      showAllBtn.click();
-    } else {
-      allSongsPanel.scrollIntoView({ behavior:'smooth', block:'start' });
     }
   });
 </script>
