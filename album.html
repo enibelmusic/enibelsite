@@ -139,11 +139,11 @@
 
 <header>
   <div class="nav-inner">
-    <a href="biblioteca-musical.html" class="back-link">
+    <a href="biblioteca-musical" class="back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       Voltar à biblioteca
     </a>
-    <a href="index.html" class="logo-mark"><img src="images/logo.webp" alt="Enibel"></a>
+    <a href="/" class="logo-mark"><img src="images/logo.webp" alt="Enibel"></a>
     <span></span>
   </div>
 </header>
@@ -264,13 +264,13 @@
       <div class="al-notfound">
         <h2>Álbum não encontrado</h2>
         <p style="color:var(--gray);">O link pode estar incompleto. Volte para a biblioteca e escolha um álbum.</p>
-        <a href="biblioteca-musical.html" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar à biblioteca</a>
+        <a href="biblioteca-musical" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar à biblioteca</a>
       </div>`;
   } else {
     document.title = album.title + ' — Enibel';
 
     function trackRow(t, i){
-      const lyricsHref = t.slug ? ('musica.html?id=' + t.slug) : LYRICS_URL;
+      const lyricsHref = t.slug ? ('musica?id=' + t.slug) : LYRICS_URL;
       const lyricsTarget = t.slug ? '' : ' target="_blank" rel="noopener"';
       return `<div class="track-row">
         <span class="track-num">${String(i+1).padStart(2,'0')}</span>
@@ -314,7 +314,7 @@
             ${album.tracks.map(trackRow).join('')}
           </div>
           <div class="al-back-wrap">
-            <a class="m-action-btn back" href="biblioteca-musical.html">Ver outros álbuns</a>
+            <a class="m-action-btn back" href="biblioteca-musical">Ver outros álbuns</a>
           </div>
         </div>
       </section>
