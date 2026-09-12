@@ -155,7 +155,7 @@
     <div class="footer-top">
       <div class="footer-logo">
         <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
-        <p class="footer-tag" style="margin:0;white-space:nowrap;">Arte, Evolução &amp; Manifestação.</p>
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música, Evolução &amp; Manifestação.</p>
       </div>
       <div class="footer-right">
         <div class="footer-email-col">
@@ -270,7 +270,7 @@
     document.title = album.title + ' — Enibel';
 
     function trackRow(t, i){
-      const lyricsHref = t.slug ? ('musica?id=' + t.slug) : LYRICS_URL;
+      const lyricsHref = t.slug ? ('musica-' + t.slug) : LYRICS_URL;
       const lyricsTarget = t.slug ? '' : ' target="_blank" rel="noopener"';
       return `<div class="track-row">
         <span class="track-num">${String(i+1).padStart(2,'0')}</span>
