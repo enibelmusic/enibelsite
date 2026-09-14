@@ -105,7 +105,12 @@
 
   .m-actions,
   .m-listen-grid{ margin-top:0; display:flex; flex-direction:column; gap:12px; }
-  .m-panel-actions{ margin-top:28px; display:flex; flex-direction:column; gap:12px; }
+  .m-video-frame{
+    position:relative; width:100%; padding-top:56.25%; border-radius:20px; overflow:hidden;
+    margin-bottom:24px; box-shadow:0 24px 40px -18px rgba(44,44,42,.3); background:var(--obsidian);
+  }
+  .m-video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .m-panel-actions{ margin-top:28px; display:flex; justify-content:center; gap:12px; }
   .m-back-wrap{ margin-top:40px; display:flex; justify-content:center; }
   .m-action-btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
@@ -117,7 +122,7 @@
   .m-action-btn.youtube{ background:var(--cherry); color:var(--white); box-shadow:0 14px 26px -12px rgba(153,53,86,.4); }
   .m-action-btn.secondary{ border:1.5px solid rgba(44,44,42,.22); color:var(--obsidian); background:var(--white); }
   .m-action-btn.share{ background:var(--obsidian); color:var(--white); }
-  .m-action-btn.back{ background:var(--obsidian); color:var(--white); }
+  .m-action-btn.back{ background:rgba(255,255,255,.5); color:var(--obsidian); border:1.5px solid rgba(44,44,42,.4); }
   .m-action-btn.copied{ background:var(--mint) !important; color:#1c2f10 !important; border-color:var(--mint) !important; }
 
   footer{ background:var(--obsidian); color:var(--white); padding:65px 0 0; }
@@ -238,6 +243,7 @@
     '20e20': { name:'20e20', icon:'heart', album:'Prazer, Enibel, Pt. 2', year:'2025',
       spotify:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl',
       youtube:'https://www.youtube.com/watch?v=KwtKe3q2Rqs',
+      video:'https://www.youtube.com/watch?v=KwtKe3q2Rqs',
       meaning:['"20e20", de Enibel, fala sobre uma conexão profunda entre duas pessoas que ultrapassa o físico, o consciente e o racional. A música explora uma sintonia emocional, energética e inconsciente, capaz de continuar existindo através dos sonhos e da conexão com o outro mesmo sem sua presença física.',
         'O horário 20:20 representa sincronicidade e reforça a ideia de que alguns encontros e conexões parecem acontecer além da lógica. A atmosfera de sonho e mistério representa esse espaço entre o consciente e o inconsciente, onde duas pessoas podem continuar se encontrando e se conectando de formas que nem sempre conseguem explicar.',
         'A intenção da música é fazer o ouvinte refletir sobre conexões que ultrapassam o racional e, ao mesmo tempo, conduzi-lo por uma experiência semelhante a uma meditação guiada, convidando-o a viajar por esse universo de sonhos, intuição e inconsciente.'] },
@@ -268,6 +274,7 @@
     'blocos-de-notas': { name:'Blocos de Notas', icon:'dollar', album:'Prazer, Enibel', year:'2024',
       spotify:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU',
       youtube:'https://www.youtube.com/watch?v=3pH11SDTYB8',
+      video:'https://www.youtube.com/watch?v=3pH11SDTYB8&list=RD3pH11SDTYB8&start_radio=1',
       meaning:['"Blocos de Notas", de Enibel, fala sobre transformar ambição, esforço e confiança em conquistas reais de prosperidade e sucesso profissional. A música representa a força de quem rompe limitações, reconhece o próprio valor e entende que construir a realidade que deseja exige mais do que acreditar: exige atitude.',
         'A letra reforça a autossuficiência, a persistência e o poder da ação, mostrando que prosperidade e crescimento são construídos por quem encontra motivação dentro de si e continua avançando mesmo diante de julgamentos e obstáculos.',
         'A intenção da música é despertar a ambição e a confiança do ouvinte, incentivando-o a romper suas próprias barreiras, agir em direção aos seus objetivos e acreditar na própria capacidade de transformar sonhos em conquistas.'] },
@@ -310,6 +317,7 @@
     '666': { name:'666', icon:'heart', album:'Prazer, Enibel', year:'2024',
       spotify:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv',
       youtube:'https://www.youtube.com/watch?v=j2E2nfSVnZY',
+      video:'https://www.youtube.com/watch?v=j2E2nfSVnZY&list=RDj2E2nfSVnZY&start_radio=1',
       lyrics:`Sim, você é meu fã
 
 É meu fã
@@ -428,7 +436,13 @@ Venenosa`,
         'A intenção da música é despertar o poder de atração do ouvinte, incentivando-o a reconhecer o próprio valor e se conectar com seu magnetismo.'] },
     'rosas-vermelhas': { name:'Rosas Vermelhas', icon:'heart', album:'Rosas Vermelhas', year:'2025',
       spotify:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R',
+      spotifyVariants:[
+        {label:'Ouvir versão original', url:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R'},
+        {label:'Ouvir versão slow', url:'https://open.spotify.com/intl-pt/track/2DUZX5vDHVJfFmIzJQr8n9?si=542acacd6353465c'},
+        {label:'Ouvir versão speed', url:'https://open.spotify.com/intl-pt/track/30YwBzxPEyGkCiXHWoQ6jU?si=d1e472db05544c14'}
+      ],
       youtube:'https://www.youtube.com/watch?v=xSsEv33xCyk',
+      video:'https://www.youtube.com/watch?v=xSsEv33xCyk&list=RDxSsEv33xCyk&start_radio=1',
       meaning:['"Rosas Vermelhas", de Enibel, fala sobre paixão, desejo e uma conexão intensa que une atração física e emocional. As rosas vermelhas e brancas simbolizam o equilíbrio entre intensidade e pureza dentro dessa relação.',
         'A música explora o magnetismo entre duas pessoas, uma conexão capaz de ultrapassar palavras e se comunicar através do olhar, da presença e da energia.',
         'A intenção da música é despertar no ouvinte sua energia de amor e sedução, convidando-o a se conectar com o próprio magnetismo e vivenciar o desejo de forma intensa, livre e verdadeira.'] },
@@ -441,18 +455,21 @@ Venenosa`,
     'tem-que-acreditar': { name:'Tem Que Acreditar · 720Hz', icon:'sprout', album:'ALQUIMIDAS', year:'2024',
       spotify:'https://open.spotify.com/intl-pt/track/6ESyZNwDzs4usACJwMhFX0',
       youtube:'https://www.youtube.com/watch?v=Z6b2m-adEJo',
+      video:'https://www.youtube.com/watch?v=Z6b2m-adEJo',
       meaning:['"Tem Que Acreditar (Волшебный мир)", de Enibel, fala sobre fortalecer a fé naquilo que se deseja realizar, mesmo antes de enxergar como isso irá acontecer. A faixa faz parte do EP experimental ALQUIMIDAS, criado para ativar nosso poder instintivo de alquimia: transformar limitações em potência.',
         'Misturando russo, inglês, espanhol e português, a música rompe padrões de linguagem e compreensão como um convite para ultrapassar as limitações da própria mente. Alinhada em 720Hz, conduz o ouvinte pela energia da fé e da realização. Nem tudo precisa ser decifrado — apenas sentido.',
         'A intenção da música é fortalecer a fé do ouvinte e expandir sua percepção para além daquilo que sua mente consegue compreender, incentivando-o a acreditar no que deseja realizar mesmo antes de encontrar respostas ou explicações.'] },
     'samplim': { name:'Samplim · 800Hz', icon:'dollar', album:'ALQUIMIDAS', year:'2024',
       spotify:'https://open.spotify.com/intl-pt/track/7jNGxPAqm8L7PzMyztJE3g',
       youtube:'https://www.youtube.com/watch?v=ecgG0uNRF24',
+      video:'https://www.youtube.com/watch?v=ecgG0uNRF24',
       meaning:['"Samplim", de Enibel, fala sobre abundância, prosperidade e expansão da capacidade de receber. A faixa faz parte do EP experimental ALQUIMIDAS, criado para ativar nosso poder instintivo de alquimia: transformar limitações em potência.',
         'No projeto, sons, palavras e frequências ultrapassam a necessidade de uma compreensão racional, convidando a mente a romper padrões e se abrir para novas possibilidades. Alinhada em 800Hz, "Samplim" conduz o ouvinte à energia da abundância e da prosperidade. Nem tudo precisa ser decifrado — apenas sentido.',
         'A intenção da música é expandir a percepção de abundância do ouvinte, rompendo limitações internas e fortalecendo sua abertura para receber, criar e manifestar prosperidade em sua realidade.'] },
     'love': { name:'Love · 528Hz', icon:'heart', album:'ALQUIMIDAS', year:'2024',
       spotify:'https://open.spotify.com/intl-pt/track/0TfXJcL1ttkevnHHGpxHDK',
       youtube:'https://www.youtube.com/watch?v=THnVh31mzLk',
+      video:'https://www.youtube.com/watch?v=THnVh31mzLk&list=RDTHnVh31mzLk&start_radio=1',
       meaning:['"Love", de Enibel, fala sobre amor, sedução e o magnetismo que nasce da conexão com o próprio desejo. A faixa faz parte do EP experimental ALQUIMIDAS, criado para ativar nosso poder instintivo de alquimia: transformar limitações em potência.',
         'Através de palavras, sons e uma linguagem que ultrapassa a lógica convencional, a música convida o ouvinte a sentir o amor antes de tentar compreendê-lo. Alinhada em 528Hz, "Love" conduz à energia do amor, da atração e da conexão. Nem tudo precisa ser decifrado — apenas sentido.',
         'A intenção da música é despertar o magnetismo amoroso do ouvinte, conectando-o à energia do amor e da sedução para fortalecer aquilo que deseja atrair e manifestar em suas relações.'] },
@@ -483,6 +500,10 @@ Venenosa`,
   } else {
     document.title = song.name + ' — Enibel';
     const shareUrl = SHARE_BASE + id;
+    function youtubeId(url){
+      const m = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+      return m ? m[1] : '';
+    }
     content.innerHTML = `
       <section class="m-hero">
         <div class="wrap-narrow">
@@ -529,11 +550,16 @@ Venenosa`,
           </div>
 
           <div class="m-panel" id="panelOuvir">
+            ${song.video ? `
+            <div class="m-video-frame">
+              <iframe src="https://www.youtube.com/embed/${youtubeId(song.video)}" title="${song.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>` : ''}
             <div class="m-listen-grid">
-              <a class="m-action-btn spotify" href="${song.spotify}" target="_blank" rel="noopener">
+              ${(song.spotifyVariants || [{label:'Ouvir no Spotify', url:song.spotify}]).map(v => `
+              <a class="m-action-btn spotify" href="${v.url}" target="_blank" rel="noopener">
                 <svg viewBox="0 0 168 168" fill="currentColor"><path d="M83.996 0C37.747 0 .001 37.747.001 84s37.746 84 83.995 84c46.251 0 84.001-37.747 84.001-84S130.246 0 83.996 0zm38.503 121.052c-1.507 2.471-4.733 3.253-7.204 1.744-19.732-12.058-44.588-14.79-73.848-8.104-2.82.645-5.63-1.12-6.275-3.94-.643-2.82 1.115-5.63 3.94-6.275 32.017-7.317 59.492-4.169 81.643 9.371 2.471 1.51 3.252 4.734 1.744 7.204zm10.283-22.9c-1.9 3.093-5.943 4.07-9.036 2.17-22.591-13.888-57.028-17.912-83.766-9.798-3.49 1.056-7.174-.909-8.23-4.397-1.055-3.49.91-7.173 4.398-8.23 30.583-9.28 68.545-4.79 94.462 11.223 3.093 1.9 4.07 5.942 2.17 9.036zm.888-23.855c-27.098-16.096-71.788-17.575-97.653-9.72-4.183 1.269-8.6-1.098-9.869-5.281-1.269-4.184 1.099-8.601 5.282-9.87 29.685-9.005 79.081-7.269 110.376 11.376 3.762 2.238 4.995 7.098 2.755 10.858-2.235 3.76-7.097 4.999-10.857 2.755z"/></svg>
-                Ouvir no Spotify
-              </a>
+                ${v.label}
+              </a>`).join('')}
               ${song.youtube ? `
               <a class="m-action-btn youtube" href="${song.youtube}" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg>
