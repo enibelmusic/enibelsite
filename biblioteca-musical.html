@@ -129,7 +129,8 @@
   .ver-resultado-btn:active{ transform:scale(.98); }
 
   .filters-section{ background:var(--white); }
-  .filter-results{ margin-top:40px; }
+  .filter-results{ margin-top:40px; scroll-margin-top:100px; }
+  @media(max-width:900px){ .filter-results{ scroll-margin-top:84px; } }
   .nova-pesquisa-btn{
     display:none; align-items:center; justify-content:center; gap:9px;
     margin:36px auto 0; padding:14px 26px; border-radius:999px;
@@ -461,7 +462,7 @@
         {name:'44', cap:'Autoconfiança e coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN', slug:'44'},
         {name:'369', cap:'Expansão de consciência e grandes realizações', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY', slug:'369'},
         {name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR', slug:'5d'},
-        {name:'666', cap:'Magnetismo e atração amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv', slug:'666'}
+        {name:'666 (Venenosa)', cap:'Magnetismo e atração amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv', slug:'666'}
       ]
     },
     {
@@ -603,6 +604,7 @@
     selCategory = btn.dataset.category;
     categorySelLabel.textContent = selCategory === 'all' ? '' : '· ' + CATEGORY_LABELS[selCategory];
     closeDropdown('categoryPanel', 'categoryToggleBtn');
+    if (searchInput.value) searchInput.value = '';
   });
 
   document.getElementById('albumFilters').addEventListener('click', function(e){
@@ -613,6 +615,7 @@
     selAlbum = btn.dataset.album;
     albumSelLabel.textContent = selAlbum === 'all' ? '' : '· ' + albums[selAlbum].title;
     closeDropdown('albumPanel', 'albumToggleBtn');
+    if (searchInput.value) searchInput.value = '';
   });
 
   // ---- Ver resultado ----
@@ -652,7 +655,17 @@
     runFilter();
     document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
   });
-  searchInput.addEventListener('input', runFilter);
+  searchInput.addEventListener('input', function(){
+    if (searchInput.value.trim() && (selCategory !== 'all' || selAlbum !== 'all')){
+      selCategory = 'all';
+      selAlbum = 'all';
+      document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.toggle('active', p.dataset.category === 'all'));
+      document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.toggle('active', p.dataset.album === 'all'));
+      categorySelLabel.textContent = '';
+      albumSelLabel.textContent = '';
+    }
+    runFilter();
+  });
 
   // ---- Categoria vinda da home (?categoria=heart) ----
   (function applyCategoryFromURL(){
