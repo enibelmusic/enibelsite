@@ -76,6 +76,12 @@
   .m-action-btn.back{ background:var(--obsidian); color:var(--white); }
 
   .al-tracks-section{ padding:56px 0 70px; background:var(--white); }
+  .al-video-section{ padding:48px 0 8px; background:var(--white); }
+  .al-video-frame{
+    position:relative; width:100%; padding-top:56.25%; border-radius:20px; overflow:hidden;
+    box-shadow:0 24px 40px -18px rgba(44,44,42,.3); background:var(--obsidian);
+  }
+  .al-video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .al-tracks-title{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--cherry); padding-bottom:20px; border-bottom:1px solid rgba(44,44,42,.14); margin-bottom:12px; }
 
   .track-row{
@@ -224,6 +230,7 @@
       title:'Prazer, Enibel, Pt. 2', meta:'EP · 2025 · 5 faixas', img:'images/album-2.webp',
       desc:'Um fechamento delicado e intenso para o primeiro capítulo. Leveza e profundidade para abundância, vitória, conexão e novas perspectivas.',
       spotify:'https://open.spotify.com/intl-pt/album/2gu6FqPufvhMcVn8ZYsegB',
+      video:'https://www.youtube.com/watch?v=S2eFuQuGGbM',
       tracks:[
         {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:'https://open.spotify.com/intl-pt/track/1epj007y8j3FJ0xkeAxMDJ', slug:'o-segredo'},
         {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/2wmg2DBAxl1bhEEUNlQWnC', slug:'pouca-coisa-me-interessa'},
@@ -237,11 +244,11 @@
       desc:'Meu primeiro projeto experimental de música eletrônica, criado para ativar frequências específicas em cada faixa.',
       spotify:'https://open.spotify.com/intl-pt/album/6IqxuOUEjMmcYx7FvM6Jhb',
       tracks:[
-        {name:'Ecoa Dismu · 480Hz', cap:'Desejos da alma e magnetismo pessoal', icon:'star', url:null},
-        {name:'Tem Que Acreditar · 720Hz', cap:'Fé fortalecida para realizações', icon:'sprout', url:null},
-        {name:'Samplim · 800Hz', cap:'Abundância e prosperidade', icon:'dollar', url:null},
-        {name:'Love · 528Hz', cap:'Amor, magnetismo e sedução', icon:'heart', url:null},
-        {name:'369 Wave · 369Hz', cap:'Expansão para grandes manifestações', icon:'star', url:null}
+        {name:'Ecoa Dismu · 480Hz', cap:'Desejos da alma e magnetismo pessoal', icon:'star', url:'https://open.spotify.com/intl-pt/track/3IxU4G97ak3e9GYMlibFCi'},
+        {name:'Tem Que Acreditar · 720Hz', cap:'Fé fortalecida para realizações', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/6ESyZNwDzs4usACJwMhFX0'},
+        {name:'Samplim · 800Hz', cap:'Abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/7jNGxPAqm8L7PzMyztJE3g'},
+        {name:'Love · 528Hz', cap:'Amor, magnetismo e sedução', icon:'heart', url:'https://open.spotify.com/intl-pt/track/0TfXJcL1ttkevnHHGpxHDK'},
+        {name:'369 Wave · 369Hz', cap:'Expansão para grandes manifestações', icon:'star', url:'https://open.spotify.com/intl-pt/track/3ykXGXkyT7LLlmXCgLAGNC'}
       ]
     },
     'rosas-vermelhas': {
@@ -271,6 +278,11 @@
         <a href="biblioteca-musical" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar à biblioteca</a>
       </div>`;
   } else {
+
+    function youtubeId(url){
+      const m = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+      return m ? m[1] : '';
+    }
 
     function trackRow(t, i){
       const lyricsHref = t.slug ? ('musica-' + t.slug) : LYRICS_URL;
@@ -309,6 +321,15 @@
           </div>
         </div>
       </section>
+
+      ${album.video ? `
+      <section class="al-video-section">
+        <div class="wrap-narrow">
+          <div class="al-video-frame">
+            <iframe src="https://www.youtube.com/embed/${youtubeId(album.video)}" title="${album.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>` : ''}
 
       <section class="al-tracks-section">
         <div class="wrap-narrow">

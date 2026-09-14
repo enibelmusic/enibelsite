@@ -189,6 +189,7 @@
   .scroll-cue{
     position:absolute; left:50%; bottom:calc(25.2px + 4.5vh); transform:translateX(-50%);
     display:flex; flex-direction:column; align-items:center; gap:10px;
+    background:none; border:none; padding:8px; cursor:pointer;
   }
   .scroll-cue span{ font-size:12.65px; letter-spacing:.18em; text-transform:uppercase; color:var(--gray); font-weight:600; }
   .scroll-cue span{ animation:scrollCueFade 2.8s ease-in-out infinite; }
@@ -1731,12 +1732,12 @@
     </a>
   </div>
   </div>
-  <div class="scroll-cue">
+  <button type="button" class="scroll-cue" id="scrollCueBtn" aria-label="Ir para a próxima seção">
     <span>Deslize para navegar</span>
     <div class="chev-stack">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
     </div>
-  </div>
+  </button>
 </section>
 
 <!-- ============ QUIZ MANIFESTACAO ============ -->
@@ -2436,6 +2437,16 @@
     }
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
+  })();
+
+  // Clique em "Deslize para navegar" rola ate o inicio da proxima secao
+  (function(){
+    const btn = document.getElementById('scrollCueBtn');
+    const nextSection = document.getElementById('quiz');
+    if (!btn || !nextSection) return;
+    btn.addEventListener('click', () => {
+      nextSection.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
   })();
 
   // Header (com menu embutido, mobile): só aparece depois que o usuário sai do hero
