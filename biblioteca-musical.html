@@ -667,17 +667,19 @@
     runFilter();
   });
 
-  // ---- Categoria vinda da home (?categoria=heart) ----
+  // ---- Categoria vinda da home (?categoria=prosperidade) ----
   (function applyCategoryFromURL(){
     const params = new URLSearchParams(window.location.search);
     const catParam = params.get('categoria');
-    if (!catParam || !CATEGORY_LABELS[catParam]) return;
-    const pill = document.querySelector('#categoryFilters .filter-pill[data-category="' + catParam + '"]');
+    const CATEGORY_SLUGS = { amor:'heart', prosperidade:'dollar', expansao:'star', evolucao:'sprout', 'bem-estar':'sun', 'poder-pessoal':'bolt' };
+    const iconKey = catParam && (CATEGORY_SLUGS[catParam] || (CATEGORY_LABELS[catParam] ? catParam : null));
+    if (!iconKey || !CATEGORY_LABELS[iconKey]) return;
+    const pill = document.querySelector('#categoryFilters .filter-pill[data-category="' + iconKey + '"]');
     if (!pill) return;
     document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
     pill.classList.add('active');
-    selCategory = catParam;
-    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[catParam];
+    selCategory = iconKey;
+    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[iconKey];
     runFilter();
     requestAnimationFrame(function(){
       document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
