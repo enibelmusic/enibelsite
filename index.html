@@ -1974,6 +1974,29 @@
     .hero-platforms .platform-link[href*="spotify"] svg.brand, .hero-platforms .platform-link[href$="youtube.com/@Enibel"] svg.brand, .hero-platforms .platform-link[href*="instagram"] svg.brand, .hero-platforms .platform-link[href*="tiktok"] svg.brand, .hero-platforms .platform-link[href^="mailto"] svg.brand{ width:24px !important; height:24px !important; }
   }
   @media(min-width:901px){ .hero-platforms .mundo-link{ margin-left:0 !important; margin-right:0 !important; } }
+  /* Header desktop: mais baixo, menu mais a direita, logo so aparece apos o hero */
+  @media(min-width:901px){
+    .nav-inner{ max-width:1600px; padding:9px 36px; }
+    .nav-inner .logo-mark img{ width:30px !important; height:30px !important; }
+    .logo-mark{ opacity:0; transform:translateX(-8px); pointer-events:none; transition:opacity .35s ease, transform .35s ease; }
+    header.show-nav .logo-mark{ opacity:1; transform:none; pointer-events:auto; }
+    nav.links{ gap:30px; margin-left:auto; }
+    nav.links a{ font-size:11px; letter-spacing:.09em; padding-bottom:3px; }
+  }
+  .hero h1{ position:absolute !important; width:1px; height:1px; margin:-1px !important; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  @media(min-width:901px){
+    .watermark{ justify-content:flex-start; gap:22px; font-size:2.35vw; overflow:hidden; padding:0 0 36px 20px; color:rgba(44,44,42,.07); }
+    .watermark .spark{ font-size:1.1vw; margin:0; }
+  }
+  @media(min-width:901px){
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"], .hero-platforms .platform-link[href^="mailto"]{ margin-top:16px; }
+  }
+  .hero-tag{ font-family:var(--serif); font-style:italic; font-weight:500; color:var(--cherry); text-align:center; line-height:1.1; }
+  .hero-tag span{ font-style:normal; font-size:.8em; opacity:.8; margin:0 .1em; }
+  .hero-tag-m{ display:none; }
+  .hero-tag-d{ display:none; }
+  @media(min-width:901px){ .hero-tag-d{ display:block; font-size:30px; margin:34px 0 -4px; } }
+  @media(max-width:900px){ .hero-tag-m{ display:block; font-size:clamp(20px,6vw,26px); margin:14px 0 -4px; } }
 </style>
 </head>
 <body>
@@ -2014,6 +2037,7 @@
   </div>
   <h1><em>Música <span class="h1-sep">✦</span> Manifestação</em></h1>
 
+  <p class="hero-tag hero-tag-m" aria-hidden="true">Música <span>&amp;</span> Manifestação</p>
   <div class="hero-stats">
     <div class="hs-item"><span class="hs-num">+40M</span><span class="hs-label">Plays</span></div>
     <div class="hs-item"><span class="hs-num">+700K</span><span class="hs-label">Seguidores</span></div>
@@ -2083,6 +2107,7 @@
     </a>
   </div>
 
+  <p class="hero-tag hero-tag-d" aria-hidden="true">Música <span>&amp;</span> Manifestação</p>
   <div class="hero-stats-desktop">
     <div class="hs-item"><span class="hs-num">+40M</span><span class="hs-label">Plays</span></div>
     <div class="hs-item"><span class="hs-num">+700K</span><span class="hs-label">Seguidores</span></div>
@@ -2160,7 +2185,7 @@
 
 <!-- ============ MUSICAS MAGICAS ============ -->
 <section class="musicas-intro" id="musicas">
-  <div class="watermark"><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
+  <div class="watermark" aria-hidden="true"><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
   <div class="musicas-head reveal">
     <span class="eyebrow">01 / Músicas Mágicas</span>
     <h2>Músicas como<br><em>ferramentas de manifestação.</em></h2>
