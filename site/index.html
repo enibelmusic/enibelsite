@@ -1902,6 +1902,205 @@
     box-shadow:0 10px 22px -12px rgba(153,53,86,.35), inset 0 1px 0 #fff !important; color:#2C2C2A !important; }
   .hero-socials a.hs-musicas, .hero-socials a.hs-musicas *, .hero-platforms .music-link, .hero-platforms .music-link *{ color:#2C2C2A !important; }
   .hero-platforms .music-link:hover{ background:linear-gradient(#fff,#fdf3f6) !important; box-shadow:0 16px 28px -12px rgba(153,53,86,.5), inset 0 1px 0 #fff !important; }
+  .sobre-photo .cover-img, .sobre-card-photo .cover-img{ object-position:50% 28%; }
+  .mm-photo .cover-img{ object-position:55% 30%; }
+
+  /* ===== Hero: Vlog da Fada + icones + contato@enibel.com.br ===== */
+  /* mobile */
+  @media(max-width:900px){
+    .hero-socials a.hs-vlog{ order:-1 !important; width:min(300px,82%) !important; justify-content:center; margin-bottom:0; }
+    .hero-socials a.hs-musicas{ order:-2 !important; }
+    .hero-socials a.hs-email{ order:20 !important; width:min(300px,82%) !important; justify-content:center; }
+    .hero-socials a:not(.hs-musicas):not(.hs-vlog):not(.hs-email){ font-size:0 !important; gap:0 !important; padding:0 !important; width:48px !important; height:48px !important; min-width:0 !important; justify-content:center; align-items:center; flex:none !important; }
+    .hero-socials a:not(.hs-musicas):not(.hs-vlog):not(.hs-email) svg{ width:24px !important; height:24px !important; margin:0 !important; }
+    .hero-socials a[href*="spotify"]{order:1 !important} .hero-socials a[href$="youtube.com/@Enibel"]{order:2 !important}
+    .hero-socials a[href*="instagram"]{order:3 !important} .hero-socials a[href*="tiktok"]{order:4 !important} .hero-socials a[href*="deezer"]{order:5 !important}
+  }
+  /* desktop */
+  @media(min-width:901px){
+    .hero-platforms{ grid-template-columns:repeat(10,1fr) !important; }
+    .hero-platforms .music-link, .hero-platforms .vlog-link, .hero-platforms .mundo-link{ grid-column:1 / -1 !important; }
+    .hero-platforms .vlog-link{ order:1 !important; justify-content:center; padding:18px 24px; }
+    .hero-platforms .vlog-link .pl-left{ display:flex; align-items:center; justify-content:center; gap:10px; font-size:15px; font-weight:600; }
+    .hero-platforms .vlog-link svg.brand{ width:17px; height:17px; }
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"], .hero-platforms .platform-link[href*="deezer"]{ grid-column:span 2 !important; justify-content:center; padding:14px 0; }
+    .hero-platforms .platform-link[href*="spotify"] .pl-left, .hero-platforms .platform-link[href$="youtube.com/@Enibel"] .pl-left, .hero-platforms .platform-link[href*="instagram"] .pl-left, .hero-platforms .platform-link[href*="tiktok"] .pl-left, .hero-platforms .platform-link[href*="deezer"] .pl-left{ font-size:0; gap:0; }
+    .hero-platforms .platform-link[href*="spotify"] svg.brand, .hero-platforms .platform-link[href$="youtube.com/@Enibel"] svg.brand, .hero-platforms .platform-link[href*="instagram"] svg.brand, .hero-platforms .platform-link[href*="tiktok"] svg.brand, .hero-platforms .platform-link[href*="deezer"] svg.brand{ width:20px !important; height:20px !important; }
+    .hero-platforms .platform-link:not(.mundo-link):not(.music-link):not(.vlog-link) svg.arrow{ display:none; }
+    .hero-platforms .platform-link[href*="spotify"]{order:2 !important} .hero-platforms .platform-link[href$="youtube.com/@Enibel"]{order:3 !important}
+    .hero-platforms .platform-link[href*="instagram"]{order:4 !important} .hero-platforms .platform-link[href*="tiktok"]{order:5 !important} .hero-platforms .platform-link[href*="deezer"]{order:6 !important}
+    .hero-platforms .platform-link[href^="mailto"]{ grid-column:1 / -1 !important; order:7 !important; justify-content:center; }
+    .hero-platforms .platform-link[href^="mailto"] svg.arrow{ display:none; }
+  }
+  @media(min-width:901px){
+    .hero-platforms .vlog-link, .hero-platforms .platform-link[href^="mailto"]{ padding:15px 24px !important; }
+    .hero-platforms .vlog-link .pl-left, .hero-platforms .platform-link[href^="mailto"] .pl-left{ font-family:var(--sans); font-size:17px !important; font-weight:600; letter-spacing:0; gap:10px; display:flex; align-items:center; justify-content:center; }
+    .hero-platforms .platform-link[href^="mailto"] svg.brand{ width:17px; height:17px; }
+  }
+  .hero-socials a.hs-email{ text-transform:none !important; letter-spacing:.01em !important; }
+  .hero-socials a[href*="deezer"], .hero-platforms a[href*="deezer"]{ display:none !important; }
+  @media(min-width:901px){
+    .hero-platforms{ grid-template-columns:repeat(12,1fr) !important; }
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"]{ grid-column:span 3 !important; }
+  }
+  /* email vira icone */
+  @media(max-width:900px){
+    .hero-socials a.hs-email{ font-size:0 !important; gap:0 !important; padding:0 !important; width:48px !important; height:48px !important; min-width:0 !important; justify-content:center; align-items:center; flex:none !important; order:6 !important; }
+    .hero-socials a.hs-email svg{ width:24px !important; height:24px !important; margin:0 !important; }
+  }
+  @media(min-width:901px){
+    .hero-platforms{ grid-template-columns:repeat(10,1fr) !important; }
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"], .hero-platforms .platform-link[href^="mailto"]{ grid-column:span 2 !important; justify-content:center; padding:14px 0 !important; }
+    .hero-platforms .platform-link[href^="mailto"]{ order:6 !important; }
+    .hero-platforms .platform-link[href^="mailto"] .pl-left{ font-size:0 !important; gap:0; }
+    .hero-platforms .platform-link[href^="mailto"] svg.brand{ width:20px !important; height:20px !important; }
+  }
+  @media(max-width:900px){
+    .hero-socials a.hs-email{ order:6 !important; font-size:0 !important; gap:0 !important; padding:0 !important; width:48px !important; height:48px !important; min-width:0 !important; justify-content:center !important; align-items:center; flex:none !important; letter-spacing:0 !important; }
+    .hero-socials a.hs-email svg{ width:24px !important; height:24px !important; margin:0 !important; }
+  }
+  @media(min-width:901px){
+    .hero-platforms{ grid-template-columns:repeat(10,1fr) !important; }
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"], .hero-platforms .platform-link[href^="mailto"]{ grid-column:span 2 !important; justify-content:center; padding:14px 0 !important; }
+    .hero-platforms .platform-link[href^="mailto"]{ order:6 !important; }
+    .hero-platforms .platform-link[href^="mailto"] .pl-left{ font-size:0 !important; gap:0 !important; }
+    .hero-platforms .platform-link[href^="mailto"] svg.brand{ width:20px !important; height:20px !important; }
+  }
+  @media(min-width:901px){
+    .hero-platforms{ grid-template-columns:repeat(5,48px) !important; justify-content:center !important; column-gap:16px !important; }
+    .hero-platforms .mundo-link, .hero-platforms .music-link, .hero-platforms .vlog-link{ grid-column:1 / -1 !important; width:640px !important; max-width:none !important; justify-self:center; }
+    .hero-platforms .platform-link[href*="spotify"], .hero-platforms .platform-link[href$="youtube.com/@Enibel"], .hero-platforms .platform-link[href*="instagram"], .hero-platforms .platform-link[href*="tiktok"], .hero-platforms .platform-link[href^="mailto"]{
+      grid-column:auto !important; width:48px !important; height:48px !important; padding:0 !important; border-radius:50% !important; justify-content:center !important; align-items:center; }
+    .hero-platforms .platform-link[href*="spotify"] svg.brand, .hero-platforms .platform-link[href$="youtube.com/@Enibel"] svg.brand, .hero-platforms .platform-link[href*="instagram"] svg.brand, .hero-platforms .platform-link[href*="tiktok"] svg.brand, .hero-platforms .platform-link[href^="mailto"] svg.brand{ width:24px !important; height:24px !important; }
+  }
+  @media(min-width:901px){ .hero-platforms .mundo-link{ margin-left:0 !important; margin-right:0 !important; } }
+  /* Header desktop: altura original; so aparece depois do hero (como no mobile) */
+  @media(min-width:901px){
+    header{ transition:opacity .35s ease, transform .35s ease; opacity:0; transform:translateY(-12px); pointer-events:none; }
+    header.show-nav{ opacity:1; transform:none; pointer-events:auto; }
+  }
+
+  /* ===== Mundo Magico: claro + mais alto ===== */
+  .mundo-magico{ background:linear-gradient(160deg,#F2F8EF 0%, #DDF0D4 100%); }
+  .mm-panel{ color:var(--obsidian) !important; padding:84px 64px !important; }
+  .mm-panel .eyebrow, .mm-intro-mobile .eyebrow, .mundo-magico .mm-intro-mobile .eyebrow{ color:var(--cherry) !important; }
+  .mm-panel .sub, .mm-intro-mobile .sub{ color:#5c5b56 !important; }
+  .mm-panel h2, .mundo-magico .mm-panel h2 em{ color:var(--cherry) !important; }
+  .mm-panel p.desc{ color:#4a4a46 !important; }
+  .mundo-magico .btn-gold{ background:linear-gradient(160deg,#eaf7de,#AED9A0 85%) !important; border:1px solid rgba(184,125,0,.35) !important; color:#1c2f10 !important; border-radius:999px; box-shadow:0 14px 26px -12px rgba(44,61,22,.5), inset 0 1px 1px #fff; }
+  .mm-tags .pill.on-dark{ border-color:rgba(108,170,92,.55) !important; color:#3d6a30 !important; background:rgba(255,255,255,.6); }
+  @media(min-width:901px){ .mm-photo{ min-height:680px; } }
+  @media(max-width:900px){ .mm-photo{ height:54vh !important; max-height:470px !important; } .mm-panel{ padding:30px 24px 40px !important; } }
+  /* ===== Quiz: fundo escuro ===== */
+  .quiz369{ background:radial-gradient(circle at 50% 30%, rgba(153,53,86,.35), transparent 55%), radial-gradient(circle at 85% 85%, rgba(174,217,160,.18), transparent 50%), #2C2C2A !important; }
+  .quiz369::before{ background:radial-gradient(circle at 50% 38%, rgba(174,217,160,.10), transparent 55%) !important; }
+  .q369-tag{ background:rgba(255,255,255,.06) !important; border-color:rgba(174,217,160,.5) !important; color:#AED9A0 !important; }
+  .quiz369 h2{ color:#FAFAF8 !important; }
+  .quiz369 h2 em{ background:linear-gradient(180deg,#DDF0D4,#AED9A0) !important; -webkit-background-clip:text !important; background-clip:text !important; -webkit-text-fill-color:transparent !important; }
+  .quiz369 .q369-sub{ color:rgba(250,250,248,.72) !important; }
+  .q369-c{ background:rgba(255,255,255,.06) !important; border-color:rgba(251,234,240,.5) !important; color:#FBEAF0 !important; }
+  .q369-c.on{ background:radial-gradient(circle at 35% 30%, #fff, var(--ice-green) 45%, var(--mint)) !important; color:var(--cherry) !important; border-color:var(--mint) !important; }
+  .q369-lb{ color:rgba(250,250,248,.7) !important; }
+  .q369-ln{ background:rgba(251,234,240,.3) !important; }
+  .q369-btn{ background:linear-gradient(160deg,#eaf7de,#AED9A0 85%) !important; color:#1c2f10 !important; border:1px solid rgba(255,255,255,.6) !important; box-shadow:0 0 0 4px rgba(174,217,160,.15), 0 16px 34px -12px rgba(174,217,160,.8) !important; }
+  .q369-note{ color:#FBEAF0 !important; }
+
+  .mm-quiz-btn{ margin-top:14px; align-self:flex-start; border-radius:999px; background:#993556 !important; color:#FBEAF0 !important; border:1px solid rgba(255,255,255,.4) !important; box-shadow:0 14px 26px -12px rgba(153,53,86,.6); }
+  .mm-quiz-note{ display:block; margin-top:10px; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:#5c5b56; }
+  .quiz369{ display:none !important; }
+
+  @media(max-width:900px){ .mm-quiz-btn, .mundo-magico .btn-gold{ align-self:stretch !important; justify-content:center; } .mm-quiz-note{ text-align:center; } }
+
+  /* quiz btn offwhite */
+  .mm-quiz-btn{ background:#FAFAF8 !important; color:#993556 !important; border:1px solid rgba(153,53,86,.45) !important; box-shadow:0 12px 24px -14px rgba(153,53,86,.45), inset 0 1px 1px #fff !important; }
+  /* tags rosa */
+  .mm-tags .pill.on-dark{ background:#993556 !important; border-color:#993556 !important; color:#FBEAF0 !important; box-shadow:0 12px 22px -12px rgba(153,53,86,.7); animation:none !important; }
+  .mm-tags .pill.on-dark b, .mm-tags .pill.on-dark i{ color:#FBEAF0 !important; }
+  @media(max-width:900px){
+    .mm-panel{ display:flex !important; flex-direction:column; padding-top:0 !important; }
+    .mm-tags{ order:-1; margin:-34px 0 26px !important; position:relative; z-index:3; display:grid !important; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .mm-tags .pill.on-dark{ padding:11px 4px !important; text-align:center; border-radius:18px; }
+    .mm-tags .pill.on-dark b{ font-size:.82rem !important; letter-spacing:.08em; display:block; }
+    .mm-tags .pill.on-dark i{ font-size:.74rem !important; letter-spacing:.06em; display:block; font-style:normal; margin-top:2px; }
+    .mm-quiz-note{ font-size:.66rem !important; letter-spacing:.12em; margin-top:8px; }
+  }
+
+  .mm-tags .pill.on-dark, .mm-tags .pill.on-dark b, .mm-tags .pill.on-dark i{ color:#B4F09A !important; opacity:1 !important; }
+
+  .mm-br{ display:none; }
+  @media(max-width:900px){ .mm-br{ display:inline; } .mm-panel h2{ font-size:2.3rem !important; line-height:1.08 !important; } }
+
+  @media(max-width:900px){
+    .mm-intro-mobile .eyebrow{ font-size:1.02rem !important; letter-spacing:.16em !important; }
+    .mm-intro-mobile .sub{ font-size:.86rem !important; letter-spacing:.14em !important; }
+    .mm-panel p.desc{ font-size:1.12rem !important; line-height:1.6 !important; }
+    .mundo-magico .btn-gold, .mm-quiz-btn{ font-size:.92rem !important; padding-top:17px !important; padding-bottom:17px !important; }
+    .mm-quiz-note{ font-size:.76rem !important; }
+    .mm-tags .pill.on-dark b{ font-size:.88rem !important; }
+    .mm-tags .pill.on-dark i{ font-size:.78rem !important; }
+  }
+
+  @media(max-width:900px){
+    .mundo-magico .btn-gold, .mm-quiz-btn{ font-size:.84rem !important; letter-spacing:.1em !important; box-sizing:border-box; width:100%; max-width:100% !important; }
+    .mm-tags .pill.on-dark{ min-width:0; box-sizing:border-box; }
+    .mm-tags .pill.on-dark b{ font-size:.82rem !important; letter-spacing:.05em !important; }
+    .mm-tags .pill.on-dark i{ font-size:.72rem !important; letter-spacing:.03em !important; }
+  }
+
+  .mm-cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:36px; align-items:center; }
+  .mm-cta .btn, .mm-cta .mm-quiz-btn{ margin-top:0 !important; align-self:auto !important; }
+  .mm-br{ display:inline !important; }
+  @media(min-width:901px){ .mm-photo{ min-height:630px !important; } .mm-panel{ padding:60px 64px !important; } .mm-panel h2{ line-height:1.08 !important; } }
+  @media(max-width:900px){ .mm-cta{ flex-direction:column; align-items:stretch; gap:12px; margin-top:26px; } }
+
+  @media(min-width:901px){ .mm-cta{ flex-wrap:nowrap !important; flex-direction:row !important; } .mm-cta .btn{ width:auto !important; flex:0 0 auto; white-space:nowrap; } }
+
+  .mm-tags .pill.on-dark{ background:#F7D3E0 !important; border-color:#E8A9C1 !important; box-shadow:0 10px 20px -12px rgba(153,53,86,.45) !important; }
+  .mm-tags .pill.on-dark, .mm-tags .pill.on-dark b, .mm-tags .pill.on-dark i{ color:#2E7A22 !important; }
+
+  .mm-tags{ display:none !important; }
+  .mm-rhythm{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:34px; padding-top:26px; border-top:1px solid rgba(153,53,86,.25); max-width:560px; }
+  .mm-r{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .mm-ric{ width:54px; height:54px; border-radius:50%; border:1px solid rgba(153,53,86,.5); background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; color:#993556; margin-bottom:14px; }
+  .mm-ric svg{ width:23px; height:23px; }
+  .mm-r b{ font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:#2E7A22; font-weight:700; margin-bottom:6px; }
+  .mm-r em{ font-family:'Cormorant Garamond',serif; font-style:normal; font-size:1.3rem; color:#2C2C2A; line-height:1.1; }
+  @media(max-width:900px){
+    .mm-panel{ padding-top:30px !important; }
+    .mm-rhythm{ max-width:none; margin-top:30px; gap:6px; }
+    .mm-ric{ width:58px; height:58px; }
+    .mm-r b{ font-size:.7rem; letter-spacing:.14em; }
+    .mm-r em{ font-size:1.4rem; }
+  }
+  @media(max-width:900px){ .mm-r em{ font-size:1.18rem !important; white-space:nowrap; } .mm-r b{ font-size:.64rem !important; letter-spacing:.1em !important; white-space:nowrap; } }
+  @media(max-width:900px){ .mm-intro-mobile{ padding-bottom:22px !important; padding-top:26px !important; } }
+  @media(min-width:901px){ .mm-panel h2{ font-size:54px !important; } }
+  @media(max-width:900px){ .mm-panel h2{ font-size:2.75rem !important; } }
+
+  @media(max-width:900px){
+    .mm-grid{ position:relative; }
+    .mm-intro-mobile{ position:absolute !important; top:0; left:0; right:0; z-index:4; padding:22px 24px 46px !important; background:linear-gradient(180deg,rgba(20,14,16,.62),rgba(20,14,16,0)) !important; }
+    .mm-intro-mobile .eyebrow, .mundo-magico .mm-intro-mobile .eyebrow{ color:#FAFAF8 !important; text-shadow:0 1px 10px rgba(0,0,0,.45); }
+    .mm-photo{ height:60vh !important; max-height:520px !important; }
+  }
+  /* so o titulo rosa abaixo da logo permanece */
+  .hero-tag{ display:none !important; }
+  /* icones sociais um pouco menores */
+  .hero-socials a:not(.hs-musicas):not(.hs-vlog) svg, .hero-platforms .platform-link:not(.mundo-link):not(.lib-link) svg{ transform:scale(.88); }
+  @media(max-width:900px){
+    .hero-socials a.hs-vlog, .hero-socials a.hs-musicas{ width:min(300px,82%) !important; margin-left:calc((100% - min(300px,82%))/2) !important; margin-right:calc((100% - min(300px,82%))/2) !important; box-sizing:border-box; }
+  }
+  .q-br{ display:none; }
+  @media(max-width:900px){ .q-br{ display:inline; } .quiz-head h2{ text-wrap:balance; } }
+  .qr-play, .qr-lyrics{ width:min(300px,100%); box-sizing:border-box; }
+  .qr-lyrics{ display:flex; align-items:center; justify-content:center; gap:10px; margin:12px auto 0; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--cherry); border:1.5px solid var(--cherry); background:transparent; padding:15px 28px; border-radius:2px; transition:all .2s ease; }
+  .qr-lyrics svg{ width:16px; height:16px; }
+  .qr-lyrics:hover{ background:var(--cherry); color:var(--white); }
+  .qr-play{ display:flex !important; margin:0 auto; }
+  .qr-play{ background:var(--cherry) !important; }
+  .qr-play:hover{ background:#7d2a46 !important; }
+  @media(min-width:901px){ .hero h1{ font-size:clamp(26px,2.4vw,36px) !important; margin-top:6px !important; } .hero h1 .h1-sep{ font-size:.6em; } }
+  @media(min-width:901px){ .hero-platforms .vlog-link{ margin-bottom:18px !important; } }
 </style>
 </head>
 <body>
@@ -1942,6 +2141,7 @@
   </div>
   <h1><em>Música <span class="h1-sep">✦</span> Manifestação</em></h1>
 
+  <p class="hero-tag hero-tag-m" aria-hidden="true">Música <span>&amp;</span> Manifestação</p>
   <div class="hero-stats">
     <div class="hs-item"><span class="hs-num">+40M</span><span class="hs-label">Plays</span></div>
     <div class="hs-item"><span class="hs-num">+700K</span><span class="hs-label">Seguidores</span></div>
@@ -1962,8 +2162,8 @@
     <a href="https://www.deezer.com/br/artist/93721662" target="_blank" rel="noopener" aria-label="Deezer">
       <svg viewBox="0 0 24 24" fill="var(--obsidian)"><rect x="1" y="14" width="4" height="3"/><rect x="7" y="10" width="4" height="7"/><rect x="13" y="6" width="4" height="11"/><rect x="19" y="2" width="4" height="15"/></svg>Deezer
     </a>
-    <a href="mailto:contato@enibel.com.br" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Email
+    <a href="mailto:contato@enibel.com.br" aria-label="Email" class="hs-email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>contato@enibel.com.br
     </a>
     <a href="https://www.tiktok.com/@enibeloficial" target="_blank" rel="noopener" aria-label="TikTok">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.4 2.2 4 5 4.3"/></svg>TikTok
@@ -1971,6 +2171,7 @@
     <a href="https://www.instagram.com/enibeloficial/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>Instagram
     </a>
+    <a href="https://www.youtube.com/@Enibel/videos" target="_blank" rel="noopener" class="hs-vlog" aria-label="Vlog da Fada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M10.5 9.5v5l4.2-2.5z" fill="currentColor" stroke="none"/></svg>Vlog da Fada</a>
     <a href="#musicas" class="hs-musicas" aria-label="Músicas Mágicas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>Músicas Mágicas
     </a>
@@ -1998,17 +2199,19 @@
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
     </a>
     <a class="platform-link" href="mailto:contato@enibel.com.br">
-      <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian)" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Email</span>
+      <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian)" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>contato@enibel.com.br</span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
     </a>
     <a class="platform-link music-link" href="#musicas">
       <span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><span class="mm-txt">Músicas Mágicas - Ouvir e ver letras</span></span>
     </a>
+    <a class="platform-link vlog-link" href="https://www.youtube.com/@Enibel/videos" target="_blank" rel="noopener"><span class="pl-left"><svg class="brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M10.5 9.5v5l4.2-2.5z" fill="currentColor" stroke="none"/></svg>Vlog da Fada</span></a>
     <a class="platform-link mundo-link" href="https://mundomagico369.com.br" target="_blank" rel="noopener">
       <span class="pl-left cm-label"><b>Comunidade de Manifestação</b><i><em class="o">✦</em>Mundo Mágico<em class="o">✦</em></i></span>
     </a>
   </div>
 
+  <p class="hero-tag hero-tag-d" aria-hidden="true">Música <span>&amp;</span> Manifestação</p>
   <div class="hero-stats-desktop">
     <div class="hs-item"><span class="hs-num">+40M</span><span class="hs-label">Plays</span></div>
     <div class="hs-item"><span class="hs-num">+700K</span><span class="hs-label">Seguidores</span></div>
@@ -2028,7 +2231,7 @@
   <div class="wrap">
     <div class="quiz-head reveal">
       <span class="quiz-tag">✦ Quiz Gratuito</span>
-      <h2>O que você deseja manifestar agora?</h2>
+      <h2>O que você deseja<br class="q-br"> manifestar agora?</h2>
       <p>A fada te ajuda. Em menos de 30 segundos, descubra qual música que te guiará.</p>
     </div>
     <div class="quiz-box reveal" id="quizBox">
@@ -2074,6 +2277,10 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           Ouvir agora
         </a>
+        <a class="qr-lyrics" id="qrLyricsLink" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          Letra e intenção
+        </a>
         <button type="button" class="qr-restart" id="qrRestart">Refazer o quiz</button>
       </div>
     </div>
@@ -2086,9 +2293,9 @@
 
 <!-- ============ MUSICAS MAGICAS ============ -->
 <section class="musicas-intro" id="musicas">
-  <div class="watermark"><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
+  <div class="watermark" aria-hidden="true"><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span><span>MÚSICA</span><span class="spark">✦</span><span>MANIFESTAÇÃO</span><span class="spark">✦</span></div>
   <div class="musicas-head reveal">
-    <span class="eyebrow">01 / Músicas Mágicas</span>
+    <span class="eyebrow">Músicas Mágicas</span>
     <h2>Músicas como<br><em>ferramentas de manifestação.</em></h2>
     <p>Cada som é um feitiço com intenção própria. Escolha a energia que quer viver agora.</p>
   </div>
@@ -2126,71 +2333,33 @@
   </div>
 </section>
 
-<!-- ============ TOP 10 ============ -->
-<section class="top10" id="top10">
-  <div class="wrap">
-    <div class="top10-title reveal">Top 10 da Fada · Mais virais</div>
-    <button type="button" class="top10-toggle" id="top10Toggle">
-      <span class="t10-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
-      <span class="t10tx">Ver lista completa</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-    </button>
-    <div class="top10-cols reveal" id="top10List"></div>
-    <div class="top10-carousel-wrap">
-    <div class="top10-carousel reveal" id="top10Carousel"></div>
-    <button type="button" class="top10-swipe-hint top10-swipe-hint-prev" id="top10SwipeHintPrev" aria-label="Deslizar para a música anterior">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <button type="button" class="top10-swipe-hint" id="top10SwipeHint" aria-label="Deslizar para ver mais músicas">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-    </div>
-  </div>
-</section>
-
 <!-- ============ MUNDO MAGICO ============ -->
 <section class="mundo-magico" id="mundo-magico">
   <div class="mm-grid">
     <div class="mm-intro-mobile">
-      <span class="eyebrow on-dark">02 / Mundo Mágico 369</span>
-      <span class="sub">Da música para uma comunidade viva</span>
+      <span class="eyebrow on-dark">Mundo Mágico 369</span>
     </div>
     <div class="mm-photo reveal">
-      <img class="cover-img" src="images/making-of.webp" alt="Mundo Mágico" width="1200" height="675" loading="lazy" decoding="async" srcset="images/making-of-600.webp 600w, images/making-of.webp 1200w" sizes="(max-width:900px) 100vw, 50vw">
+      <img class="cover-img" src="images/making-of.webp" alt="Mundo Mágico" width="1100" height="1143" loading="lazy" decoding="async" srcset="images/making-of-600.webp 600w, images/making-of.webp 1200w" sizes="(max-width:900px) 100vw, 50vw">
     </div>
     <div class="mm-panel reveal">
-      <span class="eyebrow on-dark mm-intro-desktop">02 / Mundo Mágico 369</span>
+      <span class="eyebrow on-dark mm-intro-desktop">Mundo Mágico 369</span>
       <span class="sub mm-intro-desktop">Da música para uma comunidade viva</span>
-      <h2><em>Comunidade de Manifestação</em></h2>
+      <h2><em>Comunidade de<br class="mm-br"> Manifestação</em></h2>
       <p class="desc">Mundo Mágico: a comunidade que criei para manifestarmos amor, prosperidade e bem-estar juntos.</p>
-      <a class="btn btn-gold" style="margin-top:36px; align-self:flex-start;" href="https://mundomagico369.com.br" target="_blank" rel="noopener">Conhecer o Mundo Mágico
+      <div class="mm-cta">
+      <a class="btn btn-gold"  href="https://mundomagico369.com.br" target="_blank" rel="noopener">Quero fazer parte
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
       </a>
-      <div class="mm-tags">
-        <span class="pill on-dark"><b>Todo dia</b><i>Comunidade</i></span>
-        <span class="pill on-dark"><b>Toda semana</b><i>Vídeo novo</i></span>
-        <span class="pill on-dark"><b>Todo mês</b><i>Live comigo</i></span>
+      <a class="btn mm-quiz-btn" href="https://mundomagico369.com.br/quiz/" target="_blank" rel="noopener">Quiz Manifestação (grátis)
+      </a>
+      </div>
+      <div class="mm-rhythm">
+        <div class="mm-r"><span class="mm-ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9.5" r="2.2"/><path d="M16.5 14.2c2.5-.2 4.5 1.4 4.5 4"/></svg></span><b>Todo dia</b><em>Comunidade</em></div>
+        <div class="mm-r"><span class="mm-ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5z"/></svg></span><b>Toda semana</b><em>Episódio novo</em></div>
+        <div class="mm-r"><span class="mm-ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.8"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.4 5.4a9.4 9.4 0 0 0 0 13.2M18.6 5.4a9.4 9.4 0 0 1 0 13.2"/></svg></span><b>Todo mês</b><em>Live exclusiva</em></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ QUIZ 369 ============ -->
-<section class="quiz369" id="quiz369">
-  <span class="q-star" style="left:12%;top:18%">✦</span><span class="q-star" style="left:84%;top:26%;font-size:18px">✦</span><span class="q-star" style="left:20%;top:72%;font-size:11px">✦</span><span class="q-star" style="left:78%;top:78%">✦</span>
-  <div class="quiz369-in reveal">
-    <span class="q369-tag">✦ Quiz gratuito ✦</span>
-    <h2>Quiz da <em>Manifestação</em></h2>
-    <p class="q369-sub">Descubra qual parte em você está travando a sua manifestação.</p>
-    <div class="q369-steps">
-      <div class="q369-st"><div class="q369-c">3</div><span class="q369-lb">Mente</span></div><div class="q369-ln"></div>
-      <div class="q369-st"><div class="q369-c on">6</div><span class="q369-lb">Energia</span></div><div class="q369-ln"></div>
-      <div class="q369-st"><div class="q369-c">9</div><span class="q369-lb">Ação</span></div>
-    </div>
-    <a class="q369-btn" href="https://mundomagico369.com.br/quiz/" target="_blank" rel="noopener">Começar o quiz
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-    </a>
-    <div class="q369-note">Resultado gratuito na hora - 5 perguntas</div>
   </div>
 </section>
 
@@ -2221,7 +2390,7 @@
           <div class="version-row"><span class="vnum">03</span><span class="vic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg></span><span><span class="vname">Versão speed</span><span class="vcap">Mais movimento e energia</span></span></div>
         </div>
           <a href="musica-rosas-vermelhas" class="release-toggle" style="text-decoration:none; display:flex;">
-            <span class="rtx">Ver letra e significado</span>
+            <span class="rtx">Letra e intenção</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
           </a>
           <a class="btn btn-outline-light" href="https://www.youtube.com/watch?v=xSsEv33xCyk" target="_blank" rel="noopener">Assistir vídeo
@@ -2356,7 +2525,7 @@
 <section class="qg" id="qg">
   <div class="qg-grid">
     <div class="qg-text reveal">
-      <span class="eyebrow on-dark" style="color:#AED9A0;">03 / QG da Fada</span>
+      <span class="eyebrow on-dark" style="color:#AED9A0;">QG da Fada</span>
       <span class="sub">Acesso VIP · Fã-clube oficial</span>
       <h2>Mais perto da <em>Fada</em></h2>
       <p>ENIBEL gosta de estar verdadeiramente conectada com quem acompanha sua jornada. O QG da Fada é o espaço reservado para quem deseja viver essa troca de uma forma ainda mais próxima.</p>
@@ -2420,7 +2589,7 @@
   <div class="wrap">
     <div class="vlog-top reveal">
       <div>
-        <span class="eyebrow">04 / Vivendo a vida que manifestei</span>
+        <span class="eyebrow">Vivendo a vida que manifestei</span>
         <h2>Manifestação<br><em>na vida real.</em></h2>
       </div>
       <div>
@@ -2480,7 +2649,7 @@
   <div class="wrap">
     <div class="conecte-top reveal">
       <div>
-        <span class="eyebrow">05 / Conteúdos</span>
+        <span class="eyebrow">Conteúdos</span>
         <h2>Conexão real.<br><em>Troca verdadeira.</em></h2>
       </div>
       <div>
@@ -2543,10 +2712,10 @@
 <section class="sobre" id="sobre">
   <div class="sobre-grid">
     <div class="sobre-photo reveal">
-      <img class="cover-img" src="images/sobre.webp" alt="Enibel — Fada" width="1200" height="674" loading="lazy" decoding="async" srcset="images/sobre-600.webp 600w, images/sobre.webp 1200w" sizes="(max-width:900px) 100vw, 50vw">
+      <img class="cover-img" src="images/sobre.webp" alt="Enibel — Fada" width="1100" height="1182" loading="lazy" decoding="async" srcset="images/sobre-600.webp 600w, images/sobre.webp 1200w" sizes="(max-width:900px) 100vw, 50vw">
     </div>
     <div class="sobre-text reveal">
-      <span class="eyebrow">06 / Quem sou eu</span>
+      <span class="eyebrow">Quem sou eu</span>
       <h2 style="margin-top:8px;">Quase todo mundo<br>me chama de <em>Fada.</em></h2>
       <p class="lead">Talvez porque enxerguem em mim a magia de acreditar e viver os próprios sonhos.</p>
       <div class="sobre-cols">
@@ -2565,9 +2734,9 @@
   <div class="sobre-carousel-wrap">
     <div class="sobre-carousel" id="sobreCarousel">
       <div class="sobre-card sobre-card-photo">
-        <img class="cover-img" src="images/sobre.webp" alt="Enibel — Fada" width="1200" height="674" loading="lazy" decoding="async" srcset="images/sobre-600.webp 600w, images/sobre.webp 1200w" sizes="88vw">
+        <img class="cover-img" src="images/sobre.webp" alt="Enibel — Fada" width="1100" height="1182" loading="lazy" decoding="async" srcset="images/sobre-600.webp 600w, images/sobre.webp 1200w" sizes="88vw">
         <div class="sc-overlay">
-          <span class="eyebrow">06 / Quem sou eu</span>
+          <span class="eyebrow">Quem sou eu</span>
           <h2>Quase todo mundo me chama de <em>Fada</em></h2>
           <button type="button" class="sc-hint" id="sobreHintInline">
             Deslize para conhecer
@@ -2878,85 +3047,6 @@
     });
   });
 
-  // Top 10 track data + real Spotify links
-  const tracks = [
-    {n:'01', name:'666 (Venenosa)', cap:'Magnetismo & atração', badge:'+6 milhões de plays', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv?autoplay_ok=1', featured:true, slug:'666'},
-    {n:'02', name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR?autoplay_ok=1', slug:'5d'},
-    {n:'03', name:'20e20', cap:'Conexão através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl', slug:'20e20'},
-    {n:'04', name:'Roda da Fortuna', cap:'Abundância & prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
-    {n:'05', name:'Blocos de Notas', cap:'Sucesso profissional', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU?si=ec05ba443f9348bf', slug:'blocos-de-notas'},
-    {n:'06', name:'Eu Não Ligo', cap:'Autoestima & merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ?si=cdb25ed1b4684bb0', slug:'eu-nao-ligo'},
-    {n:'07', name:'Nada Me Para', cap:'Foco & superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb?si=c341dc38d92648b7', slug:'nada-me-para'},
-    {n:'08', name:'44', cap:'Autoconfiança & coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN?si=c0010193513b4f4f', slug:'44'},
-    {n:'09', name:'Elevo o Nível', cap:'Transformação integral', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g?si=5abec36dca3b4458', slug:'elevo-o-nivel'},
-    {n:'10', name:'369', cap:'Expansão & realização', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY?si=edb96e7868cd42de', slug:'369'},
-  ];
-  const icons = {
-    heart:'<path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z" fill="currentColor"/>',
-    dollar:'<path d="M12 2v20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
-    sun:'<circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    bolt:'<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="currentColor"/>',
-    sprout:'<path d="M12 13c-1.2-3.6-4.8-5.4-8-4.6 1 3.8 4.2 6 8 5.6z" fill="currentColor"/><path d="M12 13c.8-4.6 5-7.4 9-6.8-.8 4.4-4.6 7.2-9 7.2z" fill="currentColor"/><path d="M12 21v-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    star:'<path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z" fill="currentColor"/>'
-  };
-  function trackRow(t){
-    return `<div class="track-row${t.featured?' featured':''}">
-      <span class="track-num">${t.n}</span>
-      <span class="track-icon"><svg viewBox="0 0 24 24">${icons[t.icon]}</svg></span>
-      <span class="track-info"><span class="tname">${t.name}</span>${t.badge?`<span class="badge">${t.badge}</span>`:''}<span class="tcap">${t.cap}</span></span>
-      <span class="track-actions">
-        <a class="track-action" href="${t.url}" target="_blank" rel="noopener" aria-label="Ouvir ${t.name}">
-          <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="ta-label">Ouvir</span>
-        </a>
-        <a class="track-action" href="${t.slug ? ('musica-' + t.slug) : 'https://www.letras.mus.br/enibel/'}" ${t.slug ? '' : 'target="_blank" rel="noopener"'} aria-label="Ver letra e significado de ${t.name}">
-          <span class="play-btn lyrics-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
-          <span class="ta-label">Letra e significado</span>
-        </a>
-      </span>
-    </div>`;
-  }
-  const left = tracks.slice(0,5).map(trackRow).join('');
-  const right = tracks.slice(5,10).map(trackRow).join('');
-  document.getElementById('top10List').innerHTML = `<div>${left}</div><div>${right}</div>`;
-
-  // Top10 (desktop): botao para mostrar/ocultar a lista completa
-  (function(){
-    const btn = document.getElementById('top10Toggle');
-    const list = document.getElementById('top10List');
-    if (!btn || !list) return;
-    btn.addEventListener('click', function(){
-      const isOpen = list.classList.toggle('is-open');
-      btn.classList.toggle('is-open', isOpen);
-      btn.querySelector('.t10tx').textContent = isOpen ? 'Ocultar lista' : 'Ver lista completa';
-      if (isOpen) list.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-  })();
-
-  function trackCard(t){
-    return `<div class="track-card${t.featured?' featured':''}">
-      ${t.badge?`<span class="badge-top">${t.badge}</span>`:''}
-      <span class="tc-top">
-        <span class="tc-left">
-          <span class="track-num-circle">${t.n}</span>
-          <span class="tname">${t.name}</span>
-        </span>
-        <span class="track-icon"><svg viewBox="0 0 24 24">${icons[t.icon]}</svg></span>
-      </span>
-      <span class="tcap">${t.cap}</span>
-      <a class="play-row" href="${t.url}" target="_blank" rel="noopener">
-        <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="play-label">Clique para ouvir</span>
-      </a>
-      <a class="lyrics-link" href="${t.slug ? ('musica-' + t.slug) : 'https://www.letras.mus.br/enibel/'}" ${t.slug ? '' : 'target="_blank" rel="noopener"'}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-        Ver letra e significado
-      </a>
-    </div>`;
-  }
-  const top10CarouselEl = document.getElementById('top10Carousel');
-  if (top10CarouselEl) top10CarouselEl.innerHTML = tracks.map(trackCard).join('');
-
   // Setas dos carrosseis horizontais: vlog, reels, discografia, top10 (passagem em loop)
   document.querySelectorAll('.carousel-arrows').forEach(function(nav){
     const track = document.getElementById(nav.dataset.target);
@@ -3033,7 +3123,6 @@
   }
   initCarouselNav('discoSwipeHint', 'discoCarousel', 'discoSwipeHintPrev');
   initCarouselNav('intentSwipeHint', 'intentGrid', 'intentSwipeHintPrev');
-  initCarouselNav('top10SwipeHint', 'top10Carousel', 'top10SwipeHintPrev');
   initCarouselNav('vlogSwipeHint', 'vlogGrid', 'vlogSwipeHintPrev');
   initCarouselNav('reelsSwipeHint', 'reelsGrid', 'reelsSwipeHintPrev');
   initCarouselNav(['sobreSwipeHint', 'sobreHintInline'], 'sobreCarousel', 'sobreSwipeHintPrev');
@@ -3100,6 +3189,12 @@
       document.getElementById('qrSongName').textContent = pick.name;
       document.getElementById('qrSongCap').textContent = pick.cap;
       document.getElementById('qrPlayLink').href = pick.url;
+      const slugMap = {'369':'369','5D':'5d','666 (Venenosa)':'666','777':'777','Blocos de Notas':'blocos-de-notas','Eu Não Ligo':'eu-nao-ligo','Nada Me Para':'nada-me-para','Pouca Coisa Me Interessa':'pouca-coisa-me-interessa','Roda da Fortuna':'roda-da-fortuna','Tem Que Acreditar · 720Hz':'tem-que-acreditar','Elevo o Nível':'elevo-o-nivel'};
+      const lyr = document.getElementById('qrLyricsLink');
+      if (lyr) {
+        const sl = slugMap[pick.name];
+        lyr.href = sl ? ('musica-' + sl + '.html') : 'biblioteca-musical.html';
+      }
       steps.forEach(s => { s.hidden = true; });
       quizBox.querySelector('.quiz-progress').hidden = true;
       result.hidden = false;
