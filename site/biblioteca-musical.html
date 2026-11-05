@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimório Musical — Enibel</title>
+<meta name="description" content="Músicas Mágicas da Enibel: ouça grátis, leia a letra completa e descubra a intenção de cada música para elevar sua energia e manifestar seus desejos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mist:#F2F8EF;
+    --ice-green:#DDF0D4;
+    --mint:#AED9A0;
+    --gold-light:#F7E090;
+    --gold-solar:#E8A800;
+    --blush:#FBEAF0;
+    --cherry:#993556;
+    --white:#FAFAF8;
+    --gray:#888780;
+    --obsidian:#2C2C2A;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--sans); color:var(--obsidian); background:var(--mist); -webkit-font-smoothing:antialiased; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; background:none; border:none; color:inherit; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; line-height:1.05; letter-spacing:-.01em; }
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 48px; }
+  .wrap-narrow{ max-width:760px; margin:0 auto; padding:0 48px; }
+  @media(max-width:900px){ .wrap, .wrap-narrow{ padding:0 20px; } }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(242,248,239,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(44,44,42,.08);
+  }
+  .nav-inner{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    padding:16px 48px; gap:16px;
+  }
+  @media(max-width:900px){ .nav-inner{ padding:14px 20px; } }
+  .back-link{
+    justify-self:start; display:flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--obsidian);
+  }
+  .back-link svg{ width:16px; height:16px; }
+  .logo-mark{ justify-self:center; }
+  .logo-mark img{ width:34px; height:34px; object-fit:contain; }
+
+  /* ---------- HERO ---------- */
+  .lib-hero{
+    padding:72px 0 48px;
+    background:linear-gradient(120deg, var(--ice-green) 0%, var(--blush) 55%, var(--gold-light) 100%);
+    text-align:center;
+  }
+  .lib-hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 20px; border-radius:999px; margin-bottom:22px;
+    background:var(--ice-green); border:1px solid rgba(153,53,86,.25);
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--cherry);
+  }
+  .lib-hero h1{ font-size:clamp(38px,5.5vw,68px); color:var(--cherry); }
+  .lib-hero h1 em{ color:var(--obsidian); font-style:italic; }
+  .lib-hero p{ margin-top:18px; font-size:17px; color:#5c5b56; font-weight:300; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.6; }
+  .lib-search{ max-width:420px; margin:32px auto 0; position:relative; }
+  .lib-search input{
+    width:100%; font-family:var(--sans); font-size:14px;
+    padding:15px 20px 15px 46px; border-radius:999px; border:1px solid rgba(44,44,42,.18);
+    background:var(--ice-green); color:var(--obsidian);
+  }
+  .lib-search input::placeholder{ color:var(--gray); }
+  .lib-search svg{ position:absolute; left:18px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--gray); }
+  section.pad{ padding:64px 0; }
+  .sec-label{
+    font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--cherry);
+    padding-bottom:18px; border-bottom:1px solid rgba(44,44,42,.14); margin-bottom:32px;
+  }
+  .sec-label-center{ text-align:center; border-bottom:none; padding-bottom:0; margin-bottom:18px; }
+
+  /* ---------- FILTROS (dentro do hero) ---------- */
+  .filters-inline{ max-width:640px; margin:40px auto 0; }
+  .filter-dropdown-row{ display:flex; gap:12px; }
+  @media(max-width:640px){ .filter-dropdown-row{ flex-direction:column; } }
+  .filter-dropdown{ position:relative; flex:1; }
+
+  .filter-toggle-btn{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px; border-radius:999px; border:1px solid rgba(44,44,42,.16);
+    font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+    color:var(--obsidian); background:rgba(255,255,255,.6); backdrop-filter:blur(6px);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .filter-toggle-btn .ftb-sel{ color:var(--cherry); font-weight:600; text-transform:none; letter-spacing:0; margin-left:6px; }
+  .filter-toggle-btn svg{ width:14px; height:14px; flex:none; transition:transform .25s ease; }
+  .filter-toggle-btn.is-open svg{ transform:rotate(180deg); }
+  .filter-toggle-btn.is-open{ border-color:var(--cherry); background:rgba(255,255,255,.85); }
+
+  .filter-pills-panel{
+    position:absolute; left:0; right:0; top:calc(100% + 8px); z-index:20;
+    max-height:0; overflow:hidden; opacity:0; pointer-events:none;
+    transition:max-height .25s ease, opacity .2s ease;
+    background:var(--white); border-radius:16px;
+    box-shadow:0 20px 40px -16px rgba(44,44,42,.3);
+  }
+  .filter-pills-panel.is-open{ max-height:400px; opacity:1; pointer-events:auto; }
+  .filter-pills{ display:flex; flex-wrap:wrap; gap:8px; padding:16px; }
+  .filter-pill{
+    display:flex; align-items:center; gap:7px;
+    padding:9px 15px; border-radius:999px; border:1.5px solid rgba(44,44,42,.14);
+    font-size:11px; letter-spacing:.03em; text-transform:uppercase; font-weight:600;
+    color:var(--obsidian); background:var(--mist); transition:all .2s ease;
+  }
+  .filter-pill svg{ width:13px; height:13px; flex:none; }
+  .filter-pill:hover{ border-color:var(--cherry); }
+  .filter-pill.active{ background:var(--cherry); border-color:var(--cherry); color:var(--white); }
+
+  .ver-resultado-btn{
+    width:100%; margin-top:14px; padding:16px 24px; border-radius:999px;
+    background:linear-gradient(160deg,#eaf7de,var(--mint) 85%); color:#1c2f10;
+    font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    box-shadow:0 14px 26px -12px rgba(44,61,22,.4), inset 0 1px 1px rgba(255,255,255,.85);
+    transition:transform .15s ease;
+  }
+  .ver-resultado-btn:active{ transform:scale(.98); }
+
+  .filters-section{ background:var(--white); }
+  .filter-results{ margin-top:40px; scroll-margin-top:100px; }
+  @media(max-width:900px){ .filter-results{ scroll-margin-top:84px; } }
+  .nova-pesquisa-btn{
+    display:none; align-items:center; justify-content:center; gap:9px;
+    margin:36px auto 0; padding:14px 26px; border-radius:999px;
+    border:1.5px solid var(--cherry); color:var(--cherry);
+    font-size:12px; letter-spacing:.07em; text-transform:uppercase; font-weight:700;
+    background:rgba(255,255,255,.4); transition:background .2s ease, color .2s ease;
+  }
+  .nova-pesquisa-btn:hover{ background:var(--cherry); color:var(--white); }
+  .nova-pesquisa-btn.visible{ display:flex; }
+  .nova-pesquisa-btn svg{ width:14px; height:14px; flex:none; }
+  .filter-results-label{ font-size:13px; color:var(--gray); margin-bottom:16px; display:none; }
+  .filter-results-label.visible{ display:block; }
+
+  /* ---------- COMPACT SONG CARD ---------- */
+  .song-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  @media(max-width:900px){ .song-grid{ grid-template-columns:1fr; } }
+  .song-card-compact{
+    border-radius:14px; padding:12px 14px;
+    background:var(--mist); border:1px solid rgba(44,44,42,.08);
+    display:flex; flex-direction:column; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .song-card-compact:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -16px rgba(44,44,42,.3); }
+  .scc-row{ display:flex; align-items:center; gap:10px; }
+  .song-icon-sm{
+    width:28px; height:28px; border-radius:50%; flex:none;
+    display:flex; align-items:center; justify-content:center; background:var(--white); color:var(--cherry);
+  }
+  .song-icon-sm svg{ width:13px; height:13px; }
+  .song-name-sm{ font-family:var(--serif); font-size:16.5px; font-weight:600; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .song-cat-tag-sm{
+    font-size:8.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:700; flex:none;
+    padding:4px 9px; border-radius:999px; background:var(--ice-green); color:#1f3d16; white-space:nowrap;
+  }
+  .song-actions-sm{ display:flex; gap:8px; }
+  .song-action-sm{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:5px;
+    padding:8px 8px; border-radius:9px; font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:700;
+    background:var(--white); border:1.5px solid rgba(44,44,42,.14); color:var(--obsidian); white-space:nowrap;
+  }
+  .song-action-sm svg{ width:10px; height:10px; flex:none; }
+  .no-results{ text-align:center; padding:40px 20px; color:var(--gray); font-size:14px; display:none; }
+
+  /* ---------- ALBUMS ---------- */
+  .albums-section{ background:var(--mist); }
+  .albums-grid-wrap{ position:relative; }
+  .albums-grid{
+    display:flex; gap:28px; overflow-x:auto; scroll-snap-type:x mandatory;
+    scroll-padding:0 0; scrollbar-width:none; padding:4px 2px 12px;
+  }
+  .albums-grid::-webkit-scrollbar{ display:none; }
+  .album-card{ flex:0 0 calc((100% - 56px)/3); scroll-snap-align:start; }
+  @media(max-width:900px){
+    .albums-grid{
+      gap:16px; margin:0 -20px; padding:4px 20px 12px; scroll-padding:0 20px;
+    }
+    .album-card{ flex:0 0 82%; scroll-snap-align:center; }
+  }
+  .album-card{
+    border-radius:22px; overflow:hidden;
+    background:
+      radial-gradient(circle at 16% 0%, rgba(255,255,255,.7), transparent 45%),
+      linear-gradient(48deg, rgba(221,240,212,.55) 0%, rgba(251,234,240,.45) 45%, rgba(247,224,144,.4) 100%);
+    box-shadow:0 24px 40px -20px rgba(44,44,42,.28), inset 0 1px 1px rgba(255,255,255,.8), inset 0 0 0 1px rgba(174,217,160,.5);
+    display:flex; flex-direction:column;
+  }
+  .album-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
+  .album-card > a{ display:block; }
+  .album-card-body{ padding:24px 22px 26px; display:flex; flex-direction:column; flex:1; }
+  .album-card .a-meta{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--cherry); }
+  .album-card h3{ font-size:26px; margin-top:8px; }
+  .album-card p{ font-size:13px; line-height:1.55; color:#5c5b56; font-weight:300; margin-top:10px; }
+  .album-card .a-actions{ margin-top:auto; padding-top:18px; display:flex; gap:10px; }
+  .a-btn{ flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:12px 14px; border-radius:12px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; }
+  .a-btn.solid{ background:var(--mint); color:#1f3d16; }
+  .a-btn.outline{ border:1.5px solid rgba(44,44,42,.2); color:var(--obsidian); }
+  .a-btn svg{ width:13px; height:13px; flex:none; }
+
+  .albums-swipe-hint{
+    position:absolute; top:50%; right:-14px; transform:translateY(-50%);
+    width:56px; height:56px; border-radius:50%; border:1px solid rgba(153,53,86,.35);
+    display:flex; align-items:center; justify-content:center; z-index:5; cursor:pointer;
+    color:#993556;
+    background:linear-gradient(155deg, rgba(255,255,255,.92), rgba(255,255,255,.75));
+    box-shadow:0 10px 22px -10px rgba(44,44,42,.35), inset 0 1px 1px rgba(255,255,255,.7);
+    animation:discoSwipeNudge 2.6s ease-in-out infinite;
+  }
+  .albums-swipe-hint svg{ width:22px; height:22px; }
+  @keyframes discoSwipeNudge{
+    0%,100%{ transform:translateY(-50%) translateX(0); opacity:.8; }
+    50%{ transform:translateY(-50%) translateX(-5px); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .albums-swipe-hint{ animation:none; }
+  }
+  @media(max-width:900px){
+    .albums-swipe-hint{ width:52px; height:52px; right:2px; }
+    .albums-swipe-hint svg{ width:20px; height:20px; }
+  }
+
+
+  /* ---------- TODAS AS MUSICAS (toggle) ---------- */
+  .all-songs-section{ background:var(--white); }
+  .show-all-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin:0 auto;
+    padding:18px 32px; border-radius:999px; border:1.5px solid var(--cherry); color:var(--cherry);
+    font-size:13px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    transition:background .2s ease, color .2s ease;
+  }
+  .show-all-btn:hover{ background:var(--cherry); color:var(--white); }
+  .show-all-btn svg{ width:15px; height:15px; transition:transform .25s ease; }
+  .show-all-btn.is-open svg{ transform:rotate(180deg); }
+  .all-songs-panel{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .all-songs-panel.is-open{ max-height:20000px; }
+  .all-songs-inner{ margin-top:36px; }
+  .all-count{ text-align:center; font-size:13px; color:var(--gray); margin-bottom:20px; }
+
+  footer{ background:var(--obsidian); color:var(--white); padding:65px 0 0; }
+  .footer-top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:48px; padding-bottom:36px; }
+  .footer-logo{ display:flex; align-items:center; gap:12px; }
+  .footer-tag{ font-family:var(--serif); font-size:22px; font-style:italic; color:rgba(250,250,248,.75); line-height:1.3; }
+  .footer-email{ display:inline-block; font-size:14px; letter-spacing:.02em; color:var(--ice-green); border-bottom:1px solid rgba(174,217,160,.35); padding-bottom:2px; transition:color .2s ease, border-color .2s ease; }
+  .footer-email:hover{ color:var(--gold-light); border-color:var(--gold-light); }
+  .footer-right{ display:flex; align-items:center; gap:28px; }
+  .footer-email-col{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  .footer-socials{ display:flex; align-items:center; gap:14px; }
+  .footer-socials a{ display:flex; color:#AED9A0; transition:opacity .2s ease; }
+  .footer-socials a:hover{ opacity:.7; }
+  .footer-socials svg{ width:18px; height:18px; }
+  .back-top{
+    width:52px; height:52px; border-radius:50%; border:1px solid rgba(250,250,248,.3); flex:none;
+    display:flex; align-items:center; justify-content:center; transition:all .2s ease; color:var(--white);
+  }
+  .back-top:hover{ background:var(--white); color:var(--obsidian); }
+  .back-top svg{ width:16px; height:16px; }
+  .footer-bottom{
+    border-top:1px solid rgba(250,250,248,.14);
+    padding:15px 0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.04em; color:rgba(250,250,248,.55);
+  }
+  @media(max-width:700px){ .footer-top{ flex-direction:column; gap:32px; } .footer-right{ width:100%; justify-content:space-between; } }
+  .filter-subpills{ margin-top:12px; padding-top:12px; border-top:1px dashed rgba(153,53,86,.25); width:100%; flex-wrap:wrap; justify-content:center; gap:8px; }
+  #albumDropdownWrap{ display:none !important; }
+  .filter-dropdown-row{ justify-content:center; }
+  #categoryDropdownWrap{ max-width:640px; width:100%; margin:0 auto; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Voltar ao site
+    </a>
+    <a href="/" class="logo-mark"><img src="images/logo.webp" alt="Enibel"></a>
+    <span></span>
+  </div>
+</header>
+
+<section class="lib-hero">
+  <div class="wrap">
+    <span class="eyebrow">✦ Grimório Musical</span>
+    <h1>Músicas <em>Mágicas</em></h1>
+    <p>Cada música minha é um feitiço com intenção própria. Ouça grátis, leia a letra completa e descubra o significado de cada uma para elevar sua energia e manifestar seus desejos.</p>
+    <div class="lib-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="librarySearch" placeholder="Buscar por nome da música...">
+    </div>
+
+    <div class="filters-inline">
+      <div class="sec-label sec-label-center">Ou filtrar por...</div>
+
+      <div class="filter-dropdown-row">
+        <div class="filter-dropdown" id="categoryDropdownWrap">
+          <button type="button" class="filter-toggle-btn" id="categoryToggleBtn">
+            <span>Selecione a categoria<span class="ftb-sel" id="categorySelLabel"></span></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="filter-pills-panel" id="categoryPanel">
+            <div class="filter-pills" id="categoryFilters">
+              <button type="button" class="filter-pill active" data-category="all">Todas</button>
+              <button type="button" class="filter-pill" data-category="heart">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/></svg>
+                Amor
+              </button>
+              <button type="button" class="filter-pill" data-category="dollar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.4-5 3.5S9.2 10 12 10s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.4-5-3.5"/></svg>
+                Prosperidade
+              </button>
+              <button type="button" class="filter-pill" data-category="sun">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+                Bem-estar
+              </button>
+            </div>
+            <div class="filter-pills filter-subpills" id="subFilters" style="display:none">
+              <button type="button" class="filter-pill active" data-sub="all">Todo bem-estar</button>
+              <button type="button" class="filter-pill" data-sub="espiritual">Espiritual</button>
+              <button type="button" class="filter-pill" data-sub="emocional">Emocional</button>
+              <button type="button" class="filter-pill" data-sub="fisico">Físico</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-dropdown" id="albumDropdownWrap">
+          <button type="button" class="filter-toggle-btn" id="albumToggleBtn">
+            <span>Selecione o álbum<span class="ftb-sel" id="albumSelLabel"></span></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="filter-pills-panel" id="albumPanel">
+            <div class="filter-pills" id="albumFilters">
+              <button type="button" class="filter-pill active" data-album="all">Todos os álbuns</button>
+              <button type="button" class="filter-pill" data-album="0">Prazer, Enibel</button>
+              <button type="button" class="filter-pill" data-album="1">Prazer, Enibel, Pt. 2</button>
+              <button type="button" class="filter-pill" data-album="2">ALQUIMIDAS</button>
+              <button type="button" class="filter-pill" data-album="3">Rosas Vermelhas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="ver-resultado-btn" id="verResultadoBtn">Ver resultado</button>
+
+      <div class="filter-results">
+        <div class="filter-results-label" id="filterResultsLabel"></div>
+        <div class="song-grid" id="filterResultsGrid"></div>
+        <div class="no-results" id="noResults">Nenhuma música encontrada com esse filtro.</div>
+        <button type="button" class="nova-pesquisa-btn" id="novaPesquisaBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 21v-5h5"/></svg>
+          Nova pesquisa
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad albums-section" id="albuns">
+  <div class="wrap">
+    <div class="sec-label">Conheça os álbuns</div>
+    <div class="albums-grid-wrap">
+      <div class="albums-grid" id="albumsGrid"></div>
+      <button type="button" class="albums-swipe-hint" id="albumsSwipeHint" aria-label="Deslizar para ver mais álbuns">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="pad all-songs-section">
+  <div class="wrap-narrow" style="text-align:center;">
+    <button type="button" class="show-all-btn" id="showAllBtn">
+      Mostrar todas as músicas
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div class="wrap all-songs-panel" id="allSongsPanel">
+    <div class="all-songs-inner">
+      <div class="all-count" id="allCount"></div>
+      <div class="song-grid" id="allSongsGrid"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música &amp; Manifestação.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-email-col">
+          <a href="mailto:contato@enibel.com.br" class="footer-email">contato@enibel.com.br</a>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/enibeloficial/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@enibeloficial" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.4 2.2 4 5 4.3"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@Enibel" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ENIBEL. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const backTopBtn = document.getElementById('backTop');
+  if (backTopBtn) backTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+<script>
+  const ICONS = {
+    heart: '<path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z"/>',
+    dollar: '<path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.4-5 3.5S9.2 10 12 10s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.4-5-3.5"/>',
+    star: '<path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/>',
+    sprout: '<path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 13c-4.4 0-8-3.6-8-8 4.4 0 8 3.6 8 8Zm0 0c4.4 0 8-3.6 8-8-4.4 0-8 3.6-8 8Zm0 0v9"/>',
+    sun: '<circle fill="none" stroke="currentColor" stroke-width="1.8" cx="12" cy="12" r="4.2"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    bolt: '<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>'
+  };
+  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', sun:'Bem-estar' };
+  const CAT_OF = { heart:'heart', dollar:'dollar', star:'sun', sprout:'sun', sun:'sun', bolt:'sun' };
+  const SUB_LABELS = { espiritual:'Espiritual', emocional:'Emocional', fisico:'Físico' };
+  const SUB_BY_SLUG = { '369':'espiritual', '777':'espiritual', 'interestelar':'espiritual', 'o-segredo':'espiritual', '369-wave':'espiritual', 'ecoa-dismu':'espiritual', 'tem-que-acreditar':'espiritual', 'elevo-o-nivel':'espiritual', 'eu-nao-ligo':'emocional', 'pouca-coisa-me-interessa':'emocional', 'nada-me-para':'fisico', '44':'fisico' };
+  function catLabel(icon, slug){ const c = CAT_OF[icon]; const base = CATEGORY_LABELS[c]; return (c === 'sun' && SUB_BY_SLUG[slug]) ? base + ' · ' + SUB_LABELS[SUB_BY_SLUG[slug]] : base; }
+  const LYRICS_URL = 'https://www.letras.mus.br/enibel/';
+
+  const albums = [
+    {
+      title:'Prazer, Enibel', meta:'Álbum · 2024 · 11 faixas', img:'images/album-1.webp', slug:'prazer-enibel',
+      desc:'Meu primeiro manifesto: um som vibrante, intenso e nada óbvio, criado para elevar, ativar e transformar.',
+      spotify:'https://open.spotify.com/intl-pt/album/0Scxpk2Xej5lnqVwy8wcWq',
+      tracks:[
+        {name:'Eu Não Ligo', cap:'Autoestima e merecimento', icon:'sun', url:'https://open.spotify.com/intl-pt/track/2WdxfNbuJvmpp9NicZZrCZ', slug:'eu-nao-ligo'},
+        {name:'Nada Me Para', cap:'Foco e superação', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/1EYw017xpq8EwCzJy1D0zb', slug:'nada-me-para'},
+        {name:'Interestelar', cap:'Abertura para novas possibilidades', icon:'star', url:'https://open.spotify.com/intl-pt/track/0tnfhjdXb1b7F2YZIUskul', slug:'interestelar'},
+        {name:'Blocos de Notas', cap:'Sucesso profissional e financeiro', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/5H4wm6UnwufuCvODZFbuVU', slug:'blocos-de-notas'},
+        {name:'Elevo o Nível', cap:'Transformação mental, material e espiritual', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/04DlSg6Rm5K862cHNP4i2g', slug:'elevo-o-nivel'},
+        {name:'Lobo e Peixe', cap:'Prosperidade material', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/6kjoMIBUQxv8KFCavAB5OZ', slug:'lobo-e-peixe'},
+        {name:'777', cap:'Calma, orientação e conexão superior', icon:'star', url:'https://open.spotify.com/intl-pt/track/1R35vvUP5xKLGm0s3aNzGq', slug:'777'},
+        {name:'44', cap:'Autoconfiança e coragem', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/0RsGMLRSqZSSllmqlLREpN', slug:'44'},
+        {name:'369', cap:'Expansão de consciência e grandes realizações', icon:'star', url:'https://open.spotify.com/intl-pt/track/203UCQOSeImaC77EFUn6OY', slug:'369'},
+        {name:'5D', cap:'Conexão amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/3vOqfeVKYbznvkfdN7nFQR', slug:'5d'},
+        {name:'666 (Venenosa)', cap:'Magnetismo e atração amorosa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/1lT2IiYNv8akvQpjnw3yLv', slug:'666'}
+      ]
+    },
+    {
+      title:'Prazer, Enibel, Pt. 2', meta:'EP · 2025 · 5 faixas', img:'images/album-2.webp', slug:'prazer-enibel-pt-2',
+      desc:'Um fechamento delicado e intenso para o primeiro capítulo. Leveza e profundidade para abundância, vitória, conexão e novas perspectivas.',
+      spotify:'https://open.spotify.com/intl-pt/album/2gu6FqPufvhMcVn8ZYsegB',
+      tracks:[
+        {name:'O Segredo', cap:'Realização dos desejos da alma', icon:'star', url:'https://open.spotify.com/intl-pt/track/1epj007y8j3FJ0xkeAxMDJ', slug:'o-segredo'},
+        {name:'Pouca Coisa Me Interessa', cap:'Foco elevado e liberação do passado', icon:'bolt', url:'https://open.spotify.com/intl-pt/track/2wmg2DBAxl1bhEEUNlQWnC', slug:'pouca-coisa-me-interessa'},
+        {name:'Roda da Fortuna', cap:'Dinheiro, abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/55eGzxJJ1cj6PrldCCDnF2', slug:'roda-da-fortuna'},
+        {name:'20e20', cap:'Conexão emocional através dos sonhos', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4S0meYCGUpYdT9qYA8QZAl', slug:'20e20'},
+        {name:'Telepatia', cap:'Conexão mental com outra pessoa', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4aHUkIPbGPkBeFH7guKV6I', slug:'telepatia'}
+      ]
+    },
+    {
+      title:'ALQUIMIDAS', meta:'EP Experimental · 2024 · 5 faixas', img:'images/album-3.webp', slug:'alquimidas',
+      desc:'Meu primeiro projeto experimental de música eletrônica, onde sons, linguagens e frequências se unem para transformar limitações em potência.',
+      spotify:'https://open.spotify.com/intl-pt/album/6IqxuOUEjMmcYx7FvM6Jhb',
+      tracks:[
+        {name:'Ecoa Dismu · 480Hz', cap:'Desejos da alma e magnetismo pessoal', icon:'star', url:'https://open.spotify.com/intl-pt/track/3IxU4G97ak3e9GYMlibFCi', slug:'ecoa-dismu'},
+        {name:'Tem Que Acreditar · 720Hz', cap:'Fé fortalecida para realizações', icon:'sprout', url:'https://open.spotify.com/intl-pt/track/6ESyZNwDzs4usACJwMhFX0', slug:'tem-que-acreditar'},
+        {name:'Samplim · 800Hz', cap:'Abundância e prosperidade', icon:'dollar', url:'https://open.spotify.com/intl-pt/track/7jNGxPAqm8L7PzMyztJE3g', slug:'samplim'},
+        {name:'Love · 528Hz', cap:'Amor, magnetismo e sedução', icon:'heart', url:'https://open.spotify.com/intl-pt/track/0TfXJcL1ttkevnHHGpxHDK', slug:'love'},
+        {name:'369 Wave · 369Hz', cap:'Expansão para grandes manifestações', icon:'star', url:'https://open.spotify.com/intl-pt/track/3ykXGXkyT7LLlmXCgLAGNC', slug:'369-wave'}
+      ]
+    },
+    {
+      title:'Rosas Vermelhas', meta:'Single · 2025 · 3 faixas', img:'images/release-cover.webp', slug:'rosas-vermelhas',
+      desc:'Um projeto sobre amor e magnetismo pessoal, conduzindo o ouvinte por uma atmosfera onde poder e vulnerabilidade se encontram.',
+      spotify:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R',
+      tracks:[
+        {name:'Rosas Vermelhas', cap:'Paixão e magnetismo amoroso', icon:'heart', url:'https://open.spotify.com/intl-pt/track/4ITLmVsXMm2pHaAF99V49R', slug:'rosas-vermelhas'}
+      ]
+    }
+  ];
+
+  const allSongs = [];
+  albums.forEach((album, albumIdx) => {
+    album.tracks.forEach(t => allSongs.push({ ...t, albumIdx, albumTitle: album.title, albumSpotify: album.spotify }));
+  });
+
+  function songCardHTML(s){
+    const lyricsHref = s.slug ? ('musica-' + s.slug) : LYRICS_URL;
+    const lyricsTarget = s.slug ? '' : ' target="_blank" rel="noopener"';
+    return `
+      <div class="song-card-compact">
+        <div class="scc-row">
+          <span class="song-icon-sm"><svg viewBox="0 0 24 24">${ICONS[s.icon]}</svg></span>
+          <span class="song-name-sm">${s.name}</span>
+          <span class="song-cat-tag-sm">${catLabel(s.icon, s.slug)}</span>
+        </div>
+        <div class="song-actions-sm">
+          <a class="song-action-sm" href="${s.url || s.albumSpotify}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Ouvir
+          </a>
+          <a class="song-action-sm" href="${lyricsHref}"${lyricsTarget}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+            Ver letra e significado
+          </a>
+        </div>
+      </div>`;
+  }
+
+  // ---- Albuns (secao sempre igual, nao afetada por filtro) ----
+  document.getElementById('albumsGrid').innerHTML = albums.map((a, idx) => `
+    <div class="album-card">
+      <a href="album-${a.slug}" aria-label="Ver álbum ${a.title}">
+        <img src="${a.img}" alt="${a.title}" loading="lazy">
+      </a>
+      <div class="album-card-body">
+        <span class="a-meta">${a.meta}</span>
+        <h3><a href="album-${a.slug}">${a.title}</a></h3>
+        <p>${a.desc}</p>
+        <div class="a-actions">
+          <a class="a-btn solid" href="${a.spotify}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/><path d="M17 16.2c-.2.4-.7.5-1 .3-2.8-1.7-6.3-2.1-10.5-1.1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.6-1.1 8.5-.6 11.6 1.3.4.2.5.7.2 1Zm1.2-2.8c-.3.4-.9.6-1.3.3-3.2-2-8.1-2.6-11.9-1.4-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.3-1.3 9.7-.7 13.4 1.6.4.2.5.8.3 1.2Z" fill="var(--white)"/></svg>
+            Ouvir álbum
+          </a>
+          <a class="a-btn outline" href="album-${a.slug}">Ver álbum</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // ---- Loop infinito do carrossel de álbuns ----
+  (function initAlbumsCarousel(){
+    const track = document.getElementById('albumsGrid');
+    const nextBtn = document.getElementById('albumsSwipeHint');
+    if (!track || !nextBtn) return;
+    function cardStep(){
+      const card = track.querySelector(':scope > *');
+      if (!card) return track.clientWidth;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '28');
+      return card.getBoundingClientRect().width + gap;
+    }
+    nextBtn.addEventListener('click', function(){
+      const max = track.scrollWidth - track.clientWidth - 2;
+      if (track.scrollLeft >= max) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior:'smooth' });
+      }
+    });
+  })();
+
+  // ---- Painel de filtros (accordion) ----
+  function closeDropdown(panelId, btnId){
+    document.getElementById(panelId).classList.remove('is-open');
+    document.getElementById(btnId).classList.remove('is-open');
+  }
+  function wireToggle(btnId, panelId, otherPanelId, otherBtnId){
+    const btn = document.getElementById(btnId);
+    const panel = document.getElementById(panelId);
+    btn.addEventListener('click', () => {
+      const willOpen = !panel.classList.contains('is-open');
+      closeDropdown(panelId, btnId);
+      closeDropdown(otherPanelId, otherBtnId);
+      if (willOpen){
+        panel.classList.add('is-open');
+        btn.classList.add('is-open');
+      }
+    });
+  }
+  wireToggle('categoryToggleBtn', 'categoryPanel', 'albumPanel', 'albumToggleBtn');
+  wireToggle('albumToggleBtn', 'albumPanel', 'categoryPanel', 'categoryToggleBtn');
+
+  let selCategory = 'all';
+  let selSub = 'all';
+  let selAlbum = 'all';
+  const subFilters = document.getElementById('subFilters');
+  function updateCatLabel(){
+    if (selCategory === 'all') { categorySelLabel.textContent = ''; return; }
+    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[selCategory] + (selCategory === 'sun' && selSub !== 'all' ? ' · ' + SUB_LABELS[selSub] : '');
+  }
+  const categorySelLabel = document.getElementById('categorySelLabel');
+  const albumSelLabel = document.getElementById('albumSelLabel');
+
+  document.getElementById('categoryPanel').addEventListener('click', function(e){
+    const sb = e.target.closest('[data-sub]');
+    if (sb){
+      subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      sb.classList.add('active');
+      selSub = sb.dataset.sub;
+      updateCatLabel();
+      closeDropdown('categoryPanel', 'categoryToggleBtn');
+      if (searchInput.value) searchInput.value = '';
+      return;
+    }
+    const btn = e.target.closest('[data-category]');
+    if (!btn) return;
+    this.querySelectorAll('[data-category]').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    selCategory = btn.dataset.category;
+    selSub = 'all';
+    subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === 'all'));
+    updateCatLabel();
+    if (selCategory === 'sun'){
+      subFilters.style.display = 'flex';
+    } else {
+      subFilters.style.display = 'none';
+      closeDropdown('categoryPanel', 'categoryToggleBtn');
+    }
+    if (searchInput.value) searchInput.value = '';
+  });
+
+  document.getElementById('albumFilters').addEventListener('click', function(e){
+    const btn = e.target.closest('.filter-pill');
+    if (!btn) return;
+    this.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    selAlbum = btn.dataset.album;
+    albumSelLabel.textContent = selAlbum === 'all' ? '' : '· ' + albums[selAlbum].title;
+    closeDropdown('albumPanel', 'albumToggleBtn');
+    if (searchInput.value) searchInput.value = '';
+  });
+
+  // ---- Ver resultado ----
+  function sortAlpha(arr){
+    return [...arr].sort((a,b) => {
+      const aDigit = /^[0-9]/.test(a.name);
+      const bDigit = /^[0-9]/.test(b.name);
+      if (aDigit !== bDigit) return aDigit ? 1 : -1;
+      return a.name.localeCompare(b.name, 'pt-BR');
+    });
+  }
+
+  const filterResultsGrid = document.getElementById('filterResultsGrid');
+  const filterResultsLabel = document.getElementById('filterResultsLabel');
+  const noResults = document.getElementById('noResults');
+  const searchInput = document.getElementById('librarySearch');
+
+  function runFilter(){
+    const term = searchInput.value.trim().toLowerCase();
+    const filtered = sortAlpha(allSongs.filter(s => {
+      if (selCategory !== 'all' && CAT_OF[s.icon] !== selCategory) return false;
+      if (selCategory === 'sun' && selSub !== 'all' && SUB_BY_SLUG[s.slug] !== selSub) return false;
+      if (selAlbum !== 'all' && String(s.albumIdx) !== selAlbum) return false;
+      if (term && !s.name.toLowerCase().includes(term)) return false;
+      return true;
+    }));
+    filterResultsLabel.textContent = filtered.length + (filtered.length === 1 ? ' música encontrada' : ' músicas encontradas');
+    filterResultsLabel.classList.add('visible');
+    noResults.style.display = filtered.length ? 'none' : 'block';
+    filterResultsGrid.innerHTML = filtered.map(songCardHTML).join('');
+    document.getElementById('categoryPanel').classList.remove('is-open');
+    document.getElementById('albumPanel').classList.remove('is-open');
+    document.getElementById('categoryToggleBtn').classList.remove('is-open');
+    document.getElementById('albumToggleBtn').classList.remove('is-open');
+    document.getElementById('novaPesquisaBtn').classList.add('visible');
+  }
+  document.getElementById('verResultadoBtn').addEventListener('click', function(){
+    runFilter();
+    document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+  searchInput.addEventListener('input', function(){
+    if (searchInput.value.trim() && (selCategory !== 'all' || selAlbum !== 'all')){
+      selCategory = 'all'; selSub = 'all'; subFilters.style.display = 'none';
+      selAlbum = 'all';
+      document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.toggle('active', p.dataset.category === 'all'));
+      document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.toggle('active', p.dataset.album === 'all'));
+      categorySelLabel.textContent = '';
+      albumSelLabel.textContent = '';
+    }
+    runFilter();
+  });
+
+  // ---- Categoria vinda da home (?categoria=prosperidade) ----
+  (function applyCategoryFromURL(){
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('categoria');
+    const CATEGORY_SLUGS = { amor:'heart', prosperidade:'dollar', 'bem-estar':'sun', expansao:'sun', evolucao:'sun', 'poder-pessoal':'sun' };
+    const iconKey = catParam && CATEGORY_SLUGS[catParam];
+    if (!iconKey) return;
+    const pill = document.querySelector('#categoryFilters [data-category="' + iconKey + '"]');
+    if (!pill) return;
+    document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selCategory = iconKey;
+    const subParam = params.get('sub');
+    if (iconKey === 'sun'){
+      subFilters.style.display = 'flex';
+      if (subParam && SUB_LABELS[subParam]){
+        selSub = subParam;
+        subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === subParam));
+      }
+    }
+    updateCatLabel();
+    runFilter();
+    requestAnimationFrame(function(){
+      document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  })();
+
+  document.getElementById('novaPesquisaBtn').addEventListener('click', function(){
+    searchInput.value = '';
+    selCategory = 'all'; selAlbum = 'all'; selSub = 'all'; subFilters.style.display = 'none';
+    subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === 'all'));
+    document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.remove('active'));
+    document.querySelector('#categoryFilters [data-category="all"]').classList.add('active');
+    document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('#albumFilters .filter-pill[data-album="all"]').classList.add('active');
+    categorySelLabel.textContent = '';
+    albumSelLabel.textContent = '';
+    filterResultsGrid.innerHTML = '';
+    filterResultsLabel.classList.remove('visible');
+    noResults.style.display = 'none';
+    this.classList.remove('visible');
+    document.querySelector('.lib-hero').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  // ---- Mostrar todas as musicas (ordem alfabetica: letras antes de numeros) ----
+  const showAllBtn = document.getElementById('showAllBtn');
+  const allSongsPanel = document.getElementById('allSongsPanel');
+  const allSongsGrid = document.getElementById('allSongsGrid');
+  const allCount = document.getElementById('allCount');
+  let allSongsRendered = false;
+
+  function renderAllSongs(){
+    if (allSongsRendered) return;
+    const sorted = sortAlpha(allSongs);
+    allCount.textContent = sorted.length + ' músicas · ordem alfabética';
+    allSongsGrid.innerHTML = sorted.map(songCardHTML).join('');
+    allSongsRendered = true;
+  }
+
+  showAllBtn.addEventListener('click', function(){
+    const isOpen = allSongsPanel.classList.toggle('is-open');
+    this.classList.toggle('is-open', isOpen);
+    this.querySelector('svg').style.display='';
+    this.firstChild.textContent = isOpen ? 'Ocultar músicas ' : 'Mostrar todas as músicas ';
+    if (isOpen){
+      renderAllSongs();
+      setTimeout(() => allSongsPanel.scrollIntoView({ behavior:'smooth', block:'start' }), 150);
+    }
+  });
+</script>
+
+</body>
+</html>
