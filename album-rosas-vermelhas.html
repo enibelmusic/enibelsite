@@ -147,7 +147,7 @@
   <div class="nav-inner">
     <a href="biblioteca-musical" class="back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      Voltar à biblioteca
+      Voltar ao grimório
     </a>
     <a href="/" class="logo-mark"><img src="images/logo.webp" alt="Enibel"></a>
     <span></span>
@@ -161,7 +161,7 @@
     <div class="footer-top">
       <div class="footer-logo">
         <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
-        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música, Manifestação &amp; Evolução.</p>
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música &amp; Manifestação.</p>
       </div>
       <div class="footer-right">
         <div class="footer-email-col">
@@ -195,7 +195,11 @@
 </script>
 
 <script>
-  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', star:'Expansão', sprout:'Evolução', sun:'Bem-estar', bolt:'Poder Pessoal' };
+  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', sun:'Bem-estar' };
+  const CAT_OF = { heart:'heart', dollar:'dollar', star:'sun', sprout:'sun', sun:'sun', bolt:'sun' };
+  const SUB_LABELS = { espiritual:'Espiritual', emocional:'Emocional', fisico:'Físico' };
+  const SUB_BY_SLUG = { '369':'espiritual', '777':'espiritual', 'interestelar':'espiritual', 'o-segredo':'espiritual', '369-wave':'espiritual', 'ecoa-dismu':'espiritual', 'tem-que-acreditar':'espiritual', 'elevo-o-nivel':'espiritual', 'eu-nao-ligo':'emocional', 'pouca-coisa-me-interessa':'emocional', 'nada-me-para':'fisico', '44':'fisico' };
+  function catLabel(icon, slug){ const c = CAT_OF[icon]; const base = CATEGORY_LABELS[c]; return (c === 'sun' && SUB_BY_SLUG[slug]) ? base + ' · ' + SUB_LABELS[SUB_BY_SLUG[slug]] : base; }
   const LYRICS_URL = 'https://www.letras.mus.br/enibel/';
   const ICONS = {
     heart:'<path d="M12 20s-7-4.4-9.5-9C.7 7.3 3 4 6.5 4 9 4 11 6 12 8c1-2 3-4 5.5-4C21 4 23.3 7.3 21.5 11 19 15.6 12 20 12 20Z" fill="currentColor"/>',
@@ -266,7 +270,7 @@
   const params = new URLSearchParams(window.location.search);
   let id = params.get('id');
   if (!id){
-    const m = window.location.pathname.match(/album-([^/?#]+)/);
+    const m = window.location.pathname.replace(/\.html$/,'').match(/album-([^/?#]+)/);
     if (m) id = decodeURIComponent(m[1]);
   }
   const album = albums[id];
@@ -276,8 +280,8 @@
     content.innerHTML = `
       <div class="al-notfound">
         <h2>Álbum não encontrado</h2>
-        <p style="color:var(--gray);">O link pode estar incompleto. Volte para a biblioteca e escolha um álbum.</p>
-        <a href="biblioteca-musical" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar à biblioteca</a>
+        <p style="color:var(--gray);">O link pode estar incompleto. Volte para o grimório e escolha um álbum.</p>
+        <a href="biblioteca-musical" class="m-action-btn back" style="display:inline-flex; margin-top:24px;">Voltar ao grimório</a>
       </div>`;
   } else {
 
@@ -292,7 +296,7 @@
       return `<div class="track-row">
         <span class="track-num">${String(i+1).padStart(2,'0')}</span>
         <span class="track-icon"><svg viewBox="0 0 24 24">${ICONS[t.icon]}</svg></span>
-        <span class="track-info"><span class="tname">${t.name}</span><span class="tcap">${CATEGORY_LABELS[t.icon]} · ${t.cap}</span></span>
+        <span class="track-info"><span class="tname">${t.name}</span><span class="tcap">${catLabel(t.icon, t.slug)} · ${t.cap}</span></span>
         <span class="track-actions">
           <a class="track-action" href="${t.url || album.spotify}" target="_blank" rel="noopener" aria-label="Ouvir ${t.name}">
             <span class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>

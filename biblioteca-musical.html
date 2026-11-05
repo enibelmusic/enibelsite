@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biblioteca Musical — Enibel</title>
-<meta name="description" content="Descubra qual música da Enibel é a sua. Navegue por categoria ou álbum e encontre a letra completa de cada uma.">
+<title>Grimório Musical — Enibel</title>
+<meta name="description" content="Músicas Mágicas da Enibel: ouça grátis, leia a letra completa e descubra a intenção de cada música para elevar sua energia e manifestar seus desejos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -272,6 +272,10 @@
     font-size:11.5px; letter-spacing:.04em; color:rgba(250,250,248,.55);
   }
   @media(max-width:700px){ .footer-top{ flex-direction:column; gap:32px; } .footer-right{ width:100%; justify-content:space-between; } }
+  .filter-subpills{ margin-top:12px; padding-top:12px; border-top:1px dashed rgba(153,53,86,.25); width:100%; flex-wrap:wrap; justify-content:center; gap:8px; }
+  #albumDropdownWrap{ display:none !important; }
+  .filter-dropdown-row{ justify-content:center; }
+  #categoryDropdownWrap{ max-width:640px; width:100%; margin:0 auto; }
 </style>
 </head>
 <body>
@@ -289,9 +293,9 @@
 
 <section class="lib-hero">
   <div class="wrap">
-    <span class="eyebrow">✦ Biblioteca Musical</span>
-    <h1>Qual música é a <em>sua?</em></h1>
-    <p>Navegue por categoria ou álbum, descubra a intenção por trás de cada faixa e leia a letra completa de qualquer música da Enibel.</p>
+    <span class="eyebrow">✦ Grimório Musical</span>
+    <h1>Músicas <em>Mágicas</em></h1>
+    <p>Cada música minha é um feitiço com intenção própria. Ouça grátis, leia a letra completa e descubra o significado de cada uma para elevar sua energia e manifestar seus desejos.</p>
     <div class="lib-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" id="librarySearch" placeholder="Buscar por nome da música...">
@@ -317,22 +321,16 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.4-5 3.5S9.2 10 12 10s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.4-5-3.5"/></svg>
                 Prosperidade
               </button>
-              <button type="button" class="filter-pill" data-category="star">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.1-.7L12 2Z"/></svg>
-                Expansão
-              </button>
-              <button type="button" class="filter-pill" data-category="sprout">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 13c-4.4 0-8-3.6-8-8 4.4 0 8 3.6 8 8Zm0 0c4.4 0 8-3.6 8-8-4.4 0-8 3.6-8 8Zm0 0v9"/></svg>
-                Evolução
-              </button>
               <button type="button" class="filter-pill" data-category="sun">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
                 Bem-estar
               </button>
-              <button type="button" class="filter-pill" data-category="bolt">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
-                Poder Pessoal
-              </button>
+            </div>
+            <div class="filter-pills filter-subpills" id="subFilters" style="display:none">
+              <button type="button" class="filter-pill active" data-sub="all">Todo bem-estar</button>
+              <button type="button" class="filter-pill" data-sub="espiritual">Espiritual</button>
+              <button type="button" class="filter-pill" data-sub="emocional">Emocional</button>
+              <button type="button" class="filter-pill" data-sub="fisico">Físico</button>
             </div>
           </div>
         </div>
@@ -401,7 +399,7 @@
     <div class="footer-top">
       <div class="footer-logo">
         <img src="images/logo.webp" alt="Enibel" style="width:44px;height:44px;object-fit:contain;" width="394" height="400" loading="lazy" decoding="async">
-        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música, Manifestação &amp; Evolução.</p>
+        <p class="footer-tag" style="margin:0;white-space:nowrap;">Música &amp; Manifestação.</p>
       </div>
       <div class="footer-right">
         <div class="footer-email-col">
@@ -443,7 +441,11 @@
     sun: '<circle fill="none" stroke="currentColor" stroke-width="1.8" cx="12" cy="12" r="4.2"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
     bolt: '<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>'
   };
-  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', star:'Expansão', sprout:'Evolução', sun:'Bem-estar', bolt:'Poder Pessoal' };
+  const CATEGORY_LABELS = { heart:'Amor', dollar:'Prosperidade', sun:'Bem-estar' };
+  const CAT_OF = { heart:'heart', dollar:'dollar', star:'sun', sprout:'sun', sun:'sun', bolt:'sun' };
+  const SUB_LABELS = { espiritual:'Espiritual', emocional:'Emocional', fisico:'Físico' };
+  const SUB_BY_SLUG = { '369':'espiritual', '777':'espiritual', 'interestelar':'espiritual', 'o-segredo':'espiritual', '369-wave':'espiritual', 'ecoa-dismu':'espiritual', 'tem-que-acreditar':'espiritual', 'elevo-o-nivel':'espiritual', 'eu-nao-ligo':'emocional', 'pouca-coisa-me-interessa':'emocional', 'nada-me-para':'fisico', '44':'fisico' };
+  function catLabel(icon, slug){ const c = CAT_OF[icon]; const base = CATEGORY_LABELS[c]; return (c === 'sun' && SUB_BY_SLUG[slug]) ? base + ' · ' + SUB_LABELS[SUB_BY_SLUG[slug]] : base; }
   const LYRICS_URL = 'https://www.letras.mus.br/enibel/';
 
   const albums = [
@@ -512,7 +514,7 @@
         <div class="scc-row">
           <span class="song-icon-sm"><svg viewBox="0 0 24 24">${ICONS[s.icon]}</svg></span>
           <span class="song-name-sm">${s.name}</span>
-          <span class="song-cat-tag-sm">${CATEGORY_LABELS[s.icon]}</span>
+          <span class="song-cat-tag-sm">${catLabel(s.icon, s.slug)}</span>
         </div>
         <div class="song-actions-sm">
           <a class="song-action-sm" href="${s.url || s.albumSpotify}" target="_blank" rel="noopener">
@@ -592,18 +594,41 @@
   wireToggle('albumToggleBtn', 'albumPanel', 'categoryPanel', 'categoryToggleBtn');
 
   let selCategory = 'all';
+  let selSub = 'all';
   let selAlbum = 'all';
+  const subFilters = document.getElementById('subFilters');
+  function updateCatLabel(){
+    if (selCategory === 'all') { categorySelLabel.textContent = ''; return; }
+    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[selCategory] + (selCategory === 'sun' && selSub !== 'all' ? ' · ' + SUB_LABELS[selSub] : '');
+  }
   const categorySelLabel = document.getElementById('categorySelLabel');
   const albumSelLabel = document.getElementById('albumSelLabel');
 
-  document.getElementById('categoryFilters').addEventListener('click', function(e){
-    const btn = e.target.closest('.filter-pill');
+  document.getElementById('categoryPanel').addEventListener('click', function(e){
+    const sb = e.target.closest('[data-sub]');
+    if (sb){
+      subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      sb.classList.add('active');
+      selSub = sb.dataset.sub;
+      updateCatLabel();
+      closeDropdown('categoryPanel', 'categoryToggleBtn');
+      if (searchInput.value) searchInput.value = '';
+      return;
+    }
+    const btn = e.target.closest('[data-category]');
     if (!btn) return;
-    this.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    this.querySelectorAll('[data-category]').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     selCategory = btn.dataset.category;
-    categorySelLabel.textContent = selCategory === 'all' ? '' : '· ' + CATEGORY_LABELS[selCategory];
-    closeDropdown('categoryPanel', 'categoryToggleBtn');
+    selSub = 'all';
+    subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === 'all'));
+    updateCatLabel();
+    if (selCategory === 'sun'){
+      subFilters.style.display = 'flex';
+    } else {
+      subFilters.style.display = 'none';
+      closeDropdown('categoryPanel', 'categoryToggleBtn');
+    }
     if (searchInput.value) searchInput.value = '';
   });
 
@@ -636,7 +661,8 @@
   function runFilter(){
     const term = searchInput.value.trim().toLowerCase();
     const filtered = sortAlpha(allSongs.filter(s => {
-      if (selCategory !== 'all' && s.icon !== selCategory) return false;
+      if (selCategory !== 'all' && CAT_OF[s.icon] !== selCategory) return false;
+      if (selCategory === 'sun' && selSub !== 'all' && SUB_BY_SLUG[s.slug] !== selSub) return false;
       if (selAlbum !== 'all' && String(s.albumIdx) !== selAlbum) return false;
       if (term && !s.name.toLowerCase().includes(term)) return false;
       return true;
@@ -657,9 +683,9 @@
   });
   searchInput.addEventListener('input', function(){
     if (searchInput.value.trim() && (selCategory !== 'all' || selAlbum !== 'all')){
-      selCategory = 'all';
+      selCategory = 'all'; selSub = 'all'; subFilters.style.display = 'none';
       selAlbum = 'all';
-      document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.toggle('active', p.dataset.category === 'all'));
+      document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.toggle('active', p.dataset.category === 'all'));
       document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.toggle('active', p.dataset.album === 'all'));
       categorySelLabel.textContent = '';
       albumSelLabel.textContent = '';
@@ -671,15 +697,23 @@
   (function applyCategoryFromURL(){
     const params = new URLSearchParams(window.location.search);
     const catParam = params.get('categoria');
-    const CATEGORY_SLUGS = { amor:'heart', prosperidade:'dollar', expansao:'star', evolucao:'sprout', 'bem-estar':'sun', 'poder-pessoal':'bolt' };
-    const iconKey = catParam && (CATEGORY_SLUGS[catParam] || (CATEGORY_LABELS[catParam] ? catParam : null));
-    if (!iconKey || !CATEGORY_LABELS[iconKey]) return;
-    const pill = document.querySelector('#categoryFilters .filter-pill[data-category="' + iconKey + '"]');
+    const CATEGORY_SLUGS = { amor:'heart', prosperidade:'dollar', 'bem-estar':'sun', expansao:'sun', evolucao:'sun', 'poder-pessoal':'sun' };
+    const iconKey = catParam && CATEGORY_SLUGS[catParam];
+    if (!iconKey) return;
+    const pill = document.querySelector('#categoryFilters [data-category="' + iconKey + '"]');
     if (!pill) return;
-    document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.remove('active'));
     pill.classList.add('active');
     selCategory = iconKey;
-    categorySelLabel.textContent = '· ' + CATEGORY_LABELS[iconKey];
+    const subParam = params.get('sub');
+    if (iconKey === 'sun'){
+      subFilters.style.display = 'flex';
+      if (subParam && SUB_LABELS[subParam]){
+        selSub = subParam;
+        subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === subParam));
+      }
+    }
+    updateCatLabel();
     runFilter();
     requestAnimationFrame(function(){
       document.querySelector('.filter-results').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -688,9 +722,10 @@
 
   document.getElementById('novaPesquisaBtn').addEventListener('click', function(){
     searchInput.value = '';
-    selCategory = 'all'; selAlbum = 'all';
-    document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
-    document.querySelector('#categoryFilters .filter-pill[data-category="all"]').classList.add('active');
+    selCategory = 'all'; selAlbum = 'all'; selSub = 'all'; subFilters.style.display = 'none';
+    subFilters.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.sub === 'all'));
+    document.querySelectorAll('#categoryFilters [data-category]').forEach(p => p.classList.remove('active'));
+    document.querySelector('#categoryFilters [data-category="all"]').classList.add('active');
     document.querySelectorAll('#albumFilters .filter-pill').forEach(p => p.classList.remove('active'));
     document.querySelector('#albumFilters .filter-pill[data-album="all"]').classList.add('active');
     categorySelLabel.textContent = '';
